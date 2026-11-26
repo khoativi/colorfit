@@ -1,12 +1,12 @@
 {
-  "name": "ColorFit — Phối Màu Quần Áo Chuẩn 60-30-10",
+  "name": "ColorFit — Phối Màu Mua Sắm",
   "short_name": "ColorFit",
-  "description": "Tìm kiếm màu sắc và xem phối đồ trực quan chuẩn 60-30-10 cho Nữ, Nam và Trẻ em.",
+  "description": "Trợ lý phối màu trang phục khi mua sắm. Tra cứu nhanh 86 sắc màu và 646 bảng phối chuẩn theo lý thuyết màu sắc.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#F8F9FD",
-  "theme_color": "#0B1528",
+  "theme_color": "#1e1b4b",
   "lang": "vi",
   "icons": [
     {
