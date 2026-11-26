@@ -411,43 +411,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "blue-navy",
       "groupId": "neutral",
       "name": "Navy thanh lịch",
-      "description": "Navy phối với trắng, be, ghi và camel để tạo tổng thể cân bằng.",
+      "description": "Xanh navy phối cùng trắng tinh, đen tuyền, be và ghi sáng — bộ phối thanh lịch chuẩn mực từ công sở đến dạo phố.",
       "colorItems": [
         {
           "colorId": "blue-navy",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-jet",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "grey-light",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 5,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "beige-camel",
           "role": "accent",
-          "theoryRole": "accent",
-          "order": 6
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -3878,7 +3878,7 @@ const COLORFIT_PALETTES_DATA = {
           "order": 2
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-soft",
           "role": "supporting",
           "theoryRole": "neutral-support",
           "order": 3
@@ -4598,38 +4598,38 @@ const COLORFIT_PALETTES_DATA = {
         {
           "colorId": "black-soft",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "white-pure",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-ivory",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "grey-light",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-medium",
+          "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -4683,7 +4683,7 @@ const COLORFIT_PALETTES_DATA = {
           "order": 5
         },
         {
-          "colorId": "green-emerald",
+          "colorId": "red-burgundy",
           "role": "accent",
           "theoryRole": "accent",
           "order": 6
@@ -4761,43 +4761,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "black-jet",
       "groupId": "neutral",
       "name": "Đen tuyền phối trung tính",
-      "description": "Kết hợp Đen tuyền cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Đen tuyền phối cùng các màu trung tính kinh điển: trắng tinh, ghi sáng, be, xanh navy và điểm nhấn nâu caramel — cực dễ mặc mọi dịp.",
       "colorItems": [
         {
           "colorId": "black-jet",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "white-ivory",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "grey-light",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-medium",
+          "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -4817,44 +4817,44 @@ const COLORFIT_PALETTES_DATA = {
       "id": "black-jet-accent-01",
       "anchorColorId": "black-jet",
       "groupId": "accent",
-      "name": "Đen tuyền tạo điểm nhấn",
-      "description": "Giữ Đen tuyền cùng các màu hỗ trợ trung tính làm nền để sắc màu tương phản tạo điểm nhấn có kiểm soát.",
+      "name": "Đen tuyền nhấn đỏ sang trọng",
+      "description": "Phối kinh điển giữa đen tuyền, trắng tinh và điểm nhấn đỏ tươi hoặc đỏ rượu vang — sắc nét, quyền lực và không bao giờ lỗi mốt.",
       "colorItems": [
         {
           "colorId": "black-jet",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "white-ivory",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "grey-light",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "yellow-lemon",
+          "colorId": "red-classic",
           "role": "accent",
-          "theoryRole": "accent",
-          "order": 5
+          "order": 4,
+          "theoryRole": "accent"
         },
         {
-          "colorId": "green-emerald",
+          "colorId": "red-burgundy",
           "role": "accent",
-          "theoryRole": "accent",
-          "order": 6
+          "order": 5,
+          "theoryRole": "accent"
+        },
+        {
+          "colorId": "beige-camel",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -4984,38 +4984,38 @@ const COLORFIT_PALETTES_DATA = {
         {
           "colorId": "black-washed",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
-          "colorId": "white-pure",
+          "colorId": "white-soft",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "white-ivory",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "grey-light",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "beige-main",
+          "colorId": "beige-oat",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-medium",
+          "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-mocha",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -5126,7 +5126,7 @@ const COLORFIT_PALETTES_DATA = {
           "order": 5
         },
         {
-          "colorId": "yellow-lemon",
+          "colorId": "red-burgundy",
           "role": "accent",
           "theoryRole": "accent",
           "order": 6
@@ -11207,7 +11207,7 @@ const COLORFIT_PALETTES_DATA = {
           "order": 2
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-soft",
           "role": "supporting",
           "theoryRole": "neutral-support",
           "order": 3
@@ -11598,7 +11598,7 @@ const COLORFIT_PALETTES_DATA = {
           "order": 2
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-soft",
           "role": "supporting",
           "theoryRole": "neutral-support",
           "order": 3
@@ -11989,7 +11989,7 @@ const COLORFIT_PALETTES_DATA = {
           "order": 2
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-soft",
           "role": "supporting",
           "theoryRole": "neutral-support",
           "order": 3
@@ -12380,7 +12380,7 @@ const COLORFIT_PALETTES_DATA = {
           "order": 2
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-soft",
           "role": "supporting",
           "theoryRole": "neutral-support",
           "order": 3
@@ -13254,43 +13254,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "red-classic",
       "groupId": "neutral",
       "name": "Đỏ tươi phối trung tính",
-      "description": "Kết hợp Đỏ tươi cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Đỏ tươi kết hợp cùng đen tuyền, trắng tinh, xanh navy và be — bộ phối tương phản nổi bật, sang trọng và rất dễ mặc.",
       "colorItems": [
         {
           "colorId": "red-classic",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
+        },
+        {
+          "colorId": "black-jet",
+          "role": "supporting",
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "white-ivory",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "grey-light",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "beige-main",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -13711,7 +13711,7 @@ const COLORFIT_PALETTES_DATA = {
           "order": 2
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-soft",
           "role": "supporting",
           "theoryRole": "neutral-support",
           "order": 3
@@ -14208,7 +14208,7 @@ const COLORFIT_PALETTES_DATA = {
           "order": 2
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-soft",
           "role": "supporting",
           "theoryRole": "neutral-support",
           "order": 3
@@ -14705,7 +14705,7 @@ const COLORFIT_PALETTES_DATA = {
           "order": 2
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-jet",
           "role": "supporting",
           "theoryRole": "neutral-support",
           "order": 3
@@ -15146,7 +15146,7 @@ const COLORFIT_PALETTES_DATA = {
           "order": 2
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-jet",
           "role": "supporting",
           "theoryRole": "neutral-support",
           "order": 3
@@ -17579,7 +17579,7 @@ const COLORFIT_PALETTES_DATA = {
           "order": 2
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-soft",
           "role": "supporting",
           "theoryRole": "neutral-support",
           "order": 3
@@ -18076,7 +18076,7 @@ const COLORFIT_PALETTES_DATA = {
           "order": 2
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-soft",
           "role": "supporting",
           "theoryRole": "neutral-support",
           "order": 3
@@ -20010,7 +20010,7 @@ const COLORFIT_PALETTES_DATA = {
           "order": 2
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-soft",
           "role": "supporting",
           "theoryRole": "neutral-support",
           "order": 3
@@ -20564,7 +20564,7 @@ const COLORFIT_PALETTES_DATA = {
           "order": 2
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-jet",
           "role": "supporting",
           "theoryRole": "neutral-support",
           "order": 3
@@ -24521,7 +24521,7 @@ const COLORFIT_PALETTES_DATA = {
           "order": 2
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-soft",
           "role": "supporting",
           "theoryRole": "neutral-support",
           "order": 3
@@ -24968,7 +24968,7 @@ const COLORFIT_PALETTES_DATA = {
           "order": 2
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-soft",
           "role": "supporting",
           "theoryRole": "neutral-support",
           "order": 3
@@ -25415,7 +25415,7 @@ const COLORFIT_PALETTES_DATA = {
           "order": 2
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-jet",
           "role": "supporting",
           "theoryRole": "neutral-support",
           "order": 3
@@ -25856,7 +25856,7 @@ const COLORFIT_PALETTES_DATA = {
           "order": 2
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-soft",
           "role": "supporting",
           "theoryRole": "neutral-support",
           "order": 3
@@ -26303,7 +26303,7 @@ const COLORFIT_PALETTES_DATA = {
           "order": 2
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-jet",
           "role": "supporting",
           "theoryRole": "neutral-support",
           "order": 3
@@ -28569,7 +28569,7 @@ const COLORFIT_PALETTES_DATA = {
           "order": 2
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-jet",
           "role": "supporting",
           "theoryRole": "neutral-support",
           "order": 3
@@ -29291,7 +29291,7 @@ const COLORFIT_PALETTES_DATA = {
           "order": 2
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-jet",
           "role": "supporting",
           "theoryRole": "neutral-support",
           "order": 3
@@ -30403,7 +30403,7 @@ const COLORFIT_PALETTES_DATA = {
           "order": 2
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-jet",
           "role": "supporting",
           "theoryRole": "neutral-support",
           "order": 3
@@ -32518,7 +32518,7 @@ const COLORFIT_PALETTES_DATA = {
           "order": 2
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-jet",
           "role": "supporting",
           "theoryRole": "neutral-support",
           "order": 3

@@ -1,11 +1,23 @@
 /**
  * ColorFit Data & Business Logic Service
- * Implements colorfit-data-contract.json (v1.0.0)
+ * Implements colorfit-data-contract.json (v1.1.0)
  * Strictly separated from UI components.
  */
 const ColorFitService = (function () {
   const lib = typeof COLORFIT_COLOR_LIBRARY !== 'undefined' ? COLORFIT_COLOR_LIBRARY : null;
   const palettesData = typeof COLORFIT_PALETTES_DATA !== 'undefined' ? COLORFIT_PALETTES_DATA : null;
+
+  const FASHION_MATCHING_RULES = {
+    priority: ['universal-neutrals', 'fashion-color-matching', 'color-theory'],
+    universalNeutrals: ['black', 'white', 'grey', 'beige', 'navy', 'brown']
+  };
+
+  function getGroupPriorityTier(group) {
+    if (!group) return 3;
+    if (group.id === 'neutral') return 0; // 1. universal-neutrals
+    if (group.classification === 'fashion-application' || group.classification === 'color-character') return 1; // 2. fashion-color-matching
+    return 2; // 3. color-theory
+  }
 
   const ERROR_CODES = {
     COLOR_NOT_FOUND: 'COLOR_NOT_FOUND',
@@ -438,7 +450,7 @@ const ColorFitService = (function () {
 
     const groups = (lib.paletteGroupDefinitions || [])
       .slice()
-      .sort((a, b) => a.displayOrder - b.displayOrder)
+      .sort((a, b) => getGroupPriorityTier(a) - getGroupPriorityTier(b) || a.displayOrder - b.displayOrder)
       .filter(g => byGroup[g.id] && byGroup[g.id].length > 0)
       .map(g => ({
         groupId: g.id,
@@ -502,6 +514,7 @@ const ColorFitService = (function () {
 
   return {
     ERROR_CODES,
+    FASHION_MATCHING_RULES,
     getValidationErrors: () => [...validationErrors],
     getFamilies: () => (lib ? lib.colorFamilies : []),
     getGroups: () => (lib ? lib.paletteGroupDefinitions : []),
