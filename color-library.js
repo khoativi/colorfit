@@ -159,17 +159,17 @@ const COLORFIT_COLOR_LIBRARY = {
     },
     {
       "id": "tonal",
-      "name": "Tonal / Ít tương phản",
+      "name": "Nhẹ nhàng cùng tông",
       "nameEn": "Tonal / Low Contrast",
-      "description": "Các màu có độ sáng hoặc độ bão hòa gần nhau; không nhất thiết cùng hue.",
+      "description": "Các màu có độ sáng và độ dịu gần nhau, tạo cảm giác thanh lịch, dễ chịu.",
       "displayOrder": 7,
       "classification": "fashion-application"
     },
     {
       "id": "accent",
-      "name": "Nổi bật / Tạo điểm nhấn",
+      "name": "Tạo điểm nhấn",
       "nameEn": "Accent & Contrast",
-      "description": "Kết hợp màu nền với một hoặc nhiều màu nhấn có tương phản rõ.",
+      "description": "Kết hợp màu nền dễ mặc với một màu nhấn nổi bật để tổng thể có sức hút.",
       "displayOrder": 8,
       "classification": "fashion-application"
     },
@@ -177,23 +177,23 @@ const COLORFIT_COLOR_LIBRARY = {
       "id": "pastel",
       "name": "Pastel nhẹ nhàng",
       "nameEn": "Pastel",
-      "description": "Các màu sáng, thường có độ bão hòa thấp đến vừa.",
+      "description": "Các gam sáng dịu, trẻ trung và mềm mắt.",
       "displayOrder": 9,
       "classification": "color-character"
     },
     {
       "id": "earth-tone",
-      "name": "Earth Tone",
+      "name": "Tông đất tự nhiên",
       "nameEn": "Earth Tone",
-      "description": "Các sắc màu gợi liên tưởng đến đất, cây cỏ, gỗ và vật liệu tự nhiên.",
+      "description": "Các sắc màu ấm áp gợi liên tưởng đến đất, cây cỏ, gỗ và tự nhiên.",
       "displayOrder": 10,
       "classification": "color-character"
     },
     {
       "id": "color-blocking",
-      "name": "Color Blocking",
+      "name": "Phối mảng nổi bật",
       "nameEn": "Color Blocking",
-      "description": "Kết hợp các mảng màu rõ rệt, thường có tương phản mạnh.",
+      "description": "Kết hợp các mảng màu tương phản mạnh, rõ nét và cá tính.",
       "displayOrder": 11,
       "classification": "fashion-application"
     }

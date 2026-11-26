@@ -857,7 +857,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "white-pure-color-blocking-01",
       "anchorColorId": "white-pure",
       "groupId": "color-blocking",
-      "name": "Trắng tinh color blocking",
+      "name": "Trắng tinh phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Trắng tinh, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -4873,7 +4873,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "black-jet-color-blocking-01",
       "anchorColorId": "black-jet",
       "groupId": "color-blocking",
-      "name": "Đen tuyền color blocking",
+      "name": "Đen tuyền phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Đen tuyền, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -6887,7 +6887,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "beige-main-color-blocking-01",
       "anchorColorId": "beige-main",
       "groupId": "color-blocking",
-      "name": "Be color blocking",
+      "name": "Be phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Be, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -12925,7 +12925,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "red-pinkish-color-blocking-01",
       "anchorColorId": "red-pinkish",
       "groupId": "color-blocking",
-      "name": "Đỏ hồng color blocking",
+      "name": "Đỏ hồng phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Đỏ hồng, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -13367,7 +13367,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "red-classic-color-blocking-01",
       "anchorColorId": "red-classic",
       "groupId": "color-blocking",
-      "name": "Đỏ tươi color blocking",
+      "name": "Đỏ tươi phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Đỏ tươi, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -13864,7 +13864,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "red-brick-color-blocking-01",
       "anchorColorId": "red-brick",
       "groupId": "color-blocking",
-      "name": "Đỏ gạch color blocking",
+      "name": "Đỏ gạch phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Đỏ gạch, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -14361,7 +14361,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "red-rust-color-blocking-01",
       "anchorColorId": "red-rust",
       "groupId": "color-blocking",
-      "name": "Đỏ gỉ color blocking",
+      "name": "Đỏ gỉ phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Đỏ gỉ, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -14802,7 +14802,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "red-burgundy-color-blocking-01",
       "anchorColorId": "red-burgundy",
       "groupId": "color-blocking",
-      "name": "Đỏ burgundy color blocking",
+      "name": "Đỏ burgundy phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Đỏ burgundy, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -15243,7 +15243,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "red-wine-color-blocking-01",
       "anchorColorId": "red-wine",
       "groupId": "color-blocking",
-      "name": "Đỏ rượu vang color blocking",
+      "name": "Đỏ rượu vang phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Đỏ rượu vang, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -15741,7 +15741,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "orange-peach-color-blocking-01",
       "anchorColorId": "orange-peach",
       "groupId": "color-blocking",
-      "name": "Đào color blocking",
+      "name": "Đào phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Đào, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -16239,7 +16239,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "orange-apricot-color-blocking-01",
       "anchorColorId": "orange-apricot",
       "groupId": "color-blocking",
-      "name": "Cam mơ color blocking",
+      "name": "Cam mơ phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Cam mơ, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -16681,7 +16681,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "orange-coral-color-blocking-01",
       "anchorColorId": "orange-coral",
       "groupId": "color-blocking",
-      "name": "Cam san hô color blocking",
+      "name": "Cam san hô phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Cam san hô, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -17235,7 +17235,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "orange-terracotta-color-blocking-01",
       "anchorColorId": "orange-terracotta",
       "groupId": "color-blocking",
-      "name": "Cam đất color blocking",
+      "name": "Cam đất phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Cam đất, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -17732,7 +17732,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "orange-burnt-color-blocking-01",
       "anchorColorId": "orange-burnt",
       "groupId": "color-blocking",
-      "name": "Cam cháy color blocking",
+      "name": "Cam cháy phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Cam cháy, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -18229,7 +18229,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "orange-rust-color-blocking-01",
       "anchorColorId": "orange-rust",
       "groupId": "color-blocking",
-      "name": "Cam gỉ color blocking",
+      "name": "Cam gỉ phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Cam gỉ, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -18727,7 +18727,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "yellow-pale-color-blocking-01",
       "anchorColorId": "yellow-pale",
       "groupId": "color-blocking",
-      "name": "Vàng nhạt color blocking",
+      "name": "Vàng nhạt phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Vàng nhạt, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -19225,7 +19225,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "yellow-butter-color-blocking-01",
       "anchorColorId": "yellow-butter",
       "groupId": "color-blocking",
-      "name": "Vàng bơ color blocking",
+      "name": "Vàng bơ phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Vàng bơ, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -19666,7 +19666,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "yellow-lemon-color-blocking-01",
       "anchorColorId": "yellow-lemon",
       "groupId": "color-blocking",
-      "name": "Vàng chanh color blocking",
+      "name": "Vàng chanh phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Vàng chanh, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -20220,7 +20220,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "yellow-mustard-color-blocking-01",
       "anchorColorId": "yellow-mustard",
       "groupId": "color-blocking",
-      "name": "Vàng mù tạt color blocking",
+      "name": "Vàng mù tạt phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Vàng mù tạt, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -20662,7 +20662,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "yellow-golden-color-blocking-01",
       "anchorColorId": "yellow-golden",
       "groupId": "color-blocking",
-      "name": "Vàng ánh kim color blocking",
+      "name": "Vàng ánh kim phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Vàng ánh kim, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -21217,7 +21217,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "green-mint-pale-color-blocking-01",
       "anchorColorId": "green-mint-pale",
       "groupId": "color-blocking",
-      "name": "Mint nhạt color blocking",
+      "name": "Mint nhạt phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Mint nhạt, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -21772,7 +21772,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "green-mint-color-blocking-01",
       "anchorColorId": "green-mint",
       "groupId": "color-blocking",
-      "name": "Xanh mint color blocking",
+      "name": "Xanh mint phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Xanh mint, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -22833,7 +22833,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "green-pistachio-color-blocking-01",
       "anchorColorId": "green-pistachio",
       "groupId": "color-blocking",
-      "name": "Xanh pistachio color blocking",
+      "name": "Xanh pistachio phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Xanh pistachio, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -25512,7 +25512,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "green-emerald-color-blocking-01",
       "anchorColorId": "green-emerald",
       "groupId": "color-blocking",
-      "name": "Xanh emerald color blocking",
+      "name": "Xanh emerald phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Xanh emerald, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -26400,7 +26400,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "green-teal-color-blocking-01",
       "anchorColorId": "green-teal",
       "groupId": "color-blocking",
-      "name": "Xanh teal color blocking",
+      "name": "Xanh teal phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Xanh teal, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -26842,7 +26842,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "blue-baby-color-blocking-01",
       "anchorColorId": "blue-baby",
       "groupId": "color-blocking",
-      "name": "Xanh baby color blocking",
+      "name": "Xanh baby phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Xanh baby, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -27397,7 +27397,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "blue-powder-color-blocking-01",
       "anchorColorId": "blue-powder",
       "groupId": "color-blocking",
-      "name": "Xanh phấn color blocking",
+      "name": "Xanh phấn phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Xanh phấn, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -27839,7 +27839,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "blue-sky-color-blocking-01",
       "anchorColorId": "blue-sky",
       "groupId": "color-blocking",
-      "name": "Xanh da trời color blocking",
+      "name": "Xanh da trời phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Xanh da trời, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -28225,7 +28225,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "blue-denim-light-color-blocking-01",
       "anchorColorId": "blue-denim-light",
       "groupId": "color-blocking",
-      "name": "Xanh denim nhạt color blocking",
+      "name": "Xanh denim nhạt phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Xanh denim nhạt, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -28667,7 +28667,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "blue-denim-color-blocking-01",
       "anchorColorId": "blue-denim",
       "groupId": "color-blocking",
-      "name": "Xanh denim color blocking",
+      "name": "Xanh denim phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Xanh denim, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -30059,7 +30059,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "blue-navy-color-blocking-01",
       "anchorColorId": "blue-navy",
       "groupId": "color-blocking",
-      "name": "Xanh navy color blocking",
+      "name": "Xanh navy phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Xanh navy, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -30500,7 +30500,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "blue-midnight-color-blocking-01",
       "anchorColorId": "blue-midnight",
       "groupId": "color-blocking",
-      "name": "Xanh midnight color blocking",
+      "name": "Xanh midnight phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Xanh midnight, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -31000,7 +31000,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "purple-lilac-color-blocking-01",
       "anchorColorId": "purple-lilac",
       "groupId": "color-blocking",
-      "name": "Tím lilac color blocking",
+      "name": "Tím lilac phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Tím lilac, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -31500,7 +31500,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "purple-lavender-color-blocking-01",
       "anchorColorId": "purple-lavender",
       "groupId": "color-blocking",
-      "name": "Tím lavender color blocking",
+      "name": "Tím lavender phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Tím lavender, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -33120,7 +33120,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "pink-blush-color-blocking-01",
       "anchorColorId": "pink-blush",
       "groupId": "color-blocking",
-      "name": "Hồng phấn color blocking",
+      "name": "Hồng phấn phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Hồng phấn, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -33675,7 +33675,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "pink-baby-color-blocking-01",
       "anchorColorId": "pink-baby",
       "groupId": "color-blocking",
-      "name": "Hồng baby color blocking",
+      "name": "Hồng baby phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Hồng baby, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -34061,7 +34061,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "pink-dusty-color-blocking-01",
       "anchorColorId": "pink-dusty",
       "groupId": "color-blocking",
-      "name": "Hồng dusty color blocking",
+      "name": "Hồng dusty phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Hồng dusty, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -34503,7 +34503,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "pink-rose-color-blocking-01",
       "anchorColorId": "pink-rose",
       "groupId": "color-blocking",
-      "name": "Hồng rose color blocking",
+      "name": "Hồng rose phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Hồng rose, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -35057,7 +35057,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "pink-earth-color-blocking-01",
       "anchorColorId": "pink-earth",
       "groupId": "color-blocking",
-      "name": "Hồng đất color blocking",
+      "name": "Hồng đất phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Hồng đất, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {
@@ -35890,7 +35890,7 @@ const COLORFIT_PALETTES_DATA = {
       "id": "pink-hot-color-blocking-01",
       "anchorColorId": "pink-hot",
       "groupId": "color-blocking",
-      "name": "Hồng fuchsia color blocking",
+      "name": "Hồng fuchsia phối mảng nổi bật",
       "description": "Các mảng màu tương phản mạnh rõ nét quanh Hồng fuchsia, có màu trung tính giúp cân bằng thị giác.",
       "colorItems": [
         {

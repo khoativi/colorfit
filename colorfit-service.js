@@ -43,6 +43,48 @@ const ColorFitService = (function () {
     return { r: (num >> 16) & 255, g: (num >> 8) & 255, b: num & 255 };
   }
 
+  function rgbToHex(r, g, b) {
+    const clamp = (v) => Math.max(0, Math.min(255, Math.round(v)));
+    return '#' + [clamp(r), clamp(g), clamp(b)]
+      .map(v => v.toString(16).padStart(2, '0'))
+      .join('')
+      .toUpperCase();
+  }
+
+  function rgbToLab(r, g, b) {
+    // sRGB -> linear RGB
+    const toLinear = (c) => {
+      const v = c / 255;
+      return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    };
+    const rl = toLinear(r);
+    const gl = toLinear(g);
+    const bl = toLinear(b);
+
+    // Linear RGB -> XYZ (D65)
+    const x = (rl * 0.4124564 + gl * 0.3575761 + bl * 0.1804375) / 0.95047;
+    const y = (rl * 0.2126729 + gl * 0.7151522 + bl * 0.0721750) / 1.00000;
+    const z = (rl * 0.0193339 + gl * 0.1191920 + bl * 0.9503041) / 1.08883;
+
+    const f = (t) => (t > 0.008856 ? Math.cbrt(t) : (7.787 * t) + (16 / 116));
+    const fx = f(x);
+    const fy = f(y);
+    const fz = f(z);
+
+    return {
+      L: 116 * fy - 16,
+      a: 500 * (fx - fy),
+      b: 200 * (fy - fz)
+    };
+  }
+
+  function labDistance(lab1, lab2) {
+    const dL = lab1.L - lab2.L;
+    const da = lab1.a - lab2.a;
+    const db = lab1.b - lab2.b;
+    return Math.sqrt(dL * dL + da * da + db * db);
+  }
+
   function isLightColor(hex) {
     const { r, g, b } = hexToRgb(hex);
     return (0.299 * r + 0.587 * g + 0.114 * b) / 255 > 0.62;
@@ -51,11 +93,46 @@ const ColorFitService = (function () {
   function colorDistance(hex1, hex2) {
     const a = hexToRgb(hex1);
     const b = hexToRgb(hex2);
-    const rm = (a.r + b.r) / 2;
-    const dr = a.r - b.r;
-    const dg = a.g - b.g;
-    const db = a.b - b.b;
-    return Math.sqrt(((512 + rm) * dr * dr) / 256 + 4 * dg * dg + ((767 - rm) * db * db) / 256);
+    return labDistance(rgbToLab(a.r, a.g, a.b), rgbToLab(b.r, b.g, b.b));
+  }
+
+  function applyWarmLightCompensation(rgb) {
+    // Gentle tungsten/store warm-light white balance correction
+    const r = Math.max(0, Math.min(255, Math.round(rgb.r * 0.93)));
+    const g = Math.max(0, Math.min(255, Math.round(rgb.g * 0.98)));
+    const b = Math.max(0, Math.min(255, Math.round(rgb.b * 1.13)));
+    return { r, g, b };
+  }
+
+  function matchColorsByRgb(rgb, options = {}) {
+    const limit = options.limit || 4;
+    const warmLightCompensation = Boolean(options.warmLightCompensation);
+    const sampledRgb = {
+      r: Math.max(0, Math.min(255, Math.round(rgb.r))),
+      g: Math.max(0, Math.min(255, Math.round(rgb.g))),
+      b: Math.max(0, Math.min(255, Math.round(rgb.b)))
+    };
+    const targetRgb = warmLightCompensation ? applyWarmLightCompensation(sampledRgb) : sampledRgb;
+    const targetLab = rgbToLab(targetRgb.r, targetRgb.g, targetRgb.b);
+
+    const ranked = activeColors
+      .map(color => {
+        const cRgb = hexToRgb(color.hex);
+        const deltaE = labDistance(targetLab, rgbToLab(cRgb.r, cRgb.g, cRgb.b));
+        // Perceptual similarity score mapped cleanly to 0..100%
+        const matchPercent = Math.max(1, Math.min(99, Math.round(100 * Math.exp(-deltaE / 42))));
+        return { color, deltaE, matchPercent };
+      })
+      .sort((a, b) => a.deltaE - b.deltaE)
+      .slice(0, limit);
+
+    return {
+      sampledRgb,
+      sampledHex: rgbToHex(sampledRgb.r, sampledRgb.g, sampledRgb.b),
+      adjustedRgb: targetRgb,
+      adjustedHex: rgbToHex(targetRgb.r, targetRgb.g, targetRgb.b),
+      matches: ranked
+    };
   }
 
   // ==================== DATA VALIDATION ON LOAD ====================
@@ -438,6 +515,8 @@ const ColorFitService = (function () {
       'blue-baby', 'pink-dusty', 'green-olive', 'orange-terracotta'
     ].map(id => colorMap[id]).filter(Boolean),
     isLightColor,
+    rgbToHex,
+    matchColorsByRgb,
     normalizeVi,
     searchColors,
     queryPalettesByAnchor,
