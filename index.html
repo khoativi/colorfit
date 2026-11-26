@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html class="h-full" lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
+  <title>ColorFit — Phối Màu Mua Sắm</title>
+
+  <!-- Primary SEO Meta Tags -->
+  <meta name="title" content="ColorFit — Phối Màu Mua Sắm">
+  <meta name="description"
+    content="Trợ lý phối màu trang phục khi mua sắm. Nhập màu sắc hoặc món đồ (VD: áo sơ mi màu be, xanh navy, #D9C49B) để xem ngay các bảng phối màu chuẩn.">
+  <meta name="keywords"
+    content="phối màu quần áo, trợ lý phối màu, ColorFit, bảng màu thời trang, đơn sắc, tương đồng, bổ túc, trung tính, earth tone, pastel">
+  <meta name="author" content="ColorFit">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="./">
+
+  <!-- Favicons & App Icons -->
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Native App & PWA Meta Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="ColorFit">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#1e1b4b">
+  <meta name="format-detection" content="telephone=no">
+
+  <!-- Google Fonts: Plus Jakarta Sans + Material Symbols Outlined -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300..600,0..1,0&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        screens: {
+          'xs': '380px',
+          'sm': '640px',
+          'md': '768px',
+          'lg': '1024px',
+          'xl': '1280px'
+        },
+        extend: {
+          colors: {
+            'on-surface': '#0f172a',
+            'on-surface-variant': '#475569',
+            'brand-ink': '#1e1b4b',
+            'brand-accent': '#4f46e5',
+            'brand-soft': '#eef2ff'
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    :root {
+      --sat: env(safe-area-inset-top, 0px);
+      --sab: env(safe-area-inset-bottom, 0px);
+      --keyboard-height: 0px;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+      min-height: 100dvh;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      background-color: #f6f4f0;
+      color: #0f172a;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    *::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
+
+    * {
+      -ms-overflow-style: none !important;
+      scrollbar-width: none !important;
+      -webkit-tap-highlight-color: transparent;
+      box-sizing: border-box;
+    }
+
+    input,
+    textarea {
+      user-select: text;
+      -webkit-user-select: text;
+    }
+
+    .native-scroll-view {
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-y: contain;
+    }
+
+    .tap-press {
+      transition: transform 0.14s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.18s ease,
+        background-color 0.16s ease,
+        border-color 0.16s ease,
+        opacity 0.14s ease;
+      touch-action: manipulation;
+    }
+
+    .tap-press:active {
+      transform: scale(0.97);
+      opacity: 0.92;
+    }
+
+    .glass-card {
+      background-color: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.92);
+      box-shadow: 0 8px 30px -6px rgba(30, 27, 75, 0.08), 0 2px 8px -2px rgba(15, 23, 42, 0.04);
+    }
+
+    .swatch-inset {
+      box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.07);
+    }
+
+    .brand-gradient {
+      background: linear-gradient(135deg, #1e1b4b 0%, #3730a3 55%, #4f46e5 100%);
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+      user-select: none;
+    }
+
+    .material-symbols-outlined.filled {
+      font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+
+    @keyframes viewFadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-view-in {
+      animation: viewFadeIn 0.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes sheetUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-sheet-up {
+      animation: sheetUp 0.22s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    /* Floating Modern Color Tooltip (fixed single-line, auto Left/Center/Right) */
+    #floating-color-tooltip {
+      position: fixed;
+      z-index: 110;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(calc(-100% + 4px)) scale(0.96);
+      transition: opacity 0.16s ease, transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    #floating-color-tooltip.visible {
+      opacity: 1;
+      transform: translateY(calc(-100% - 10px)) scale(1);
+    }
+  </style>
+</head>
+
+<body class="w-full min-h-[100dvh] text-on-surface">
+
+  <!-- ==================== APP SHELL ==================== -->
+  <div id="app-shell" class="w-full min-h-[100dvh] flex flex-col relative">
+
+    <!-- Full-Screen Ambient Background Art (Background cũ mềm mại) -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none select-none z-0">
+      <div class="absolute inset-0 bg-gradient-to-br from-[#F4F0FF] via-[#FAF9FE] to-[#EEF2FF]"></div>
+      <!-- Top-right floral lavender bloom -->
+      <svg class="absolute -top-12 -right-10 w-80 h-80 sm:w-[420px] sm:h-[420px] opacity-80" viewBox="0 0 320 320" fill="none">
+        <circle cx="210" cy="110" r="115" fill="url(#app-bloom-1)" />
+        <circle cx="255" cy="175" r="85" fill="url(#app-bloom-2)" />
+        <path d="M185 75C225 35 280 62 268 118C256 174 202 186 174 146C146 106 145 115 185 75Z" fill="#C4B5FD" fill-opacity="0.30" />
+        <path d="M225 135C265 108 305 142 292 188C279 234 232 240 206 200C180 160 185 162 225 135Z" fill="#DDD6FE" fill-opacity="0.36" />
+        <defs>
+          <radialGradient id="app-bloom-1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(210 110) rotate(90) scale(115)">
+            <stop stop-color="#C084FC" stop-opacity="0.42" />
+            <stop offset="0.65" stop-color="#DDD6FE" stop-opacity="0.18" />
+            <stop offset="1" stop-color="#FAF5FF" stop-opacity="0" />
+          </radialGradient>
+          <radialGradient id="app-bloom-2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(255 175) rotate(90) scale(85)">
+            <stop stop-color="#818CF8" stop-opacity="0.32" />
+            <stop offset="1" stop-color="#E0E7FF" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+      </svg>
+      <!-- Bottom-left soft botanical wash -->
+      <svg class="absolute -bottom-16 -left-14 w-80 h-80 sm:w-[440px] sm:h-[440px] opacity-75" viewBox="0 0 320 320" fill="none">
+        <circle cx="115" cy="210" r="120" fill="url(#app-bloom-3)" />
+        <circle cx="185" cy="255" r="80" fill="url(#app-bloom-4)" />
+        <path d="M80 175C120 140 178 165 165 215C152 265 100 280 72 242C44 204 40 210 80 175Z" fill="#C7D2FE" fill-opacity="0.30" />
+        <defs>
+          <radialGradient id="app-bloom-3" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(115 210) rotate(90) scale(120)">
+            <stop stop-color="#A5B4FC" stop-opacity="0.36" />
+            <stop offset="0.65" stop-color="#E0E7FF" stop-opacity="0.16" />
+            <stop offset="1" stop-color="#F8F9FD" stop-opacity="0" />
+          </radialGradient>
+          <radialGradient id="app-bloom-4" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(185 255) rotate(90) scale(80)">
+            <stop stop-color="#F5D0FE" stop-opacity="0.30" />
+            <stop offset="1" stop-color="#FAF5FF" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+      </svg>
+      <!-- Center subtle warm studio glow -->
+      <div class="absolute top-1/3 left-1/2 -translate-x-1/2 w-[520px] h-[520px] rounded-full bg-[#FEF3C7]/25 blur-3xl"></div>
+    </div>
+
+    <!-- Sticky Glass Header -->
+    <header class="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-xl border-b border-white/80 shadow-[0_2px_12px_rgba(30,27,75,0.04)] pt-[var(--sat)] shrink-0">
+      <div class="max-w-[1140px] mx-auto h-16 px-4 md:px-6 flex items-center justify-between gap-3">
+        <!-- Brand Logo & Title (shown on Home screen) -->
+        <button id="header-brand-btn" type="button" onclick="resetToHome()"
+          class="flex items-center gap-3 tap-press focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent rounded-xl py-1">
+          <div class="w-10 h-10 rounded-xl bg-white border border-indigo-100 shadow-sm flex items-center justify-center p-1.5">
+            <div class="grid grid-cols-2 gap-1 w-full h-full">
+              <span class="rounded-full bg-[#312e81]"></span>
+              <span class="rounded-full bg-[#ea580c]"></span>
+              <span class="rounded-full bg-[#059669]"></span>
+              <span class="rounded-full bg-[#d9c49b]"></span>
+            </div>
+          </div>
+          <div class="flex flex-col text-left">
+            <span class="text-[11px] font-extrabold tracking-widest uppercase text-indigo-600 leading-none">ColorFit</span>
+            <h1 class="text-lg sm:text-xl font-extrabold text-slate-900 leading-tight tracking-tight">Phối Màu Mua Sắm</h1>
+          </div>
+        </button>
+
+        <!-- Back to Home Button (replaces Logo & Title on Search screen) -->
+        <button id="header-back-btn" type="button" onclick="resetToHome()" aria-label="Quay về màn hình chính"
+          class="hidden min-h-[44px] px-4 py-2 rounded-full bg-white/90 hover:bg-indigo-50 border border-indigo-100 text-slate-900 text-sm sm:text-base font-extrabold inline-flex items-center gap-2 shadow-xs tap-press transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent">
+          <span class="material-symbols-outlined text-[20px] text-indigo-600">arrow_back</span>
+          <span>Quay lại</span>
+        </button>
+
+        <!-- Saved Palettes Counter Pill -->
+        <button id="header-saved-btn" type="button" onclick="openSavedSheet()"
+          class="min-h-[44px] px-4 py-2 rounded-full bg-white/90 hover:bg-indigo-50 border border-indigo-100 text-slate-900 text-sm font-bold inline-flex items-center gap-2 shadow-xs tap-press transition-colors">
+          <span class="material-symbols-outlined filled text-indigo-600 text-[20px]">bookmark</span>
+          <span>Đã lưu</span>
+          <span id="header-saved-count" class="px-2 py-0.5 rounded-full bg-indigo-600 text-white text-xs font-extrabold">0</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ==================== MAIN SCROLLABLE WORKSPACE ==================== -->
+    <main id="view-main" class="flex-1 flex flex-col relative z-10">
+
+      <div id="main-inner-container"
+        class="relative z-10 w-full max-w-[1140px] mx-auto px-4 md:px-6 pt-5 sm:pt-7 pb-[calc(3rem+var(--sab)+var(--keyboard-height))] flex-1 flex flex-col justify-center transition-all duration-200">
+
+        <!-- Intro Headline (Idle state) -->
+        <div id="idle-intro-block" class="text-center max-w-xl mx-auto mb-6 space-y-2">
+          <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-slate-900 leading-tight">
+            Bạn đang muốn phối màu nào?
+          </h2>
+          <p class="text-base sm:text-lg text-slate-600 font-medium">
+            Nhập tên món đồ hoặc màu sắc để xem ngay các dãy màu phối chuẩn quanh màu của bạn
+          </p>
+        </div>
+
+        <!-- Search Capsule + Live Suggestions -->
+        <div id="search-box-wrapper" class="w-full max-w-2xl mx-auto relative z-30">
+          <form onsubmit="event.preventDefault(); handleSearchSubmit();"
+            class="relative flex items-center w-full bg-white/95 backdrop-blur-md rounded-full p-1.5 border border-indigo-100 focus-within:border-indigo-500 focus-within:ring-4 focus-within:ring-indigo-500/15 shadow-[0_6px_24px_rgba(30,27,75,0.08)] transition-all">
+            <span class="pl-4 pr-2 text-indigo-500 shrink-0 pointer-events-none flex items-center" aria-hidden="true">
+              <span class="material-symbols-outlined text-[24px]">search</span>
+            </span>
+            <input id="search-input" type="search" enterkeyhint="search" autocomplete="off"
+              aria-label="Tìm kiếm màu sắc trang phục"
+              placeholder="VD: áo sơ mi màu be, xanh navy, đỏ rượu..."
+              oninput="handleSearchInput(this.value)"
+              onfocus="handleSearchFocus()"
+              class="w-full h-12 bg-transparent text-base sm:text-lg font-bold text-slate-900 placeholder:text-slate-400 placeholder:font-medium focus:outline-none pr-2" />
+            <button id="search-clear-btn" type="button" onclick="clearSearchInput()" aria-label="Xóa tìm kiếm"
+              class="hidden w-10 h-10 rounded-full hover:bg-slate-100 text-slate-500 flex items-center justify-center shrink-0 mr-1 tap-press">
+              <span class="material-symbols-outlined text-[20px]">close</span>
+            </button>
+            <button type="submit"
+              class="h-12 px-5 sm:px-6 rounded-full brand-gradient text-white text-sm sm:text-base font-extrabold shrink-0 inline-flex items-center gap-1.5 shadow-md shadow-indigo-500/25 hover:opacity-95 tap-press">
+              <span>Tìm màu</span>
+            </button>
+          </form>
+
+          <!-- Live Suggestions Dropdown (solid white, auto-sized above virtual keyboard) -->
+          <div id="search-suggestions"
+            class="hidden native-scroll-view overscroll-contain absolute left-0 right-0 top-[calc(100%+8px)] bg-white border border-slate-200 rounded-2xl shadow-[0_18px_42px_rgba(15,23,42,0.18)] overflow-y-auto z-50"
+            style="background-color: #ffffff; max-height: 360px;">
+          </div>
+        </div>
+
+        <!-- ==================== IDLE / HOME STATE ==================== -->
+        <section id="home-idle-state" class="w-full max-w-2xl mx-auto mt-7 space-y-6 animate-view-in">
+          <!-- Recently Selected Colors -->
+          <div id="recent-colors-section" class="hidden space-y-3">
+            <div class="flex items-center justify-between px-1">
+              <span class="text-sm font-extrabold uppercase tracking-wider text-slate-600">Màu vừa xem</span>
+              <button type="button" onclick="clearRecentColors()"
+                class="text-sm font-bold text-slate-500 hover:text-rose-600 px-2 py-1 rounded-lg tap-press">
+                Xóa tất cả
+              </button>
+            </div>
+            <div id="recent-colors-list" class="flex flex-wrap items-center gap-2.5"></div>
+          </div>
+
+          <!-- Popular Colors -->
+          <div class="space-y-3">
+            <div class="flex items-center justify-between px-1">
+              <span class="text-sm font-extrabold uppercase tracking-wider text-slate-600">Màu phổ biến khi mua sắm</span>
+              <span class="text-xs sm:text-sm font-semibold text-slate-500">Chạm để phối màu</span>
+            </div>
+            <div id="popular-colors-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3"></div>
+          </div>
+
+          <!-- 12 Color Families Explorer -->
+          <div class="space-y-3">
+            <span class="text-sm font-extrabold uppercase tracking-wider text-slate-600 px-1 block">Khám phá theo 12 họ màu</span>
+            <div id="family-explorer-chips" class="flex flex-wrap items-center gap-2.5"></div>
+          </div>
+        </section>
+
+        <!-- ==================== SEARCH RESULTS STATE ==================== -->
+        <section id="results-state" class="hidden w-full mt-6 space-y-6 animate-view-in">
+          <!-- 1. Active Color Hero Summary Card -->
+          <div id="anchor-summary-card"></div>
+
+          <!-- 2. Classification Segmented Filter Pills -->
+          <div id="classification-bar" class="flex items-center gap-2.5 overflow-x-auto py-1"></div>
+
+          <!-- 3. Balanced Responsive Grid of Palette Group Sections -->
+          <div id="palette-groups-list" class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 items-start"></div>
+
+          <!-- 4. Empty State -->
+          <div id="results-empty-state" class="hidden"></div>
+
+          <!-- 5. Notes / Color Accuracy Disclaimer -->
+          <footer id="results-footer-note"
+            class="glass-card rounded-2xl px-5 py-4 text-sm text-slate-600 leading-relaxed space-y-1.5">
+          </footer>
+        </section>
+
+        <!-- ==================== NO MATCH STATE ==================== -->
+        <section id="no-match-state" class="hidden w-full max-w-2xl mx-auto mt-6 animate-view-in"></section>
+
+      </div>
+    </main>
+
+    <!-- ==================== PALETTE DETAIL FULL-HEIGHT POPUP ==================== -->
+    <div id="palette-sheet-backdrop"
+      class="hidden fixed inset-0 z-[90] bg-slate-950/50 backdrop-blur-xs flex items-stretch sm:items-center justify-center sm:p-4"
+      onclick="if(event.target.id==='palette-sheet-backdrop') closePaletteSheet()">
+      <div id="palette-sheet-panel" role="dialog" aria-modal="true" aria-labelledby="sheet-palette-title"
+        class="w-full sm:max-w-2xl h-[100dvh] max-h-[100dvh] sm:h-[94dvh] sm:max-h-[94dvh] bg-white rounded-none sm:rounded-2xl shadow-2xl border-0 sm:border sm:border-indigo-50 flex flex-col overflow-hidden animate-sheet-up pt-[var(--sat)] sm:pt-0"
+        onclick="event.stopPropagation()">
+
+        <!-- Sheet Header -->
+        <div class="px-5 sm:px-6 pt-4 sm:pt-5 pb-3.5 border-b border-slate-100 flex items-start justify-between gap-3 shrink-0">
+          <div class="min-w-0 space-y-1.5">
+            <div id="sheet-palette-meta" class="flex items-center gap-2 flex-wrap"></div>
+            <h2 id="sheet-palette-title" class="text-xl sm:text-2xl font-extrabold text-slate-900 leading-snug"></h2>
+          </div>
+          <button type="button" onclick="closePaletteSheet()" aria-label="Đóng chi tiết bảng màu"
+            class="w-11 h-11 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center shrink-0 tap-press">
+            <span class="material-symbols-outlined text-[22px]">close</span>
+          </button>
+        </div>
+
+        <!-- Sheet Body -->
+        <div id="sheet-palette-body" class="native-scroll-view overflow-y-auto px-5 sm:px-6 py-5 pb-[calc(1.5rem+var(--sab))] space-y-5">
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== SAVED PALETTES SHEET ==================== -->
+    <div id="saved-sheet-backdrop"
+      class="hidden fixed inset-0 z-[92] bg-slate-950/50 backdrop-blur-xs flex items-end sm:items-center justify-center sm:p-4"
+      onclick="if(event.target.id==='saved-sheet-backdrop') closeSavedSheet()">
+      <div role="dialog" aria-modal="true" aria-label="Bảng màu đã lưu"
+        class="w-full sm:max-w-xl max-h-[85dvh] bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl border border-indigo-50 flex flex-col overflow-hidden animate-sheet-up"
+        onclick="event.stopPropagation()">
+        <div class="w-full flex justify-center pt-3 pb-1 sm:hidden shrink-0">
+          <div class="w-12 h-1.5 rounded-full bg-slate-300"></div>
+        </div>
+        <div class="px-5 sm:px-6 pt-2 sm:pt-5 pb-3.5 border-b border-slate-100 flex items-center justify-between gap-3 shrink-0">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined filled text-indigo-600 text-[24px]">bookmark</span>
+            <h2 class="text-xl font-extrabold text-slate-900">Bảng màu đã lưu</h2>
+          </div>
+          <button type="button" onclick="closeSavedSheet()" aria-label="Đóng"
+            class="w-11 h-11 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center tap-press">
+            <span class="material-symbols-outlined text-[22px]">close</span>
+          </button>
+        </div>
+        <div id="saved-sheet-body" class="native-scroll-view overflow-y-auto px-5 sm:px-6 py-4 pb-[calc(1.5rem+var(--sab))] space-y-3.5">
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== FLOATING MODERN COLOR TOOLTIP (SINGLE-LINE AUTO-ALIGN) ==================== -->
+    <div id="floating-color-tooltip" role="tooltip" aria-hidden="true">
+      <div class="relative bg-[#0f172a]/95 backdrop-blur-md text-white rounded-2xl px-3 py-2 shadow-[0_14px_32px_rgba(15,23,42,0.35)] border border-white/15 inline-flex items-center gap-2.5 w-max whitespace-nowrap">
+        <span id="tooltip-swatch" class="w-8 h-8 rounded-xl border border-white/25 shrink-0 shadow-sm"></span>
+        <span id="tooltip-name" class="text-sm font-extrabold leading-none whitespace-nowrap"></span>
+        <span id="tooltip-role" class="text-xs font-bold px-2.5 py-1 rounded-full bg-indigo-500/35 text-indigo-100 leading-none whitespace-nowrap"></span>
+      </div>
+      <div id="tooltip-arrow" class="absolute -bottom-1.5 w-3 h-3 bg-[#0f172a]/95 border-r border-b border-white/15 rotate-45 -translate-x-1/2"></div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast-notification" role="status" aria-live="polite"
+      class="fixed bottom-[calc(1.5rem+var(--sab))] left-1/2 -translate-x-1/2 z-[120] pointer-events-none opacity-0 transition-all duration-200 brand-gradient text-white text-sm font-bold px-5 py-3 rounded-full shadow-xl whitespace-nowrap">
+    </div>
+  </div>
+
+  <!-- Separated Data & Service Layers -->
+  <script src="color-library.js"></script>
+  <script src="palettes-data.js"></script>
+  <script src="colorfit-service.js"></script>
+
+  <script>
+    // ==================== UI STATE ====================
+    const RECENT_COLORS_KEY = 'colorfit_recent_colors_v1';
+    const SAVED_PALETTES_KEY = 'colorfit_saved_palettes_v1';
+
+    const state = {
+      searchQuery: '',
+      matchedGarment: null,
+      anchorColorId: null,
+      queryResult: null,
+      activeClassification: 'all',
+      openPaletteId: null,
+      toastTimer: null,
+      tooltipTimer: null
+    };
+
+    const CLASSIFICATION_LABELS = {
+      'all': 'Tất cả',
+      'color-theory': 'Lý thuyết màu',
+      'fashion-application': 'Ứng dụng thời trang',
+      'color-character': 'Sắc thái màu'
+    };
+
+    const ROLE_LABELS = {
+      anchor: { label: 'Màu gốc', badge: 'bg-indigo-950 text-white', desc: 'Màu món đồ bạn đang chọn (giữ làm trung tâm ~50–60%).' },
+      supporting: { label: 'Màu hỗ trợ', badge: 'bg-slate-100 text-slate-700', desc: 'Phối cân bằng cùng màu gốc (áo, quần hoặc lớp khoác ~30–40%).' },
+      accent: { label: 'Màu nhấn', badge: 'bg-amber-100 text-amber-900', desc: 'Tạo điểm nhấn có kiểm soát qua phụ kiện hoặc một chi tiết nhỏ (~10%).' }
+    };
+
+    const FORMULA_ROLE_NAMES = {
+      monochromatic: 'Cùng hướng hue',
+      analogous: 'Màu tương đồng',
+      complementary: 'Màu bổ túc',
+      'split-complementary': 'Bổ túc bộ ba',
+      triadic: 'Màu tam giác',
+      tonal: 'Màu cùng tông',
+      pastel: 'Màu pastel',
+      'earth-tone': 'Màu sắc đất'
+    };
+
+    function getDisplayRole(item, groupId) {
+      if (item.role === 'anchor' || item.theoryRole === 'anchor') {
+        return { label: 'Màu gốc', short: 'Màu gốc', badge: 'bg-indigo-950 text-white' };
+      }
+      if (item.theoryRole === 'neutral-support') {
+        return { label: 'Hỗ trợ trung tính', short: 'Trung tính', badge: 'bg-slate-100 text-slate-700 border border-slate-200' };
+      }
+      if (item.role === 'accent' || item.theoryRole === 'accent') {
+        return { label: 'Màu nhấn', short: 'Màu nhấn', badge: 'bg-amber-100 text-amber-900' };
+      }
+      const formulaLabel = FORMULA_ROLE_NAMES[groupId] || 'Màu công thức';
+      return { label: formulaLabel, short: formulaLabel, badge: 'bg-indigo-50 text-indigo-700 border border-indigo-200/70' };
+    }
+
+    const DIFFICULTY_LABELS = {
+      easy: { label: 'Dễ phối', cls: 'bg-emerald-50 text-emerald-800 border-emerald-200' },
+      medium: { label: 'Trung bình', cls: 'bg-amber-50 text-amber-800 border-amber-200' },
+      hard: { label: 'Cá tính', cls: 'bg-rose-50 text-rose-800 border-rose-200' }
+    };
+
+    const OCCASION_LABELS = {
+      office: 'Công sở', daily: 'Hằng ngày', casual: 'Dạo phố',
+      date: 'Hẹn hò', weekend: 'Cuối tuần', travel: 'Du lịch',
+      party: 'Dự tiệc', formal: 'Trang trọng', spring: 'Mùa xuân',
+      'street-style': 'Street style'
+    };
+
+    const TEMP_LABELS = { warm: 'Tông ấm', cool: 'Tông lạnh', neutral: 'Trung tính' };
+    const TONE_LABELS = { light: 'Sắc sáng', medium: 'Sắc vừa', dark: 'Sắc đậm' };
+
+    // ==================== HELPERS ====================
+    function escapeHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function showToast(msg) {
+      const el = document.getElementById('toast-notification');
+      if (!el) return;
+      el.textContent = msg;
+      el.classList.remove('opacity-0');
+      el.classList.add('opacity-100');
+      clearTimeout(state.toastTimer);
+      state.toastTimer = setTimeout(() => {
+        el.classList.remove('opacity-100');
+        el.classList.add('opacity-0');
+      }, 2200);
+    }
+
+    // ==================== BEAUTIFUL FLOATING COLOR TOOLTIP (AUTO LEFT / CENTER / RIGHT, NO WRAP) ====================
+    function showColorTooltip(targetEl, name, nameEn, hex, roleText, autoHideMs = 0) {
+      const tip = document.getElementById('floating-color-tooltip');
+      const arrowEl = document.getElementById('tooltip-arrow');
+      if (!tip || !targetEl) return;
+
+      clearTimeout(state.tooltipTimer);
+      document.getElementById('tooltip-swatch').style.backgroundColor = hex;
+      document.getElementById('tooltip-name').textContent = name;
+      const roleEl = document.getElementById('tooltip-role');
+      if (roleText) {
+        roleEl.textContent = roleText;
+        roleEl.classList.remove('hidden');
+      } else {
+        roleEl.classList.add('hidden');
+      }
+
+      // Measure actual single-line width so tooltip never wraps or overflows screen edges
+      const margin = 12;
+      const tipW = tip.offsetWidth || 220;
+      const vw = window.innerWidth;
+      const rect = targetEl.getBoundingClientRect();
+      const swatchCenterX = rect.left + rect.width / 2;
+
+      // Auto-align: Left if near left edge, Right if near right edge, Center otherwise
+      let leftX = swatchCenterX - tipW / 2;
+      if (leftX < margin) {
+        leftX = margin;
+      } else if (leftX + tipW > vw - margin) {
+        leftX = Math.max(margin, vw - tipW - margin);
+      }
+
+      const topY = Math.max(76, rect.top);
+      tip.style.left = `${Math.round(leftX)}px`;
+      tip.style.top = `${Math.round(topY)}px`;
+
+      // Point arrow directly at the swatch center regardless of Left / Center / Right alignment
+      if (arrowEl) {
+        const arrowX = Math.max(20, Math.min(tipW - 20, swatchCenterX - leftX));
+        arrowEl.style.left = `${Math.round(arrowX)}px`;
+      }
+
+      tip.classList.add('visible');
+      tip.setAttribute('aria-hidden', 'false');
+
+      if (autoHideMs > 0) {
+        state.tooltipTimer = setTimeout(hideColorTooltip, autoHideMs);
+      }
+    }
+
+    function hideColorTooltip() {
+      const tip = document.getElementById('floating-color-tooltip');
+      if (!tip) return;
+      clearTimeout(state.tooltipTimer);
+      tip.classList.remove('visible');
+      tip.setAttribute('aria-hidden', 'true');
+    }
+
+    // ==================== LOCAL STORAGE: RECENT & SAVED ====================
+    function getRecentColorIds() {
+      try {
+        const arr = JSON.parse(localStorage.getItem(RECENT_COLORS_KEY) || '[]');
+        return Array.isArray(arr) ? arr.filter(id => ColorFitService.getColorById(id)) : [];
+      } catch { return []; }
+    }
+
+    function saveRecentColorId(colorId) {
+      if (!colorId) return;
+      const list = [colorId, ...getRecentColorIds().filter(id => id !== colorId)].slice(0, 8);
+      try { localStorage.setItem(RECENT_COLORS_KEY, JSON.stringify(list)); } catch {}
+    }
+
+    function clearRecentColors() {
+      try { localStorage.removeItem(RECENT_COLORS_KEY); } catch {}
+      renderHomeIdle();
+    }
+
+    function getSavedPaletteIds() {
+      try {
+        const arr = JSON.parse(localStorage.getItem(SAVED_PALETTES_KEY) || '[]');
+        return Array.isArray(arr) ? arr : [];
+      } catch { return []; }
+    }
+
+    function isPaletteSaved(paletteId) {
+      return getSavedPaletteIds().includes(paletteId);
+    }
+
+    function toggleSavePalette(event, paletteId) {
+      if (event) event.stopPropagation();
+      const list = getSavedPaletteIds();
+      const idx = list.indexOf(paletteId);
+      if (idx >= 0) {
+        list.splice(idx, 1);
+        showToast('Đã bỏ lưu bảng màu');
+      } else {
+        list.unshift(paletteId);
+        showToast('Đã lưu bảng màu vào danh sách');
+      }
+      try { localStorage.setItem(SAVED_PALETTES_KEY, JSON.stringify(list.slice(0, 30))); } catch {}
+      updateSavedCountBadge();
+      if (state.queryResult) renderPaletteGroups();
+    }
+
+    function updateSavedCountBadge() {
+      const el = document.getElementById('header-saved-count');
+      if (el) el.textContent = String(getSavedPaletteIds().length);
+    }
+
+    // ==================== URL SYNC ====================
+    function syncUrl(push = true) {
+      const url = new URL(window.location.href);
+      url.search = '';
+      if (state.anchorColorId) url.searchParams.set('color', state.anchorColorId);
+      if (state.openPaletteId) url.searchParams.set('palette', state.openPaletteId);
+      const nextState = { anchorColorId: state.anchorColorId, openPaletteId: state.openPaletteId, matchedGarment: state.matchedGarment };
+      if (push) history.pushState(nextState, '', url.toString());
+      else history.replaceState(nextState, '', url.toString());
+    }
+
+    // ==================== SEARCH & SUGGESTIONS ====================
+    function updateSuggestionsMaxHeight() {
+      const box = document.getElementById('search-suggestions');
+      if (!box || box.classList.contains('hidden')) return;
+      const vvHeight = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+      const rect = box.getBoundingClientRect();
+      const available = Math.floor(vvHeight - rect.top - 14);
+      box.style.maxHeight = `${Math.max(140, Math.min(400, available))}px`;
+    }
+
+    function bringSearchBoxAboveKeyboard() {
+      const inner = document.getElementById('main-inner-container');
+      const intro = document.getElementById('idle-intro-block');
+      if (!state.anchorColorId && window.innerWidth < 768) {
+        if (inner) {
+          inner.classList.remove('justify-center');
+          inner.classList.add('justify-start');
+        }
+        if (intro) intro.classList.add('hidden');
+      }
+      const wrapper = document.getElementById('search-box-wrapper');
+      if (wrapper) {
+        const top = wrapper.getBoundingClientRect().top + window.scrollY - 76;
+        if (top > 4) window.scrollTo({ top, behavior: 'smooth' });
+      }
+      requestAnimationFrame(updateSuggestionsMaxHeight);
+      setTimeout(updateSuggestionsMaxHeight, 260);
+    }
+
+    function hideSuggestions() {
+      const box = document.getElementById('search-suggestions');
+      if (box) box.classList.add('hidden');
+    }
+
+    function renderSuggestions(query) {
+      const box = document.getElementById('search-suggestions');
+      if (!box) return;
+      const trimmed = (query || '').trim();
+      if (!trimmed) {
+        box.classList.add('hidden');
+        box.innerHTML = '';
+        return;
+      }
+
+      const { colors, matchedGarment } = ColorFitService.searchColors(trimmed);
+      if (colors.length === 0) {
+        box.classList.remove('hidden');
+        box.innerHTML = `
+          <div class="p-5 text-base text-slate-600 text-center">
+            Không tìm thấy màu phù hợp với <strong class="text-slate-900">"${escapeHtml(trimmed)}"</strong>
+          </div>
+        `;
+        updateSuggestionsMaxHeight();
+        return;
+      }
+
+      box.classList.remove('hidden');
+      box.innerHTML = colors.slice(0, 7).map((c, idx) => {
+        const fam = ColorFitService.getFamilyById(c.familyId);
+        return `
+          <button type="button" onclick="selectAnchorColor('${c.id}', '${escapeHtml(matchedGarment || '')}')"
+            class="w-full min-h-[56px] px-4 py-3 flex items-center gap-3.5 hover:bg-indigo-50/70 text-left transition-colors ${idx > 0 ? 'border-t border-slate-100' : ''}">
+            <span class="w-10 h-10 rounded-xl swatch-inset shrink-0" style="background-color: ${c.hex};"></span>
+            <div class="min-w-0 flex-1">
+              <div class="text-base font-extrabold text-slate-900 break-words leading-snug">
+                ${matchedGarment ? `<span class="text-indigo-600">${escapeHtml(matchedGarment)}</span> · ` : ''}${escapeHtml(c.name)}
+              </div>
+              <div class="text-sm font-medium text-slate-500 break-words leading-snug">${escapeHtml(c.nameEn)}${fam ? ` • Họ ${escapeHtml(fam.name)}` : ''}</div>
+            </div>
+          </button>
+        `;
+      }).join('');
+      updateSuggestionsMaxHeight();
+    }
+
+    function handleSearchInput(val) {
+      state.searchQuery = val;
+      const clearBtn = document.getElementById('search-clear-btn');
+      if (clearBtn) clearBtn.classList.toggle('hidden', !(val || '').trim());
+      if ((val || '').trim()) bringSearchBoxAboveKeyboard();
+      renderSuggestions(val);
+      if (!(val || '').trim() && !state.anchorColorId) hideSuggestions();
+    }
+
+    function handleSearchFocus() {
+      bringSearchBoxAboveKeyboard();
+      if ((state.searchQuery || '').trim()) renderSuggestions(state.searchQuery);
+    }
+
+    function handleSearchSubmit() {
+      const input = document.getElementById('search-input');
+      const q = (input ? input.value : state.searchQuery || '').trim();
+      if (input) input.blur();
+      hideSuggestions();
+
+      if (!q) { resetToHome(); return; }
+
+      const { colors, matchedGarment } = ColorFitService.searchColors(q);
+      if (colors.length === 0) {
+        state.anchorColorId = null;
+        state.queryResult = null;
+        renderNoMatchState(q);
+        return;
+      }
+      selectAnchorColor(colors[0].id, matchedGarment || '');
+    }
+
+    function clearSearchInput() {
+      const input = document.getElementById('search-input');
+      if (input) { input.value = ''; input.focus(); }
+      state.searchQuery = '';
+      hideSuggestions();
+      const clearBtn = document.getElementById('search-clear-btn');
+      if (clearBtn) clearBtn.classList.add('hidden');
+      if (!state.anchorColorId) renderHomeIdle();
+    }
+
+    function resetToHome(push = true) {
+      const input = document.getElementById('search-input');
+      if (input) input.value = '';
+      state.searchQuery = '';
+      state.matchedGarment = null;
+      state.anchorColorId = null;
+      state.queryResult = null;
+      state.activeClassification = 'all';
+      state.openPaletteId = null;
+      hideSuggestions();
+      hideColorTooltip();
+      closePaletteSheet(false);
+      const clearBtn = document.getElementById('search-clear-btn');
+      if (clearBtn) clearBtn.classList.add('hidden');
+
+      const inner = document.getElementById('main-inner-container');
+      const intro = document.getElementById('idle-intro-block');
+      const idle = document.getElementById('home-idle-state');
+      const results = document.getElementById('results-state');
+      const noMatch = document.getElementById('no-match-state');
+      const brandBtn = document.getElementById('header-brand-btn');
+      const backBtn = document.getElementById('header-back-btn');
+
+      if (brandBtn) brandBtn.classList.remove('hidden');
+      if (backBtn) backBtn.classList.add('hidden');
+      if (inner) { inner.classList.add('justify-center'); inner.classList.remove('justify-start'); }
+      if (intro) intro.classList.remove('hidden');
+      if (idle) idle.classList.remove('hidden');
+      if (results) results.classList.add('hidden');
+      if (noMatch) noMatch.classList.add('hidden');
+
+      renderHomeIdle();
+      syncUrl(push);
+    }
+
+    // ==================== SELECT / RE-ANCHOR FLOW ====================
+    function selectAnchorColor(colorId, garmentContext = null, pushUrl = true, isReanchor = false) {
+      hideSuggestions();
+      hideColorTooltip();
+      const res = isReanchor
+        ? ColorFitService.reanchor(colorId)
+        : ColorFitService.queryPalettesByAnchor(colorId);
+
+      if (!res.ok) {
+        showToast('Màu bạn chọn hiện không khả dụng.');
+        return;
+      }
+
+      state.anchorColorId = res.anchorColor.id;
+      state.queryResult = res;
+      state.activeClassification = 'all';
+      if (garmentContext !== null) state.matchedGarment = garmentContext || null;
+
+      const displayQuery = state.matchedGarment
+        ? `${state.matchedGarment} ${res.anchorColor.name.toLowerCase()}`
+        : `${res.anchorColor.name} (${res.anchorColor.nameEn})`;
+
+      const input = document.getElementById('search-input');
+      if (input) input.value = displayQuery;
+      state.searchQuery = displayQuery;
+      const clearBtn = document.getElementById('search-clear-btn');
+      if (clearBtn) clearBtn.classList.remove('hidden');
+
+      saveRecentColorId(res.anchorColor.id);
+      renderSearchResults();
+      syncUrl(pushUrl);
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      if (isReanchor) showToast(`Đã chọn "${res.anchorColor.name}" làm màu gốc mới`);
+    }
+
+    function reanchorFromPalette(newColorId) {
+      closePaletteSheet(false);
+      selectAnchorColor(newColorId, '', true, true);
+    }
+
+    function focusChangeColor() {
+      const input = document.getElementById('search-input');
+      if (input) {
+        input.value = '';
+        state.searchQuery = '';
+        const clearBtn = document.getElementById('search-clear-btn');
+        if (clearBtn) clearBtn.classList.add('hidden');
+        input.focus();
+      }
+    }
+
+    function setClassificationFilter(cls) {
+      state.activeClassification = cls;
+      renderPaletteGroups();
+    }
+
+    // ==================== RENDER: HOME IDLE ====================
+    function renderHomeIdle() {
+      const recentSec = document.getElementById('recent-colors-section');
+      const recentList = document.getElementById('recent-colors-list');
+      const recentIds = getRecentColorIds();
+      if (recentSec && recentList) {
+        if (recentIds.length === 0) {
+          recentSec.classList.add('hidden');
+          recentList.innerHTML = '';
+        } else {
+          recentSec.classList.remove('hidden');
+          recentList.innerHTML = recentIds.map(id => {
+            const c = ColorFitService.getColorById(id);
+            if (!c) return '';
+            return `
+              <button type="button" onclick="selectAnchorColor('${c.id}', '')"
+                class="min-h-[44px] inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/90 hover:bg-white border border-indigo-100 hover:border-indigo-400 text-sm sm:text-[15px] font-bold text-slate-800 shadow-xs tap-press">
+                <span class="w-5 h-5 rounded-full swatch-inset shrink-0" style="background-color: ${c.hex};"></span>
+                <span>${escapeHtml(c.name)}</span>
+              </button>
+            `;
+          }).join('');
+        }
+      }
+
+      const popGrid = document.getElementById('popular-colors-grid');
+      if (popGrid) {
+        popGrid.innerHTML = ColorFitService.getPopularColors().map(c => `
+          <button type="button" onclick="selectAnchorColor('${c.id}', '')"
+            class="min-h-[56px] glass-card hover:border-indigo-400 rounded-2xl p-3 flex items-center gap-3 text-left tap-press">
+            <span class="w-9 h-9 rounded-xl swatch-inset shrink-0" style="background-color: ${c.hex};"></span>
+            <div class="min-w-0">
+              <div class="text-sm sm:text-[15px] font-extrabold text-slate-900 break-words leading-snug">${escapeHtml(c.name)}</div>
+            </div>
+          </button>
+        `).join('');
+      }
+
+      const famContainer = document.getElementById('family-explorer-chips');
+      if (famContainer) {
+        famContainer.innerHTML = ColorFitService.getFamilies().map(fam => {
+          const famColors = ColorFitService.getFamilyColors(fam.id);
+          const rep = famColors[Math.floor(famColors.length / 2)] || famColors[0];
+          if (!rep) return '';
+          return `
+            <button type="button" onclick="selectAnchorColor('${rep.id}', '')"
+              class="min-h-[44px] inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 hover:bg-white border border-indigo-100 hover:border-indigo-400 text-sm font-bold text-slate-800 shadow-xs tap-press">
+              <span class="w-4 h-4 rounded-full swatch-inset shrink-0" style="background-color: ${rep.hex};"></span>
+              <span>${escapeHtml(fam.name)}</span>
+            </button>
+          `;
+        }).join('');
+      }
+    }
+
+    // ==================== RENDER: NO MATCH ====================
+    function renderNoMatchState(q) {
+      const inner = document.getElementById('main-inner-container');
+      const intro = document.getElementById('idle-intro-block');
+      const idle = document.getElementById('home-idle-state');
+      const results = document.getElementById('results-state');
+      const noMatch = document.getElementById('no-match-state');
+      const brandBtn = document.getElementById('header-brand-btn');
+      const backBtn = document.getElementById('header-back-btn');
+
+      if (brandBtn) brandBtn.classList.add('hidden');
+      if (backBtn) backBtn.classList.remove('hidden');
+      if (inner) { inner.classList.remove('justify-center'); inner.classList.add('justify-start'); }
+      if (intro) intro.classList.add('hidden');
+      if (idle) idle.classList.add('hidden');
+      if (results) results.classList.add('hidden');
+      if (!noMatch) return;
+
+      noMatch.classList.remove('hidden');
+      noMatch.innerHTML = `
+        <div class="glass-card rounded-2xl p-6 text-center space-y-3.5">
+          <p class="text-lg font-extrabold text-slate-900">Không tìm thấy màu phù hợp với "${escapeHtml(q)}"</p>
+          <p class="text-base text-slate-600">Hãy thử nhập tên màu tiếng Việt hoặc tiếng Anh phổ biến:</p>
+          <div class="flex flex-wrap justify-center gap-2.5 pt-1">
+            ${['beige-main', 'blue-navy', 'green-sage', 'red-burgundy', 'grey-light'].map(id => {
+        const c = ColorFitService.getColorById(id);
+        return c ? `
+                <button type="button" onclick="selectAnchorColor('${c.id}', '')"
+                  class="min-h-[44px] inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-50 hover:bg-indigo-100 text-sm font-bold text-indigo-950 tap-press">
+                  <span class="w-4 h-4 rounded-full swatch-inset" style="background-color: ${c.hex};"></span>
+                  <span>${escapeHtml(c.name)}</span>
+                </button>` : '';
+      }).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    // ==================== RENDER: SEARCH RESULTS ====================
+    function renderSearchResults() {
+      const inner = document.getElementById('main-inner-container');
+      const intro = document.getElementById('idle-intro-block');
+      const idle = document.getElementById('home-idle-state');
+      const results = document.getElementById('results-state');
+      const noMatch = document.getElementById('no-match-state');
+      const brandBtn = document.getElementById('header-brand-btn');
+      const backBtn = document.getElementById('header-back-btn');
+
+      if (brandBtn) brandBtn.classList.add('hidden');
+      if (backBtn) backBtn.classList.remove('hidden');
+      if (inner) { inner.classList.remove('justify-center'); inner.classList.add('justify-start'); }
+      if (intro) intro.classList.add('hidden');
+      if (idle) idle.classList.add('hidden');
+      if (noMatch) noMatch.classList.add('hidden');
+      if (results) results.classList.remove('hidden');
+
+      renderAnchorSummary();
+      renderPaletteGroups();
+      renderFooterNotes();
+    }
+
+    function renderAnchorSummary() {
+      const el = document.getElementById('anchor-summary-card');
+      const res = state.queryResult;
+      if (!el || !res || !res.anchorColor) return;
+
+      const anchor = res.anchorColor;
+      const family = res.family;
+      const siblings = family ? ColorFitService.getFamilyColors(family.id) : [];
+      const totalGroups = res.totalGroups || res.groups.length;
+      const totalPalettes = res.totalPalettes || res.groups.reduce((sum, g) => sum + g.palettes.length, 0);
+
+      el.innerHTML = `
+        <section class="w-full glass-card rounded-3xl p-4 sm:p-6 space-y-4">
+          <!-- Top Bar: Counts + Garment Context -->
+          <div class="flex items-center gap-2 flex-wrap">
+            ${state.matchedGarment ? `<span class="text-xs sm:text-sm font-extrabold px-3 py-1 rounded-full brand-gradient text-white">${escapeHtml(state.matchedGarment)}</span>` : ''}
+            <span class="text-sm sm:text-[15px] font-bold text-indigo-700 bg-indigo-50 px-3 py-1 rounded-full">${totalGroups} nhóm phối • ${totalPalettes} bảng màu</span>
+          </div>
+
+          <!-- Symmetrical Main Row: Left Swatch stretches evenly to match Right Color Details -->
+          <div class="flex items-stretch gap-4 sm:gap-5">
+            <div
+              onmouseenter="showColorTooltip(this, '${escapeHtml(anchor.name)}', '${escapeHtml(anchor.nameEn)}', '${anchor.hex}', 'Đang chọn')"
+              onmouseleave="hideColorTooltip()"
+              aria-label="${escapeHtml(anchor.name)}"
+              class="relative w-24 sm:w-28 min-h-[108px] self-stretch rounded-2xl shrink-0 swatch-inset shadow-md overflow-hidden"
+              style="background-color: ${anchor.hex};">
+            </div>
+
+            <div class="flex-1 min-w-0 flex flex-col justify-center gap-2">
+              <div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight tracking-tight break-words">${escapeHtml(anchor.name)}</h2>
+                <p class="text-sm sm:text-base font-semibold text-slate-500 mt-0.5 break-words">${escapeHtml(anchor.nameEn)}</p>
+              </div>
+
+              <div class="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+                ${family ? `<span class="text-xs sm:text-sm font-bold px-3 py-1 rounded-full bg-slate-100/90 text-slate-700">Họ ${escapeHtml(family.name)}</span>` : ''}
+                <span class="text-xs sm:text-sm font-bold px-3 py-1 rounded-full bg-slate-100/90 text-slate-700">${TEMP_LABELS[anchor.temperature] || anchor.temperature}</span>
+                <span class="text-xs sm:text-sm font-bold px-3 py-1 rounded-full bg-slate-100/90 text-slate-700">${TONE_LABELS[anchor.tone] || anchor.tone}</span>
+              </div>
+            </div>
+          </div>
+
+          ${siblings.length > 1 ? `
+            <!-- Seamless Same-Family Shade Strip (NO harsh dark border on active!) -->
+            <div class="pt-4 border-t border-slate-200/70 space-y-3">
+              <div class="flex items-center justify-between flex-wrap gap-1">
+                <span class="text-sm sm:text-[15px] font-extrabold text-slate-800">Sắc độ cùng họ ${escapeHtml(family.name)}</span>
+                <span class="text-xs sm:text-sm font-semibold text-slate-500">${siblings.length} sắc độ</span>
+              </div>
+
+              <div class="w-full h-14 rounded-2xl overflow-hidden flex swatch-inset shadow-xs">
+                ${siblings.map(s => {
+        const isAct = s.id === anchor.id;
+        return `
+                    <button type="button" onclick="selectAnchorColor('${s.id}', null, true, true)"
+                      onmouseenter="showColorTooltip(this, '${escapeHtml(s.name)}', '${escapeHtml(s.nameEn)}', '${s.hex}', '${isAct ? 'Màu gốc đang chọn' : 'Chạm để đổi sắc độ'}')"
+                      onmouseleave="hideColorTooltip()"
+                      aria-label="Chọn sắc độ ${escapeHtml(s.name)}"
+                      class="flex-1 h-full transition-all hover:brightness-95 relative flex items-center justify-center"
+                      style="background-color: ${s.hex};">
+                      ${isAct ? `<span class="w-3.5 h-3.5 rounded-full bg-white shadow-md ring-2 ring-black/15"></span>` : ''}
+                    </button>
+                  `;
+      }).join('')}
+              </div>
+            </div>
+          ` : ''}
+        </section>
+      `;
+    }
+
+    function renderPaletteGroups() {
+      const clsBar = document.getElementById('classification-bar');
+      const listEl = document.getElementById('palette-groups-list');
+      const emptyEl = document.getElementById('results-empty-state');
+      const res = state.queryResult;
+      if (!listEl || !res) return;
+
+      const allGroups = res.groups || [];
+
+      if (allGroups.length === 0) {
+        if (clsBar) clsBar.classList.add('hidden');
+        listEl.innerHTML = '';
+        if (emptyEl) {
+          const similar = ColorFitService.getSimilarColors(res.anchorColor.id, 6);
+          emptyEl.classList.remove('hidden');
+          emptyEl.innerHTML = `
+            <div class="glass-card rounded-3xl p-6 text-center space-y-4">
+              <div class="space-y-1.5">
+                <h3 class="text-lg font-extrabold text-slate-900">Chưa có gợi ý phối màu</h3>
+                <p class="text-base text-slate-600">Hãy thử chọn một sắc độ khác hoặc khám phá màu gần giống.</p>
+              </div>
+              ${similar.length > 0 ? `
+                <div class="flex flex-wrap justify-center gap-2.5 pt-1">
+                  ${similar.map(c => `
+                    <button type="button" onclick="selectAnchorColor('${c.id}', '', true, true)"
+                      class="min-h-[44px] inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-50 hover:bg-indigo-100 text-sm font-bold text-indigo-950 tap-press">
+                      <span class="w-4 h-4 rounded-full swatch-inset" style="background-color: ${c.hex};"></span>
+                      <span>${escapeHtml(c.name)}</span>
+                    </button>
+                  `).join('')}
+                </div>
+              ` : ''}
+            </div>
+          `;
+        }
+        return;
+      }
+
+      if (emptyEl) emptyEl.classList.add('hidden');
+
+      // Classification Filter Pills (Large, clear, modern gradient active state)
+      if (clsBar) {
+        clsBar.classList.remove('hidden');
+        const summarize = (cls) => {
+          const subset = cls === 'all' ? allGroups : allGroups.filter(g => g.classification === cls);
+          return {
+            groups: subset.length,
+            palettes: subset.reduce((s, g) => s + g.palettes.length, 0)
+          };
+        };
+        const tabs = ['all', 'color-theory', 'fashion-application', 'color-character']
+          .map(cls => ({ cls, ...summarize(cls) }))
+          .filter(t => t.cls === 'all' || t.groups > 0);
+
+        clsBar.innerHTML = tabs.map(t => {
+          const isAct = state.activeClassification === t.cls;
+          return `
+            <button type="button" onclick="setClassificationFilter('${t.cls}')"
+              class="min-h-[44px] px-4 sm:px-5 py-2 rounded-full text-sm sm:text-[15px] font-extrabold shrink-0 tap-press transition-all ${isAct
+              ? 'brand-gradient text-white shadow-md shadow-indigo-500/25'
+              : 'bg-white/90 hover:bg-white border border-slate-200/90 text-slate-700'
+            }">
+              ${CLASSIFICATION_LABELS[t.cls]} <span class="opacity-80 font-semibold">· ${t.groups} nhóm (${t.palettes} bảng)</span>
+            </button>
+          `;
+        }).join('');
+      }
+
+      const visibleGroups = state.activeClassification === 'all'
+        ? allGroups
+        : allGroups.filter(g => g.classification === state.activeClassification);
+
+      // Render palette cards directly in a clean responsive grid (no redundant group headers)
+      const visiblePalettes = visibleGroups.flatMap(g => g.palettes);
+      listEl.innerHTML = visiblePalettes.map(pal => renderPaletteCard(pal, false)).join('');
+    }
+
+    // ==================== INTERACTIVE SWATCH SELECTION & TOOLTIP ====================
+    function selectStripSwatch(event, btnEl, paletteId, colorId) {
+      if (event) event.stopPropagation();
+      const res = ColorFitService.getPaletteById(paletteId);
+      if (!res.ok || !res.palette) return;
+      const pal = res.palette;
+      const item = pal.colorItems.find(it => it.color.id === colorId);
+      if (!item) return;
+
+      const c = item.color;
+      const roleInfo = getDisplayRole(item, pal.groupId);
+      const isAnchor = item.role === 'anchor';
+
+      // Show floating tooltip on tap/click too (auto-hides smoothly after 2.4s on mobile)
+      showColorTooltip(btnEl, c.name, c.nameEn, c.hex, roleInfo.label, 2400);
+
+      // Update active indicator dot (NO dark border!)
+      const stripEl = document.getElementById(`strip-row-${paletteId}`);
+      if (stripEl) {
+        stripEl.querySelectorAll('button[data-color-id]').forEach(btn => {
+          const dot = btn.querySelector('.active-swatch-dot');
+          if (dot) dot.classList.toggle('hidden', btn.dataset.colorId !== colorId);
+        });
+      }
+
+      const infoEl = document.getElementById(`strip-info-${paletteId}`);
+      if (!infoEl) return;
+
+      // Anchor color is already shown inside the palette strip — hide the extra info bar for anchor
+      if (isAnchor || (infoEl.dataset.activeColorId === colorId && !infoEl.classList.contains('hidden'))) {
+        infoEl.classList.add('hidden');
+        infoEl.dataset.activeColorId = '';
+        return;
+      }
+
+      infoEl.dataset.activeColorId = colorId;
+      infoEl.classList.remove('hidden');
+      infoEl.innerHTML = `
+        <div class="flex items-center gap-2.5 min-w-0 flex-1">
+          <span class="w-5 h-5 rounded-full swatch-inset shrink-0" style="background-color: ${c.hex};"></span>
+          <div class="min-w-0 flex items-center gap-2 flex-wrap">
+            <span class="text-sm sm:text-base font-extrabold text-slate-900 break-words">${escapeHtml(c.name)}</span>
+            <span class="text-xs font-bold px-2.5 py-0.5 rounded-full ${roleInfo.badge}">${roleInfo.label}</span>
+          </div>
+        </div>
+        <button type="button" onclick="event.stopPropagation(); reanchorFromPalette('${c.id}')"
+          class="h-9 px-3.5 rounded-xl brand-gradient text-white text-xs sm:text-sm font-bold tap-press whitespace-nowrap shadow-xs shrink-0">
+          Làm màu gốc
+        </button>
+      `;
+    }
+
+    function renderPaletteCard(pal, isCarouselItem) {
+      const saved = isPaletteSaved(pal.paletteId);
+      const showNeutralDot = pal.classification === 'color-theory';
+
+      return `
+        <article onclick="openPaletteSheet('${pal.paletteId}')"
+          role="button" tabindex="0"
+          onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openPaletteSheet('${pal.paletteId}');}"
+          aria-label="Mở chi tiết bảng màu ${escapeHtml(pal.name)}"
+          class="${isCarouselItem ? 'snap-start w-[calc(100vw-40px)] max-w-[460px] md:w-auto md:max-w-none shrink-0' : 'w-full'} glass-card hover:border-indigo-300 rounded-2xl p-3.5 sm:p-4 transition-all cursor-pointer flex flex-col justify-between gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+
+          <!-- Compact Header: Title + Chi tiết pill + Bookmark -->
+          <div class="flex items-center justify-between gap-2">
+            <h4 class="text-base sm:text-lg font-extrabold text-slate-900 leading-snug min-w-0 break-words flex-1">${escapeHtml(pal.name)}</h4>
+            <div class="flex items-center gap-1.5 shrink-0">
+              <span class="inline-flex items-center gap-0.5 px-2.5 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs sm:text-sm font-extrabold">
+                <span>Chi tiết</span>
+                <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+              </span>
+              <button type="button" onclick="toggleSavePalette(event, '${pal.paletteId}')"
+                aria-label="${saved ? 'Bỏ lưu bảng màu' : 'Lưu bảng màu'}"
+                class="w-9 h-9 rounded-full bg-slate-100/90 hover:bg-indigo-50 flex items-center justify-center text-slate-700 tap-press shrink-0">
+                <span class="material-symbols-outlined text-[20px] ${saved ? 'filled text-indigo-600' : ''}">bookmark</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Seamless Swatch Strip -->
+          <div id="strip-row-${pal.paletteId}" class="w-full h-16 sm:h-[74px] rounded-xl overflow-hidden flex swatch-inset shadow-xs">
+            ${pal.colorItems.map(item => {
+        const c = item.color;
+        const isAnchor = item.role === 'anchor';
+        const isNeutralBridge = showNeutralDot && item.theoryRole === 'neutral-support';
+        const isLight = ColorFitService.isLightColor(c.hex);
+        const roleInfo = getDisplayRole(item, pal.groupId);
+        return `
+                <button type="button"
+                  data-color-id="${c.id}"
+                  onclick="selectStripSwatch(event, this, '${pal.paletteId}', '${c.id}')"
+                  onmouseenter="showColorTooltip(this, '${escapeHtml(c.name)}', '${escapeHtml(c.nameEn)}', '${c.hex}', '${escapeHtml(roleInfo.label)}')"
+                  onmouseleave="hideColorTooltip()"
+                  aria-label="${escapeHtml(c.name)} (${roleInfo.label})"
+                  class="${isAnchor ? 'flex-[1.38]' : 'flex-1'} h-full relative focus:outline-none hover:brightness-95 transition-all flex flex-col items-center justify-center py-1.5 px-1"
+                  style="background-color: ${c.hex};">
+                  ${isNeutralBridge
+            ? `<span class="absolute top-1.5 text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded-full leading-none ${isLight ? 'bg-slate-900/12 text-slate-800' : 'bg-black/30 text-white'}">Hỗ trợ</span>`
+            : ''}
+                  <span class="active-swatch-dot ${isAnchor ? '' : 'hidden'} w-3 h-3 rounded-full bg-white shadow-md ring-2 ring-black/15"></span>
+                </button>
+              `;
+      }).join('')}
+          </div>
+
+          <!-- Companion Swatch Quick-Action Bar (hidden by default; appears only when tapping a companion swatch) -->
+          <div id="strip-info-${pal.paletteId}" onclick="event.stopPropagation()"
+            class="hidden bg-slate-50/95 border border-slate-200/70 rounded-xl px-3 py-2 flex items-center justify-between gap-2">
+          </div>
+        </article>
+      `;
+    }
+
+    function renderFooterNotes() {
+      const el = document.getElementById('results-footer-note');
+      const notes = ColorFitService.getNotes();
+      if (!el || !notes) return;
+      el.innerHTML = `
+        <p><strong class="text-slate-900">Lưu ý ứng dụng:</strong> ${escapeHtml(notes.paletteRule)}</p>
+        <p><strong class="text-slate-900">Độ chính xác màu:</strong> ${escapeHtml(notes.colorAccuracy)}</p>
+      `;
+    }
+
+    // ==================== PALETTE DETAIL SHEET ====================
+    function openPaletteSheet(paletteId, pushUrl = true) {
+      hideColorTooltip();
+      const res = ColorFitService.getPaletteById(paletteId);
+      if (!res.ok || !res.palette) { showToast('Không tìm thấy bảng màu này.'); return; }
+
+      state.openPaletteId = paletteId;
+      const pal = res.palette;
+      const diff = DIFFICULTY_LABELS[pal.difficulty] || DIFFICULTY_LABELS.easy;
+
+      const metaEl = document.getElementById('sheet-palette-meta');
+      const titleEl = document.getElementById('sheet-palette-title');
+      const bodyEl = document.getElementById('sheet-palette-body');
+      const backdrop = document.getElementById('palette-sheet-backdrop');
+
+      if (metaEl) {
+        metaEl.innerHTML = `
+          <span class="text-xs sm:text-sm font-bold px-3 py-0.5 rounded-full brand-gradient text-white">${escapeHtml(pal.groupName)}</span>
+          <span class="text-xs sm:text-sm font-bold px-3 py-0.5 rounded-full bg-indigo-50 text-indigo-700">${escapeHtml(pal.groupNameEn)}</span>
+          <span class="text-xs sm:text-sm font-bold px-3 py-0.5 rounded-full border ${diff.cls}">${diff.label}</span>
+        `;
+      }
+      if (titleEl) titleEl.textContent = pal.name;
+
+      if (bodyEl) {
+        const anchorItem = pal.colorItems.find(it => it.role === 'anchor');
+        const companions = pal.colorItems.filter(it => it.role !== 'anchor');
+        const default30 = companions[0] || null;
+        const default10 = companions.find(it => it.role === 'accent' && it !== default30) || companions[companions.length - 1] || null;
+
+        state.sheetPreview = {
+          paletteId: pal.paletteId,
+          anchor: anchorItem ? anchorItem.color : null,
+          c30: default30 ? default30.color : null,
+          c10: (default10 && default10 !== default30) ? default10.color : null
+        };
+
+        bodyEl.innerHTML = `
+          <!-- 1. Why these colors work -->
+          <div class="bg-indigo-50/60 border border-indigo-100 rounded-2xl p-4 space-y-1.5">
+            <div class="text-xs font-extrabold uppercase tracking-wider text-indigo-700">Vì sao các màu này hợp nhau</div>
+            <p class="text-sm sm:text-base text-slate-800 font-medium leading-relaxed">${escapeHtml(pal.description)}</p>
+          </div>
+
+          <!-- 2. Interactive Suggested Proportions (ALL colors in palette can be paired!) -->
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between flex-wrap gap-1">
+              <span class="text-xs font-extrabold uppercase tracking-wider text-slate-600">Tỷ lệ phối tham khảo</span>
+              <span class="text-xs sm:text-sm font-semibold text-slate-500">55% chính • 32% phối • 13% nhấn</span>
+            </div>
+            <div id="sheet-proportion-bar" class="w-full min-h-[48px] rounded-xl overflow-hidden flex swatch-inset"></div>
+            <div class="space-y-1.5">
+              <span class="text-xs font-semibold text-slate-500 block">Mọi màu trong dãy đều phối được cùng ${escapeHtml(anchorItem ? anchorItem.color.name : 'màu gốc')} — chạm để thử tỷ lệ:</span>
+              <div id="sheet-preview-chips" class="flex flex-wrap gap-1.5">
+                ${companions.map(it => {
+          const c = it.color;
+          return `
+                    <button type="button" data-preview-id="${c.id}" onclick="toggleSheetPreviewColor('${c.id}')"
+                      class="min-h-[36px] inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-slate-200 hover:border-indigo-400 text-xs sm:text-sm font-bold text-slate-800 tap-press transition-all">
+                      <span class="w-3.5 h-3.5 rounded-full swatch-inset shrink-0" style="background-color: ${c.hex};"></span>
+                      <span>${escapeHtml(c.name)}</span>
+                    </button>
+                  `;
+        }).join('')}
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. All Swatches with Exact Roles (NO re-anchor buttons on detail) -->
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between flex-wrap gap-1">
+              <span class="text-xs font-extrabold uppercase tracking-wider text-slate-600">Chi tiết ${pal.colorItems.length} sắc màu &amp; vai trò</span>
+            </div>
+            <div class="space-y-2">
+              ${pal.colorItems.map(item => {
+          const c = item.color;
+          const roleInfo = getDisplayRole(item, pal.groupId);
+          const isAnchor = item.role === 'anchor';
+          return `
+                  <div ${!isAnchor ? `onclick="toggleSheetPreviewColor('${c.id}')"` : ''}
+                    class="flex items-center gap-3.5 p-3 rounded-2xl border ${isAnchor ? 'bg-indigo-50/50 border-indigo-200' : 'bg-white border-slate-200/80 hover:border-indigo-300 cursor-pointer tap-press'}">
+                    <span class="w-12 h-12 rounded-xl swatch-inset shrink-0 shadow-xs"
+                      style="background-color: ${c.hex};"></span>
+                    <div class="min-w-0 flex-1">
+                      <div class="flex items-center gap-2 flex-wrap">
+                        <span class="text-base font-extrabold text-slate-900 break-words">${escapeHtml(c.name)}</span>
+                        <span class="text-xs font-bold px-2.5 py-0.5 rounded-full ${roleInfo.badge}">${roleInfo.label}</span>
+                      </div>
+                      <div class="text-sm font-medium text-slate-500">${escapeHtml(c.nameEn)}</div>
+                    </div>
+                  </div>
+                `;
+        }).join('')}
+            </div>
+          </div>
+
+          <!-- 4. Outfit Application & Tags -->
+          <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-2.5">
+            <div class="text-xs font-extrabold uppercase tracking-wider text-slate-600">Ứng dụng vào trang phục</div>
+            <ul class="text-sm sm:text-[15px] text-slate-700 space-y-1.5 list-disc pl-5">
+              <li><strong class="text-slate-900">Màu gốc:</strong> ${ROLE_LABELS.anchor.desc}</li>
+              <li><strong class="text-slate-900">Màu hỗ trợ:</strong> ${ROLE_LABELS.supporting.desc}</li>
+              <li><strong class="text-slate-900">Màu nhấn:</strong> ${ROLE_LABELS.accent.desc}</li>
+            </ul>
+            <p class="text-sm font-semibold text-slate-500 pt-2 border-t border-slate-200/80">
+              Lưu ý: Không bắt buộc tất cả ${pal.colorItems.length} màu trong palette phải cùng xuất hiện trên một bộ trang phục — hãy chọn 2 đến 3 màu bạn thích nhất.
+            </p>
+            ${(pal.occasions.length > 0 || pal.styleTags.length > 0) ? `
+              <div class="flex flex-wrap gap-2 pt-1">
+                ${pal.occasions.map(o => `<span class="text-xs sm:text-sm font-bold px-3 py-1 rounded-full bg-white border border-slate-200 text-slate-700">${escapeHtml(OCCASION_LABELS[o] || o)}</span>`).join('')}
+                ${pal.styleTags.map(t => `<span class="text-xs sm:text-sm font-bold px-3 py-1 rounded-full bg-indigo-50 text-indigo-700">#${escapeHtml(t)}</span>`).join('')}
+              </div>
+            ` : ''}
+          </div>
+
+          <!-- 5. Related Palettes -->
+          ${res.relatedPalettes.length > 0 ? `
+            <div class="space-y-2.5">
+              <div class="text-xs font-extrabold uppercase tracking-wider text-slate-600">Bảng màu khác cùng màu gốc</div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                ${res.relatedPalettes.map(rp => `
+                  <button type="button" onclick="openPaletteSheet('${rp.paletteId}')"
+                    class="p-3 rounded-2xl bg-white border border-slate-200 hover:border-indigo-400 text-left space-y-2 tap-press">
+                    <div class="flex items-start justify-between gap-2">
+                      <span class="text-sm font-extrabold text-slate-900 break-words leading-snug">${escapeHtml(rp.name)}</span>
+                      <span class="text-xs font-bold text-indigo-600 shrink-0">${escapeHtml(rp.groupName)}</span>
+                    </div>
+                    <div class="flex h-5 rounded-lg overflow-hidden swatch-inset">
+                      ${rp.colorItems.map(it => `<span class="flex-1 h-full" style="background-color: ${it.color.hex};"></span>`).join('')}
+                    </div>
+                  </button>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
+        `;
+      }
+
+      if (backdrop) backdrop.classList.remove('hidden');
+      renderSheetProportionBar();
+      syncBodyScrollLock();
+      syncUrl(pushUrl);
+    }
+
+    function renderSheetProportionBar() {
+      const bar = document.getElementById('sheet-proportion-bar');
+      const sp = state.sheetPreview;
+      if (!bar || !sp || !sp.anchor) return;
+
+      const c60 = sp.anchor;
+      const c30 = sp.c30;
+      const c10 = sp.c10;
+
+      bar.innerHTML = `
+        <div style="width: ${c10 ? '55%' : (c30 ? '65%' : '100%')}; background-color: ${c60.hex}; color: ${ColorFitService.isLightColor(c60.hex) ? '#0f172a' : '#ffffff'};"
+          class="flex items-center justify-center px-2 py-2 text-center text-xs sm:text-sm font-extrabold leading-tight break-words transition-all">
+          ${c10 ? '55%' : (c30 ? '65%' : '100%')} ${escapeHtml(c60.name)}
+        </div>
+        ${c30 ? `
+          <div style="width: ${c10 ? '32%' : '35%'}; background-color: ${c30.hex}; color: ${ColorFitService.isLightColor(c30.hex) ? '#0f172a' : '#ffffff'};"
+            class="flex items-center justify-center px-1.5 py-2 text-center text-xs sm:text-sm font-bold leading-tight break-words transition-all">
+            ${c10 ? '32%' : '35%'} ${escapeHtml(c30.name)}
+          </div>` : ''}
+        ${c10 ? `
+          <div style="width: 13%; background-color: ${c10.hex}; color: ${ColorFitService.isLightColor(c10.hex) ? '#0f172a' : '#ffffff'};"
+            class="flex items-center justify-center px-1 py-2 text-center text-xs font-bold leading-tight break-words transition-all">
+            13%
+          </div>` : ''}
+      `;
+
+      const chipsBox = document.getElementById('sheet-preview-chips');
+      if (chipsBox) {
+        chipsBox.querySelectorAll('button[data-preview-id]').forEach(btn => {
+          const cid = btn.dataset.previewId;
+          const isSel = (c30 && c30.id === cid) || (c10 && c10.id === cid);
+          btn.classList.toggle('bg-indigo-600', isSel);
+          btn.classList.toggle('text-white', isSel);
+          btn.classList.toggle('border-indigo-600', isSel);
+          btn.classList.toggle('bg-white', !isSel);
+          btn.classList.toggle('text-slate-800', !isSel);
+          btn.classList.toggle('border-slate-200', !isSel);
+        });
+      }
+    }
+
+    function toggleSheetPreviewColor(colorId) {
+      const sp = state.sheetPreview;
+      if (!sp) return;
+      const color = ColorFitService.getColorById(colorId);
+      if (!color || (sp.anchor && color.id === sp.anchor.id)) return;
+
+      if (sp.c30 && sp.c30.id === colorId) {
+        // Swap c10 into c30 if available
+        if (sp.c10) { sp.c30 = sp.c10; sp.c10 = null; }
+      } else if (sp.c10 && sp.c10.id === colorId) {
+        // Promote c10 to c30 (swap)
+        const prev30 = sp.c30;
+        sp.c30 = sp.c10;
+        sp.c10 = prev30;
+      } else {
+        // Put newly tapped color into 32% slot, shift previous 32% to 13% accent
+        sp.c10 = sp.c30;
+        sp.c30 = color;
+      }
+      renderSheetProportionBar();
+    }
+
+    function closePaletteSheet(pushUrl = true) {
+      const backdrop = document.getElementById('palette-sheet-backdrop');
+      if (backdrop) backdrop.classList.add('hidden');
+      syncBodyScrollLock();
+      if (state.openPaletteId) {
+        state.openPaletteId = null;
+        if (pushUrl) syncUrl(true);
+      }
+    }
+
+    // ==================== SAVED PALETTES SHEET ====================
+    function openSavedSheet() {
+      hideColorTooltip();
+      const backdrop = document.getElementById('saved-sheet-backdrop');
+      const bodyEl = document.getElementById('saved-sheet-body');
+      const savedIds = getSavedPaletteIds();
+      if (!bodyEl || !backdrop) return;
+
+      const resolved = savedIds
+        .map(id => ColorFitService.getPaletteById(id))
+        .filter(r => r.ok && r.palette)
+        .map(r => r.palette);
+
+      if (resolved.length === 0) {
+        bodyEl.innerHTML = `
+          <div class="py-10 text-center space-y-2">
+            <span class="material-symbols-outlined text-5xl text-slate-300">bookmark_border</span>
+            <p class="text-base font-extrabold text-slate-900">Chưa có bảng màu nào được lưu</p>
+            <p class="text-sm text-slate-500">Chạm biểu tượng dấu trang trên bất kỳ thẻ bảng màu nào để lưu lại khi mua sắm.</p>
+          </div>
+        `;
+      } else {
+        bodyEl.innerHTML = resolved.map(pal => `
+          <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-2.5">
+            <div class="flex items-center justify-between gap-2">
+              <button type="button" onclick="closeSavedSheet(); selectAnchorColor('${pal.anchorColorId}', '', true, false); openPaletteSheet('${pal.paletteId}');"
+                class="min-w-0 text-left flex-1">
+                <div class="text-xs font-extrabold text-indigo-600">${escapeHtml(pal.groupName)}</div>
+                <div class="text-base font-extrabold text-slate-900 break-words leading-snug">${escapeHtml(pal.name)}</div>
+              </button>
+              <button type="button" onclick="toggleSavePalette(event, '${pal.paletteId}'); openSavedSheet();"
+                aria-label="Xóa khỏi đã lưu"
+                class="w-10 h-10 rounded-full bg-white hover:bg-rose-50 hover:text-rose-600 border border-slate-200 flex items-center justify-center tap-press shrink-0">
+                <span class="material-symbols-outlined text-[20px]">delete</span>
+              </button>
+            </div>
+            <button type="button" onclick="closeSavedSheet(); selectAnchorColor('${pal.anchorColorId}', '', true, false); openPaletteSheet('${pal.paletteId}');"
+              class="w-full h-12 rounded-xl overflow-hidden flex swatch-inset">
+              ${pal.colorItems.map(it => `<span class="${it.role === 'anchor' ? 'flex-[1.35]' : 'flex-1'} h-full" style="background-color: ${it.color.hex};"></span>`).join('')}
+            </button>
+          </div>
+        `).join('');
+      }
+
+      backdrop.classList.remove('hidden');
+      syncBodyScrollLock();
+    }
+
+    function closeSavedSheet() {
+      const backdrop = document.getElementById('saved-sheet-backdrop');
+      if (backdrop) backdrop.classList.add('hidden');
+      syncBodyScrollLock();
+    }
+
+    // ==================== GLOBAL EVENTS & INIT ====================
+    document.addEventListener('click', (e) => {
+      const input = document.getElementById('search-input');
+      const box = document.getElementById('search-suggestions');
+      if (box && input && !box.contains(e.target) && e.target !== input) hideSuggestions();
+      if (!e.target.closest('button[data-color-id]')) hideColorTooltip();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        hideSuggestions();
+        hideColorTooltip();
+        closePaletteSheet();
+        closeSavedSheet();
+      }
+    });
+
+    function syncBodyScrollLock() {
+      const palOpen = !document.getElementById('palette-sheet-backdrop')?.classList.contains('hidden');
+      const savOpen = !document.getElementById('saved-sheet-backdrop')?.classList.contains('hidden');
+      document.body.style.overflow = (palOpen || savOpen) ? 'hidden' : '';
+    }
+
+    function initMobileKeyboardScrollSupport() {
+      if (!window.visualViewport) return;
+      const updateKb = () => {
+        const kbHeight = Math.max(0, Math.round(window.innerHeight - window.visualViewport.height));
+        document.documentElement.style.setProperty('--keyboard-height', `${kbHeight}px`);
+        updateSuggestionsMaxHeight();
+      };
+      window.visualViewport.addEventListener('resize', updateKb);
+      window.visualViewport.addEventListener('scroll', updateKb);
+      updateKb();
+    }
+
+    window.addEventListener('scroll', hideColorTooltip, { passive: true });
+    window.addEventListener('popstate', () => applyFromUrl());
+
+    function applyFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      const colorId = params.get('color');
+      const paletteId = params.get('palette');
+      const qParam = params.get('q');
+
+      if (paletteId) {
+        const palRes = ColorFitService.getPaletteById(paletteId);
+        if (palRes.ok && palRes.palette) {
+          selectAnchorColor(palRes.palette.anchorColorId, '', false, false);
+          openPaletteSheet(paletteId, false);
+          return;
+        }
+      }
+
+      closePaletteSheet(false);
+      if (colorId && ColorFitService.getColorById(colorId)) {
+        selectAnchorColor(colorId, '', false, false);
+      } else if (qParam) {
+        const { colors, matchedGarment } = ColorFitService.searchColors(qParam);
+        if (colors.length > 0) selectAnchorColor(colors[0].id, matchedGarment || '', false, false);
+        else renderNoMatchState(qParam);
+      } else {
+        resetToHome(false);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initMobileKeyboardScrollSupport();
+      updateSavedCountBadge();
+      renderHomeIdle();
+      applyFromUrl();
+    });
+  </script>
+</body>
+
+</html>

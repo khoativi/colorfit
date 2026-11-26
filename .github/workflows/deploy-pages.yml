@@ -1,0 +1,65 @@
+name: Deploy ColorFit to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Prepare static site & inject absolute Open Graph URLs
+        env:
+          BASE_URL: ${{ steps.pages.outputs.base_url }}
+        run: |
+          mkdir -p _site
+          cp index.html data.js mannequins.js favicon.ico site.webmanifest .nojekyll _site/
+          cp -R assets _site/assets
+
+          # Tự động thay URL tuyệt đối (https://<user>.github.io/<repo>/) cho các thẻ Open Graph, Twitter & Canonical
+          if [ -n "$BASE_URL" ]; then
+            CLEAN_URL="${BASE_URL%/}"
+            python3 - "$CLEAN_URL" <<'PY'
+          import sys
+          base = sys.argv[1]
+          path = "_site/index.html"
+          with open(path, "r", encoding="utf-8") as f:
+              html = f.read()
+          html = html.replace('content="assets/og-image.jpg"', f'content="{base}/assets/og-image.jpg"')
+          html = html.replace('content="./"', f'content="{base}/"')
+          html = html.replace('href="./"', f'href="{base}/"')
+          with open(path, "w", encoding="utf-8") as f:
+              f.write(html)
+          print(f"Injected absolute base URL: {base}/")
+          PY
+          fi
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
