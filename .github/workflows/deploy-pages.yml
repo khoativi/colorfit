@@ -36,7 +36,8 @@ jobs:
           BASE_URL: ${{ steps.pages.outputs.base_url }}
         run: |
           mkdir -p _site
-          cp index.html color-library.js palettes-data.js colorfit-service.js favicon.ico site.webmanifest .nojekyll _site/
+          cp index.html color-library.js palettes-data.js colorfit-service.js favicon.ico site.webmanifest _site/
+          touch _site/.nojekyll
           cp -R assets _site/assets
 
           # Tự động thay URL tuyệt đối (https://<user>.github.io/<repo>/) cho thẻ Canonical
