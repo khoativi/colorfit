@@ -76,43 +76,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "beige-main",
       "groupId": "neutral",
       "name": "Be phối trung tính",
-      "description": "Kết hợp be với các màu trung tính dễ mặc, phù hợp nhiều hoàn cảnh công sở và hằng ngày.",
+      "description": "Be kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, đen mềm, xanh navy, nâu caramel và ghi ấm — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "beige-main",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "white-ivory",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-light",
+          "colorId": "black-soft",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
-        },
-        {
-          "colorId": "grey-charcoal",
-          "role": "accent",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "blue-navy",
-          "role": "accent",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-warm",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -133,37 +133,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "beige-main",
       "groupId": "neutral",
       "name": "Be tối giản hiện đại",
-      "description": "Be phối cùng trắng mềm, greige, đen mềm và nâu espresso cho diện mạo gọn gàng.",
+      "description": "Be kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, đen mềm, xanh navy, nâu caramel và ghi ấm — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "beige-main",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
-          "colorId": "white-soft",
+          "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "grey-greige",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "black-soft",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "brown-espresso",
-          "role": "accent",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "colorId": "blue-navy",
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-warm",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -411,7 +417,7 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "blue-navy",
       "groupId": "neutral",
       "name": "Navy thanh lịch",
-      "description": "Xanh navy phối cùng trắng tinh, đen tuyền, be và ghi sáng — bộ phối thanh lịch chuẩn mực từ công sở đến dạo phố.",
+      "description": "Xanh navy kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, đen tuyền, be, ghi sáng và camel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "blue-navy",
@@ -688,43 +694,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "white-pure",
       "groupId": "neutral",
       "name": "Trắng tinh phối trung tính",
-      "description": "Kết hợp Trắng tinh cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Trắng tinh kết hợp cùng các màu trung tính dễ mặc nhất: đen mềm, xanh navy, be, xám than và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "white-pure",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
-          "colorId": "brown-espresso",
+          "colorId": "black-soft",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 3,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "beige-main",
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "grey-charcoal",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 5,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "black-jet",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
-        },
-        {
-          "colorId": "grey-medium",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -957,43 +963,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "white-soft",
       "groupId": "neutral",
       "name": "Trắng mềm phối trung tính",
-      "description": "Kết hợp Trắng mềm cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Trắng mềm kết hợp cùng các màu trung tính dễ mặc nhất: đen mềm, xanh navy, be, xám than và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "white-soft",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
-          "colorId": "brown-espresso",
+          "colorId": "black-soft",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 3,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "beige-main",
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "grey-charcoal",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 5,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "black-jet",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
-        },
-        {
-          "colorId": "grey-medium",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -1233,43 +1239,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "white-ivory",
       "groupId": "neutral",
       "name": "Trắng ngà phối trung tính",
-      "description": "Kết hợp Trắng ngà cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Trắng ngà kết hợp cùng các màu trung tính dễ mặc nhất: đen mềm, xanh navy, be, xám than và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "white-ivory",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
-          "colorId": "brown-espresso",
+          "colorId": "black-soft",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 3,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "beige-main",
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "grey-charcoal",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 5,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "black-jet",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
-        },
-        {
-          "colorId": "grey-medium",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -1565,43 +1571,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "white-cream",
       "groupId": "neutral",
       "name": "Kem phối trung tính",
-      "description": "Kết hợp Kem cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Kem kết hợp cùng các màu trung tính dễ mặc nhất: đen mềm, xanh navy, be, xám than và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "white-cream",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
-          "colorId": "brown-espresso",
+          "colorId": "black-soft",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 3,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "beige-main",
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "grey-charcoal",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 5,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "black-jet",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
-        },
-        {
-          "colorId": "grey-medium",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -1897,43 +1903,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "white-oat",
       "groupId": "neutral",
       "name": "Trắng yến mạch phối trung tính",
-      "description": "Kết hợp Trắng yến mạch cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Trắng yến mạch kết hợp cùng các màu trung tính dễ mặc nhất: đen mềm, xanh navy, be, xám than và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "white-oat",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
-          "colorId": "brown-espresso",
+          "colorId": "black-soft",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 3,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "beige-main",
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "grey-charcoal",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 5,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "black-jet",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
-        },
-        {
-          "colorId": "grey-medium",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -2235,43 +2241,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "grey-ice",
       "groupId": "neutral",
       "name": "Ghi rất sáng phối trung tính",
-      "description": "Kết hợp Ghi rất sáng cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Ghi rất sáng kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, đen tuyền, xanh navy, be và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "grey-ice",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "blue-navy",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "black-jet",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
-        },
-        {
-          "colorId": "beige-main",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 2,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "black-jet",
+          "role": "supporting",
+          "order": 3,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "blue-navy",
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "beige-main",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -2456,43 +2462,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "grey-light",
       "groupId": "neutral",
       "name": "Ghi sáng phối trung tính",
-      "description": "Kết hợp Ghi sáng cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Ghi sáng kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, đen tuyền, xanh navy, be và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "grey-light",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "blue-navy",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "black-jet",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 2,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "black-jet",
+          "role": "supporting",
+          "order": 3,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "blue-navy",
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -2738,43 +2744,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "grey-silver",
       "groupId": "neutral",
       "name": "Ghi bạc phối trung tính",
-      "description": "Kết hợp Ghi bạc cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Ghi bạc kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, đen tuyền, xanh navy, be và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "grey-silver",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "blue-navy",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
-        },
-        {
-          "colorId": "white-ivory",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "black-jet",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 3,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "blue-navy",
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "beige-main",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -3020,43 +3026,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "grey-blue",
       "groupId": "neutral",
       "name": "Ghi xanh phối trung tính",
-      "description": "Kết hợp Ghi xanh cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Ghi xanh kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, đen tuyền, xanh navy, be và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "grey-blue",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "blue-navy",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-jet",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "beige-light",
+          "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "beige-main",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -3245,43 +3251,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "grey-medium",
       "groupId": "neutral",
       "name": "Ghi vừa phối trung tính",
-      "description": "Kết hợp Ghi vừa cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Ghi vừa kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, đen tuyền, xanh navy, be và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "grey-medium",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "blue-navy",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-jet",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "beige-light",
+          "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "beige-main",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -3470,43 +3476,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "grey-stone",
       "groupId": "neutral",
       "name": "Ghi đá phối trung tính",
-      "description": "Kết hợp Ghi đá cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Ghi đá kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, đen tuyền, xanh navy, be và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "grey-stone",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 2,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "black-jet",
+          "role": "supporting",
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 5,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "beige-light",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -3695,43 +3701,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "grey-dark",
       "groupId": "neutral",
       "name": "Ghi đậm phối trung tính",
-      "description": "Kết hợp Ghi đậm cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Ghi đậm kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, đen tuyền, xanh navy, be và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "grey-dark",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-jet",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "beige-light",
+          "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 5,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -3863,43 +3869,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "grey-charcoal",
       "groupId": "neutral",
       "name": "Xám than phối trung tính",
-      "description": "Kết hợp Xám than cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Xám than kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, đen tuyền, xanh navy, be và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "grey-charcoal",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "black-soft",
+          "colorId": "black-jet",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "beige-light",
+          "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 5,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -4031,43 +4037,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "grey-warm",
       "groupId": "neutral",
       "name": "Ghi ấm phối trung tính",
-      "description": "Kết hợp Ghi ấm cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Ghi ấm kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, đen tuyền, xanh navy, be và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "grey-warm",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "blue-navy",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-jet",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "beige-light",
+          "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "beige-main",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -4312,43 +4318,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "grey-greige",
       "groupId": "neutral",
       "name": "Greige phối trung tính",
-      "description": "Kết hợp Greige cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Greige kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, đen tuyền, xanh navy, be và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "grey-greige",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "blue-navy",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-jet",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "beige-light",
+          "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "beige-main",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -4593,7 +4599,7 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "black-soft",
       "groupId": "neutral",
       "name": "Đen mềm phối trung tính",
-      "description": "Kết hợp Đen mềm cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Đen mềm kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, ghi sáng, be, xanh navy và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "black-soft",
@@ -4602,7 +4608,7 @@ const COLORFIT_PALETTES_DATA = {
           "theoryRole": "anchor"
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "white-pure",
           "role": "supporting",
           "order": 2,
           "theoryRole": "neutral-support"
@@ -4761,7 +4767,7 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "black-jet",
       "groupId": "neutral",
       "name": "Đen tuyền phối trung tính",
-      "description": "Đen tuyền phối cùng các màu trung tính kinh điển: trắng tinh, ghi sáng, be, xanh navy và điểm nhấn nâu caramel — cực dễ mặc mọi dịp.",
+      "description": "Đen tuyền kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, ghi sáng, be, xanh navy và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "black-jet",
@@ -4979,7 +4985,7 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "black-washed",
       "groupId": "neutral",
       "name": "Đen bạc màu phối trung tính",
-      "description": "Kết hợp Đen bạc màu cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Đen bạc màu kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, ghi sáng, be, xanh navy và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "black-washed",
@@ -4988,7 +4994,7 @@ const COLORFIT_PALETTES_DATA = {
           "theoryRole": "anchor"
         },
         {
-          "colorId": "white-soft",
+          "colorId": "white-pure",
           "role": "supporting",
           "order": 2,
           "theoryRole": "neutral-support"
@@ -5000,7 +5006,7 @@ const COLORFIT_PALETTES_DATA = {
           "theoryRole": "neutral-support"
         },
         {
-          "colorId": "beige-oat",
+          "colorId": "beige-main",
           "role": "supporting",
           "order": 4,
           "theoryRole": "neutral-support"
@@ -5012,7 +5018,7 @@ const COLORFIT_PALETTES_DATA = {
           "theoryRole": "neutral-support"
         },
         {
-          "colorId": "brown-mocha",
+          "colorId": "brown-caramel",
           "role": "accent",
           "order": 6,
           "theoryRole": "accent"
@@ -5371,43 +5377,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "beige-pale",
       "groupId": "neutral",
       "name": "Be rất nhạt phối trung tính",
-      "description": "Kết hợp Be rất nhạt cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Be rất nhạt kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, đen mềm, xanh navy, nâu caramel và ghi ấm — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "beige-pale",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
-          "colorId": "brown-espresso",
+          "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 2,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "black-soft",
+          "role": "supporting",
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-charcoal",
+          "colorId": "brown-caramel",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 5,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "black-jet",
+          "colorId": "grey-warm",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
-        },
-        {
-          "colorId": "grey-medium",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -5876,43 +5882,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "beige-light",
       "groupId": "neutral",
       "name": "Be sáng phối trung tính",
-      "description": "Kết hợp Be sáng cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Be sáng kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, đen mềm, xanh navy, nâu caramel và ghi ấm — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "beige-light",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
-          "colorId": "brown-espresso",
+          "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 2,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "black-soft",
+          "role": "supporting",
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-charcoal",
+          "colorId": "brown-caramel",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 5,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "black-jet",
+          "colorId": "grey-warm",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
-        },
-        {
-          "colorId": "grey-medium",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -6381,43 +6387,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "beige-sand",
       "groupId": "neutral",
       "name": "Be cát phối trung tính",
-      "description": "Kết hợp Be cát cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Be cát kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, đen mềm, xanh navy, nâu caramel và ghi ấm — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "beige-sand",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "blue-navy",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-charcoal",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-soft",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 3,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "blue-navy",
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-warm",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -7160,43 +7166,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "beige-oat",
       "groupId": "neutral",
       "name": "Be yến mạch phối trung tính",
-      "description": "Kết hợp Be yến mạch cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Be yến mạch kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, đen mềm, xanh navy, nâu caramel và ghi ấm — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "beige-oat",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "blue-navy",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-charcoal",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-soft",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 3,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "blue-navy",
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-warm",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -7608,43 +7614,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "beige-taupe",
       "groupId": "neutral",
       "name": "Taupe phối trung tính",
-      "description": "Kết hợp Taupe cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Taupe kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, đen mềm, xanh navy, nâu caramel và ghi sáng — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "beige-taupe",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "blue-navy",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-charcoal",
+          "colorId": "black-soft",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-light",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -8056,43 +8062,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "beige-camel",
       "groupId": "neutral",
       "name": "Camel phối trung tính",
-      "description": "Kết hợp Camel cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Camel kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, đen mềm, xanh navy, nâu caramel và ghi ấm — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "beige-camel",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-soft",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
-        },
-        {
-          "colorId": "grey-light",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-warm",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -8504,43 +8510,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "beige-khaki",
       "groupId": "neutral",
       "name": "Kaki phối trung tính",
-      "description": "Kết hợp Kaki cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Kaki kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, đen mềm, xanh navy, nâu caramel và ghi ấm — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "beige-khaki",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "blue-navy",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-charcoal",
+          "colorId": "black-soft",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-warm",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -8952,43 +8958,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "beige-mushroom",
       "groupId": "neutral",
       "name": "Be nấm phối trung tính",
-      "description": "Kết hợp Be nấm cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Be nấm kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, đen mềm, xanh navy, nâu caramel và ghi sáng — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "beige-mushroom",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 2,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "black-soft",
+          "role": "supporting",
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "brown-caramel",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 5,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "grey-light",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -9400,43 +9406,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "brown-milk",
       "groupId": "neutral",
       "name": "Nâu sữa phối trung tính",
-      "description": "Kết hợp Nâu sữa cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Nâu sữa kết hợp cùng các màu trung tính dễ mặc nhất: trắng ngà, be, đen mềm, xanh navy và ghi sáng — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "brown-milk",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "black-soft",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "blue-navy",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "white-pure",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
-        },
-        {
-          "colorId": "grey-charcoal",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-ivory",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 2,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "beige-main",
+          "role": "supporting",
+          "order": 3,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "black-soft",
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "blue-navy",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-light",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -9848,43 +9854,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "brown-tan",
       "groupId": "neutral",
       "name": "Nâu da bò phối trung tính",
-      "description": "Kết hợp Nâu da bò cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Nâu da bò kết hợp cùng các màu trung tính dễ mặc nhất: trắng ngà, be, đen mềm, xanh navy và ghi sáng — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "brown-tan",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "white-pure",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-ivory",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 2,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "beige-main",
+          "role": "supporting",
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "black-soft",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 5,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "grey-light",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -10296,43 +10302,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "brown-caramel",
       "groupId": "neutral",
       "name": "Nâu caramel phối trung tính",
-      "description": "Kết hợp Nâu caramel cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Nâu caramel kết hợp cùng các màu trung tính dễ mặc nhất: trắng ngà, be, đen mềm, xanh navy và ghi sáng — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "brown-caramel",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "black-soft",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "white-pure",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "blue-navy",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-ivory",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-charcoal",
+          "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 3,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "black-soft",
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "blue-navy",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-light",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -10744,43 +10750,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "brown-cognac",
       "groupId": "neutral",
       "name": "Nâu cognac phối trung tính",
-      "description": "Kết hợp Nâu cognac cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Nâu cognac kết hợp cùng các màu trung tính dễ mặc nhất: trắng ngà, be, đen mềm, xanh navy và ghi sáng — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "brown-cognac",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "white-pure",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-ivory",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-light",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
-        },
-        {
-          "colorId": "black-soft",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 3,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "black-soft",
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "blue-navy",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-light",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -11192,43 +11198,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "brown-mocha",
       "groupId": "neutral",
       "name": "Nâu mocha phối trung tính",
-      "description": "Kết hợp Nâu mocha cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Nâu mocha kết hợp cùng các màu trung tính dễ mặc nhất: trắng ngà, be, đen mềm, xanh navy và ghi sáng — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "brown-mocha",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
-          "colorId": "white-pure",
+          "colorId": "white-ivory",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "black-soft",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-light",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-medium",
+          "colorId": "black-soft",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "blue-navy",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-light",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -11583,43 +11589,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "brown-coffee",
       "groupId": "neutral",
       "name": "Nâu cà phê phối trung tính",
-      "description": "Kết hợp Nâu cà phê cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Nâu cà phê kết hợp cùng các màu trung tính dễ mặc nhất: trắng ngà, be, đen mềm, xanh navy và ghi sáng — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "brown-coffee",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
-          "colorId": "white-pure",
+          "colorId": "white-ivory",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "black-soft",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-light",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-medium",
+          "colorId": "black-soft",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "blue-navy",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-light",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -11974,43 +11980,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "brown-chocolate",
       "groupId": "neutral",
       "name": "Nâu chocolate phối trung tính",
-      "description": "Kết hợp Nâu chocolate cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Nâu chocolate kết hợp cùng các màu trung tính dễ mặc nhất: trắng ngà, be, đen mềm, xanh navy và ghi sáng — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "brown-chocolate",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
-          "colorId": "white-pure",
+          "colorId": "white-ivory",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "black-soft",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-light",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-medium",
+          "colorId": "black-soft",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "blue-navy",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-light",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -12365,43 +12371,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "brown-espresso",
       "groupId": "neutral",
       "name": "Nâu espresso phối trung tính",
-      "description": "Kết hợp Nâu espresso cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Nâu espresso kết hợp cùng các màu trung tính dễ mặc nhất: trắng ngà, be, đen mềm, xanh navy và ghi sáng — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "brown-espresso",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
-          "colorId": "white-pure",
+          "colorId": "white-ivory",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "black-soft",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-light",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-medium",
+          "colorId": "black-soft",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "blue-navy",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-light",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -12812,43 +12818,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "red-pinkish",
       "groupId": "neutral",
       "name": "Đỏ hồng phối trung tính",
-      "description": "Kết hợp Đỏ hồng cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Đỏ hồng kết hợp cùng các màu trung tính dễ mặc nhất: đen tuyền, trắng tinh, xanh navy, be và ghi sáng — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "red-pinkish",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
+        },
+        {
+          "colorId": "black-jet",
+          "role": "supporting",
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "white-ivory",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "beige-main",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "grey-light",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -13254,7 +13260,7 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "red-classic",
       "groupId": "neutral",
       "name": "Đỏ tươi phối trung tính",
-      "description": "Đỏ tươi kết hợp cùng đen tuyền, trắng tinh, xanh navy và be — bộ phối tương phản nổi bật, sang trọng và rất dễ mặc.",
+      "description": "Đỏ tươi kết hợp cùng các màu trung tính dễ mặc nhất: đen tuyền, trắng tinh, xanh navy, be và ghi sáng — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "red-classic",
@@ -13275,19 +13281,19 @@ const COLORFIT_PALETTES_DATA = {
           "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-light",
+          "colorId": "blue-navy",
           "role": "supporting",
           "order": 4,
           "theoryRole": "neutral-support"
         },
         {
-          "colorId": "blue-navy",
+          "colorId": "beige-main",
           "role": "supporting",
           "order": 5,
           "theoryRole": "neutral-support"
         },
         {
-          "colorId": "beige-main",
+          "colorId": "grey-light",
           "role": "supporting",
           "order": 6,
           "theoryRole": "neutral-support"
@@ -13696,43 +13702,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "red-brick",
       "groupId": "neutral",
       "name": "Đỏ gạch phối trung tính",
-      "description": "Kết hợp Đỏ gạch cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Đỏ gạch kết hợp cùng các màu trung tính dễ mặc nhất: đen tuyền, trắng tinh, xanh navy, be và ghi sáng — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "red-brick",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
+        },
+        {
+          "colorId": "black-jet",
+          "role": "supporting",
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "black-soft",
+          "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-light",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-light",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -14193,43 +14199,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "red-rust",
       "groupId": "neutral",
       "name": "Đỏ gỉ phối trung tính",
-      "description": "Kết hợp Đỏ gỉ cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Đỏ gỉ kết hợp cùng các màu trung tính dễ mặc nhất: đen tuyền, trắng tinh, xanh navy, be và ghi sáng — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "red-rust",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
+        },
+        {
+          "colorId": "black-jet",
+          "role": "supporting",
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "black-soft",
+          "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-light",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 5,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-medium",
+          "colorId": "grey-light",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -14690,43 +14696,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "red-burgundy",
       "groupId": "neutral",
       "name": "Đỏ burgundy phối trung tính",
-      "description": "Kết hợp Đỏ burgundy cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Đỏ burgundy kết hợp cùng các màu trung tính dễ mặc nhất: đen tuyền, trắng tinh, xanh navy, be và ghi sáng — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "red-burgundy",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "white-pure",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "black-jet",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-light",
+          "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 3,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "blue-navy",
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 5,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-medium",
+          "colorId": "grey-light",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -15131,43 +15137,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "red-wine",
       "groupId": "neutral",
       "name": "Đỏ rượu vang phối trung tính",
-      "description": "Kết hợp Đỏ rượu vang cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Đỏ rượu vang kết hợp cùng các màu trung tính dễ mặc nhất: đen tuyền, trắng tinh, xanh navy, be và ghi sáng — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "red-wine",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "white-pure",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "black-jet",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-light",
+          "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 3,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "blue-navy",
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 5,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-medium",
+          "colorId": "grey-light",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -15572,43 +15578,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "orange-peach",
       "groupId": "neutral",
       "name": "Đào phối trung tính",
-      "description": "Kết hợp Đào cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Đào kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, xanh navy, be, đen mềm và nâu mocha — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "orange-peach",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "blue-navy",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-charcoal",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "black-jet",
+          "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 3,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "beige-main",
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "black-soft",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-mocha",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -16070,43 +16076,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "orange-apricot",
       "groupId": "neutral",
       "name": "Cam mơ phối trung tính",
-      "description": "Kết hợp Cam mơ cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Cam mơ kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, xanh navy, be, đen mềm và nâu mocha — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "orange-apricot",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "blue-navy",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-charcoal",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 3,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "beige-main",
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "black-soft",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-mocha",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -16568,43 +16574,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "orange-coral",
       "groupId": "neutral",
       "name": "Cam san hô phối trung tính",
-      "description": "Kết hợp Cam san hô cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Cam san hô kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, xanh navy, be, đen tuyền và ghi sáng — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "orange-coral",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "blue-navy",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-charcoal",
+          "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "black-jet",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-light",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -17010,43 +17016,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "orange-terracotta",
       "groupId": "neutral",
       "name": "Cam đất phối trung tính",
-      "description": "Kết hợp Cam đất cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Cam đất kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, xanh navy, be, đen mềm và ghi sáng — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "orange-terracotta",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "white-ivory",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 3,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "beige-main",
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "black-soft",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "grey-light",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -17564,43 +17570,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "orange-burnt",
       "groupId": "neutral",
       "name": "Cam cháy phối trung tính",
-      "description": "Kết hợp Cam cháy cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Cam cháy kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, xanh navy, be, đen mềm và ghi sáng — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "orange-burnt",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "black-soft",
+          "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-light",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "black-soft",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-light",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -18061,43 +18067,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "orange-rust",
       "groupId": "neutral",
       "name": "Cam gỉ phối trung tính",
-      "description": "Kết hợp Cam gỉ cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Cam gỉ kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, xanh navy, be, đen mềm và ghi sáng — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "orange-rust",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "black-soft",
+          "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-light",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "brown-espresso",
+          "colorId": "black-soft",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-light",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -18558,43 +18564,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "yellow-pale",
       "groupId": "neutral",
       "name": "Vàng nhạt phối trung tính",
-      "description": "Kết hợp Vàng nhạt cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Vàng nhạt kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, xanh navy, đen tuyền, be và ghi sáng — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "yellow-pale",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
-          "colorId": "brown-espresso",
+          "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-charcoal",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "black-jet",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-medium",
+          "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-light",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -19056,43 +19062,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "yellow-butter",
       "groupId": "neutral",
       "name": "Vàng bơ phối trung tính",
-      "description": "Kết hợp Vàng bơ cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Vàng bơ kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, xanh navy, đen tuyền, be và ghi sáng — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "yellow-butter",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "blue-navy",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-charcoal",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 2,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "blue-navy",
+          "role": "supporting",
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "black-jet",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "beige-main",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-light",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -19554,43 +19560,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "yellow-lemon",
       "groupId": "neutral",
       "name": "Vàng chanh phối trung tính",
-      "description": "Kết hợp Vàng chanh cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Vàng chanh kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, xanh navy, đen tuyền, be và ghi sáng — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "yellow-lemon",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "blue-navy",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-charcoal",
+          "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-jet",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "beige-main",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-light",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -19995,43 +20001,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "yellow-mustard",
       "groupId": "neutral",
       "name": "Vàng mù tạt phối trung tính",
-      "description": "Kết hợp Vàng mù tạt cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Vàng mù tạt kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, xanh navy, đen tuyền, be và ghi sáng — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "yellow-mustard",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "black-soft",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-light",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 3,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "black-jet",
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "beige-main",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-light",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -20549,43 +20555,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "yellow-golden",
       "groupId": "neutral",
       "name": "Vàng ánh kim phối trung tính",
-      "description": "Kết hợp Vàng ánh kim cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Vàng ánh kim kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, xanh navy, đen tuyền, be và ghi sáng — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "yellow-golden",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "black-jet",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-light",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 3,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "black-jet",
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "beige-main",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-light",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -20991,43 +20997,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "green-mint-pale",
       "groupId": "neutral",
       "name": "Mint nhạt phối trung tính",
-      "description": "Kết hợp Mint nhạt cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Mint nhạt kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, be, đen mềm, xanh navy và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "green-mint-pale",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
-          "colorId": "brown-espresso",
+          "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 2,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "beige-main",
+          "role": "supporting",
+          "order": 3,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "black-soft",
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 5,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-charcoal",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
-        },
-        {
-          "colorId": "black-jet",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
-        },
-        {
-          "colorId": "grey-medium",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -21546,43 +21552,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "green-mint",
       "groupId": "neutral",
       "name": "Xanh mint phối trung tính",
-      "description": "Kết hợp Xanh mint cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Xanh mint kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, be, đen mềm, xanh navy và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "green-mint",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "blue-navy",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-charcoal",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "black-jet",
+          "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 3,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "black-soft",
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "blue-navy",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -22046,43 +22052,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "green-pastel",
       "groupId": "neutral",
       "name": "Xanh lá pastel phối trung tính",
-      "description": "Kết hợp Xanh lá pastel cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Xanh lá pastel kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, be, đen mềm, xanh navy và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "green-pastel",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "blue-navy",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-charcoal",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "black-jet",
+          "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 3,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "black-soft",
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "blue-navy",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -22551,43 +22557,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "green-pistachio",
       "groupId": "neutral",
       "name": "Xanh pistachio phối trung tính",
-      "description": "Kết hợp Xanh pistachio cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Xanh pistachio kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, be, đen mềm, xanh navy và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "green-pistachio",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "blue-navy",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-charcoal",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 3,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "black-soft",
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "blue-navy",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -23162,43 +23168,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "green-sage",
       "groupId": "neutral",
       "name": "Xanh sage phối trung tính",
-      "description": "Kết hợp Xanh sage cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Xanh sage kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, be, đen mềm, xanh navy và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "green-sage",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "blue-navy",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-charcoal",
+          "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-soft",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "blue-navy",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -23610,43 +23616,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "green-eucalyptus",
       "groupId": "neutral",
       "name": "Xanh bạch đàn phối trung tính",
-      "description": "Kết hợp Xanh bạch đàn cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Xanh bạch đàn kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, be, đen tuyền, xanh navy và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "green-eucalyptus",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 2,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "beige-main",
+          "role": "supporting",
+          "order": 3,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "black-jet",
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 5,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "white-ivory",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
-        },
-        {
-          "colorId": "grey-charcoal",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -24002,43 +24008,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "green-olive-light",
       "groupId": "neutral",
       "name": "Xanh olive nhạt phối trung tính",
-      "description": "Kết hợp Xanh olive nhạt cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Xanh olive nhạt kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, be, đen mềm, xanh navy và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "green-olive-light",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "brown-espresso",
+          "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-soft",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 5,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-light",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -24506,43 +24512,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "green-olive",
       "groupId": "neutral",
       "name": "Xanh olive phối trung tính",
-      "description": "Kết hợp Xanh olive cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Xanh olive kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, be, đen mềm, xanh navy và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "green-olive",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "black-soft",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-light",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "brown-espresso",
+          "colorId": "black-soft",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "blue-navy",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -24953,43 +24959,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "green-moss",
       "groupId": "neutral",
       "name": "Xanh rêu phối trung tính",
-      "description": "Kết hợp Xanh rêu cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Xanh rêu kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, be, đen mềm, xanh navy và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "green-moss",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "black-soft",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-light",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-medium",
+          "colorId": "black-soft",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "blue-navy",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -25400,43 +25406,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "green-emerald",
       "groupId": "neutral",
       "name": "Xanh emerald phối trung tính",
-      "description": "Kết hợp Xanh emerald cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Xanh emerald kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, be, đen tuyền, xanh navy và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "green-emerald",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "black-jet",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-light",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-medium",
+          "colorId": "black-jet",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "blue-navy",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -25841,43 +25847,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "green-forest",
       "groupId": "neutral",
       "name": "Xanh lá đậm phối trung tính",
-      "description": "Kết hợp Xanh lá đậm cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Xanh lá đậm kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, be, đen mềm, xanh navy và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "green-forest",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "black-soft",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-light",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-medium",
+          "colorId": "black-soft",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "blue-navy",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -26288,43 +26294,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "green-teal",
       "groupId": "neutral",
       "name": "Xanh teal phối trung tính",
-      "description": "Kết hợp Xanh teal cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Xanh teal kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, be, đen tuyền, xanh navy và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "green-teal",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "black-jet",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-light",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-medium",
+          "colorId": "black-jet",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "blue-navy",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -26673,43 +26679,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "blue-baby",
       "groupId": "neutral",
       "name": "Xanh baby phối trung tính",
-      "description": "Kết hợp Xanh baby cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Xanh baby kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, đen tuyền, be, ghi sáng và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "blue-baby",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
-          "colorId": "brown-espresso",
+          "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "grey-charcoal",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "black-jet",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
-        },
-        {
-          "colorId": "grey-medium",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-light",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -27171,43 +27177,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "blue-powder",
       "groupId": "neutral",
       "name": "Xanh phấn phối trung tính",
-      "description": "Kết hợp Xanh phấn cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Xanh phấn kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, đen tuyền, be, ghi sáng và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "blue-powder",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "grey-charcoal",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "black-jet",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-medium",
+          "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-light",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -27726,43 +27732,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "blue-sky",
       "groupId": "neutral",
       "name": "Xanh da trời phối trung tính",
-      "description": "Kết hợp Xanh da trời cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Xanh da trời kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, đen tuyền, be, ghi sáng và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "blue-sky",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "grey-charcoal",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-jet",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 3,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "beige-main",
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "grey-light",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -28112,43 +28118,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "blue-denim-light",
       "groupId": "neutral",
       "name": "Xanh denim nhạt phối trung tính",
-      "description": "Kết hợp Xanh denim nhạt cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Xanh denim nhạt kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, đen tuyền, be, ghi sáng và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "blue-denim-light",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-charcoal",
+          "colorId": "black-jet",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "grey-light",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -28554,43 +28560,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "blue-denim",
       "groupId": "neutral",
       "name": "Xanh denim phối trung tính",
-      "description": "Kết hợp Xanh denim cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Xanh denim kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, đen tuyền, be, ghi sáng và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "blue-denim",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "black-jet",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-light",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-light",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -28940,43 +28946,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "blue-dusty",
       "groupId": "neutral",
       "name": "Xanh dusty phối trung tính",
-      "description": "Kết hợp Xanh dusty cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Xanh dusty kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, đen tuyền, be, ghi sáng và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "blue-dusty",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "brown-espresso",
+          "colorId": "black-jet",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "grey-light",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 5,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-charcoal",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -29276,43 +29282,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "blue-slate",
       "groupId": "neutral",
       "name": "Xanh slate phối trung tính",
-      "description": "Kết hợp Xanh slate cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Xanh slate kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, đen tuyền, be, ghi sáng và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "blue-slate",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "black-jet",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-light",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-light",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -29612,43 +29618,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "blue-steel",
       "groupId": "neutral",
       "name": "Xanh thép phối trung tính",
-      "description": "Kết hợp Xanh thép cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Xanh thép kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, đen tuyền, be, ghi sáng và nâu caramel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "blue-steel",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "black-jet",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-light",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "brown-espresso",
+          "colorId": "grey-light",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "brown-caramel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -30003,44 +30009,44 @@ const COLORFIT_PALETTES_DATA = {
       "id": "blue-navy-accent-01",
       "anchorColorId": "blue-navy",
       "groupId": "accent",
-      "name": "Xanh navy tạo điểm nhấn",
-      "description": "Giữ Xanh navy cùng các màu hỗ trợ trung tính làm nền để sắc màu tương phản tạo điểm nhấn có kiểm soát.",
+      "name": "Xanh navy nhấn đỏ rượu & vàng mù tạt",
+      "description": "Xanh navy trên nền trắng và be, điểm xuyết bằng đỏ burgundy, vàng mù tạt hoặc tím lavender — công thức phối đồ kinh điển cực kỳ nổi bật mà vẫn tinh tế.",
       "colorItems": [
         {
           "colorId": "blue-navy",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-light",
+          "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "white-ivory",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
-        },
-        {
-          "colorId": "yellow-lemon",
+          "colorId": "red-burgundy",
           "role": "accent",
-          "theoryRole": "accent",
-          "order": 5
+          "order": 4,
+          "theoryRole": "accent"
         },
         {
-          "colorId": "orange-coral",
+          "colorId": "yellow-mustard",
           "role": "accent",
-          "theoryRole": "accent",
-          "order": 6
+          "order": 5,
+          "theoryRole": "accent"
+        },
+        {
+          "colorId": "purple-lavender",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -30388,43 +30394,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "blue-midnight",
       "groupId": "neutral",
       "name": "Xanh midnight phối trung tính",
-      "description": "Kết hợp Xanh midnight cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Xanh midnight kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, đen tuyền, be, ghi sáng và camel — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "blue-midnight",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "black-jet",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-light",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-medium",
+          "colorId": "grey-light",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "beige-camel",
+          "role": "accent",
+          "order": 6,
+          "theoryRole": "accent"
         }
       ],
       "styleTags": [
@@ -30774,43 +30780,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "purple-lilac",
       "groupId": "neutral",
       "name": "Tím lilac phối trung tính",
-      "description": "Kết hợp Tím lilac cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Tím lilac kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, xanh navy, be sáng, ghi sáng và đen mềm — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "purple-lilac",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
-          "colorId": "brown-espresso",
+          "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-charcoal",
+          "colorId": "beige-light",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "black-jet",
+          "colorId": "grey-light",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 5,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-medium",
+          "colorId": "black-soft",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -31274,43 +31280,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "purple-lavender",
       "groupId": "neutral",
       "name": "Tím lavender phối trung tính",
-      "description": "Kết hợp Tím lavender cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Tím lavender kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, xanh navy, be sáng, ghi sáng và đen mềm — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "purple-lavender",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
-          "colorId": "brown-espresso",
+          "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-charcoal",
+          "colorId": "beige-light",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "black-jet",
+          "colorId": "grey-light",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 5,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-medium",
+          "colorId": "black-soft",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -31774,43 +31780,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "purple-mauve",
       "groupId": "neutral",
       "name": "Tím mauve phối trung tính",
-      "description": "Kết hợp Tím mauve cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Tím mauve kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, xanh navy, be, ghi sáng và đen tuyền — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "purple-mauve",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "blue-navy",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-charcoal",
+          "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-light",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "black-jet",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -32111,43 +32117,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "purple-dusty",
       "groupId": "neutral",
       "name": "Tím khói phối trung tính",
-      "description": "Kết hợp Tím khói cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Tím khói kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, xanh navy, be, ghi sáng và đen tuyền — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "purple-dusty",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "blue-navy",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-charcoal",
+          "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-light",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "black-jet",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -32280,43 +32286,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "purple-plum",
       "groupId": "analogous",
       "name": "Tím mận phối tương đồng",
-      "description": "Các gam màu có hue nằm liền kề trên vòng tròn màu giúp tổng thể quanh Tím mận hài hòa tự nhiên.",
+      "description": "Tím mận phối liền mạch cùng xanh navy, đỏ burgundy, tím khói và trắng ngà — sang trọng, có chiều sâu và rất dễ mặc thực tế.",
       "colorItems": [
         {
           "colorId": "purple-plum",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
+        },
+        {
+          "colorId": "blue-navy",
+          "role": "supporting",
+          "order": 2,
+          "theoryRole": "formula"
+        },
+        {
+          "colorId": "purple-dusty",
+          "role": "supporting",
+          "order": 3,
+          "theoryRole": "formula"
+        },
+        {
+          "colorId": "red-burgundy",
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "formula"
         },
         {
           "colorId": "pink-mauve",
           "role": "supporting",
-          "theoryRole": "formula",
-          "order": 2
+          "order": 5,
+          "theoryRole": "formula"
         },
         {
-          "colorId": "pink-rose",
+          "colorId": "white-ivory",
           "role": "supporting",
-          "theoryRole": "formula",
-          "order": 3
-        },
-        {
-          "colorId": "pink-hot",
-          "role": "supporting",
-          "theoryRole": "formula",
-          "order": 4
-        },
-        {
-          "colorId": "pink-baby",
-          "role": "supporting",
-          "theoryRole": "formula",
-          "order": 5
-        },
-        {
-          "colorId": "white-pure",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -32503,43 +32509,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "purple-plum",
       "groupId": "neutral",
       "name": "Tím mận phối trung tính",
-      "description": "Kết hợp Tím mận cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Tím mận kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, xanh navy, be, ghi sáng và đen tuyền — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "purple-plum",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "black-jet",
+          "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-light",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-medium",
+          "colorId": "grey-light",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "black-jet",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -32894,43 +32900,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "pink-blush",
       "groupId": "neutral",
       "name": "Hồng phấn phối trung tính",
-      "description": "Kết hợp Hồng phấn cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Hồng phấn kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, xanh navy, be sáng, ghi sáng và đen mềm — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "pink-blush",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
-          "colorId": "brown-espresso",
+          "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-charcoal",
+          "colorId": "beige-light",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "black-jet",
+          "colorId": "grey-light",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 5,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-medium",
+          "colorId": "black-soft",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -33449,43 +33455,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "pink-baby",
       "groupId": "neutral",
       "name": "Hồng baby phối trung tính",
-      "description": "Kết hợp Hồng baby cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Hồng baby kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, xanh navy, be sáng, ghi sáng và đen mềm — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "pink-baby",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
-          "colorId": "brown-espresso",
+          "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-charcoal",
+          "colorId": "beige-light",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "black-jet",
+          "colorId": "grey-light",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 5,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-medium",
+          "colorId": "black-soft",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -33948,43 +33954,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "pink-dusty",
       "groupId": "neutral",
       "name": "Hồng dusty phối trung tính",
-      "description": "Kết hợp Hồng dusty cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Hồng dusty kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, xanh navy, be, ghi sáng và đen tuyền — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "pink-dusty",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "blue-navy",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-charcoal",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 3,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "beige-main",
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-light",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "black-jet",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -34390,43 +34396,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "pink-rose",
       "groupId": "neutral",
       "name": "Hồng rose phối trung tính",
-      "description": "Kết hợp Hồng rose cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Hồng rose kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, xanh navy, be, ghi sáng và đen tuyền — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "pink-rose",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "blue-navy",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-charcoal",
+          "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-light",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "black-jet",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -34832,43 +34838,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "pink-earth",
       "groupId": "neutral",
       "name": "Hồng đất phối trung tính",
-      "description": "Kết hợp Hồng đất cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Hồng đất kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, xanh navy, be, ghi sáng và đen mềm — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "pink-earth",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 4,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "grey-light",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "black-soft",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -35386,43 +35392,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "pink-mauve",
       "groupId": "neutral",
       "name": "Hồng mauve phối trung tính",
-      "description": "Kết hợp Hồng mauve cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Hồng mauve kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, xanh navy, be, ghi sáng và đen tuyền — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "pink-mauve",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "blue-navy",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "white-ivory",
+          "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 3,
+          "theoryRole": "neutral-support"
         },
         {
-          "colorId": "grey-charcoal",
+          "colorId": "beige-main",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-light",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "black-jet",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -35778,43 +35784,43 @@ const COLORFIT_PALETTES_DATA = {
       "anchorColorId": "pink-hot",
       "groupId": "neutral",
       "name": "Hồng fuchsia phối trung tính",
-      "description": "Kết hợp Hồng fuchsia cùng các gam trung tính làm màu hỗ trợ giúp trang phục an toàn và linh hoạt.",
+      "description": "Hồng fuchsia kết hợp cùng các màu trung tính dễ mặc nhất: trắng tinh, xanh navy, be, ghi sáng và đen tuyền — thanh lịch, hài hòa trong mọi hoàn cảnh.",
       "colorItems": [
         {
           "colorId": "pink-hot",
           "role": "anchor",
-          "theoryRole": "anchor",
-          "order": 1
+          "order": 1,
+          "theoryRole": "anchor"
         },
         {
           "colorId": "white-pure",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 2
-        },
-        {
-          "colorId": "white-ivory",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 3
-        },
-        {
-          "colorId": "grey-light",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 4
-        },
-        {
-          "colorId": "brown-espresso",
-          "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 5
+          "order": 2,
+          "theoryRole": "neutral-support"
         },
         {
           "colorId": "blue-navy",
           "role": "supporting",
-          "theoryRole": "neutral-support",
-          "order": 6
+          "order": 3,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "beige-main",
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "grey-light",
+          "role": "supporting",
+          "order": 5,
+          "theoryRole": "neutral-support"
+        },
+        {
+          "colorId": "black-jet",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
         }
       ],
       "styleTags": [
@@ -35935,6 +35941,63 @@ const COLORFIT_PALETTES_DATA = {
       ],
       "difficulty": "hard",
       "isActive": true
+    },
+    {
+      "id": "blue-navy-analogous-01",
+      "anchorColorId": "blue-navy",
+      "groupId": "analogous",
+      "name": "Xanh navy phối tím & xanh thanh lịch",
+      "description": "Xanh navy kết hợp mượt mà cùng tím lavender, tím mận và xanh cổ vịt — bộ phối thực tế rất sang trọng, tinh tế và tôn da.",
+      "styleTags": [
+        "elegant",
+        "chic",
+        "modern"
+      ],
+      "occasions": [
+        "office",
+        "date",
+        "party"
+      ],
+      "difficulty": "easy",
+      "isActive": true,
+      "colorItems": [
+        {
+          "colorId": "blue-navy",
+          "role": "anchor",
+          "order": 1,
+          "theoryRole": "anchor"
+        },
+        {
+          "colorId": "purple-lavender",
+          "role": "supporting",
+          "order": 2,
+          "theoryRole": "formula"
+        },
+        {
+          "colorId": "purple-plum",
+          "role": "supporting",
+          "order": 3,
+          "theoryRole": "formula"
+        },
+        {
+          "colorId": "purple-dusty",
+          "role": "supporting",
+          "order": 4,
+          "theoryRole": "formula"
+        },
+        {
+          "colorId": "green-teal",
+          "role": "accent",
+          "order": 5,
+          "theoryRole": "accent"
+        },
+        {
+          "colorId": "white-pure",
+          "role": "supporting",
+          "order": 6,
+          "theoryRole": "neutral-support"
+        }
+      ]
     }
   ]
 };

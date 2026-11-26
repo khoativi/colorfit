@@ -512,6 +512,275 @@ const ColorFitService = (function () {
     return queryPalettesByAnchor(selectedColorId);
   }
 
+  // ==================== MATHEMATICAL RYB COLOR WHEEL ENGINE + ACHROMATIC RULES ====================
+  // Chromatic colors (68): computed directly from actual HEX -> HSL -> 12-hue RYB wheel angle
+  // so every harmony (Monochromatic, Analogous ±35°, Complementary 180°, Triadic ±120°, Split ±150°)
+  // is mathematically accurate while selecting real wearable clothing fabrics from the 86-color library.
+  // Achromatic colors (18: Black, White, Grey): strictly follow luminance scale + true 180° pairs.
+
+  const ACHROMATIC_FAMILIES = new Set(['black', 'white', 'grey']);
+
+  const ACHROMATIC_WHEEL_RULES = {
+    black: {
+      monochromatic: ['grey-charcoal', 'grey-dark', 'black-soft', 'black-washed'],
+      analogous: ['blue-midnight', 'brown-espresso', 'grey-charcoal', 'blue-navy'],
+      complementary: ['white-pure', 'white-soft', 'white-ivory'],
+      triadic: ['grey-silver', 'white-pure', 'grey-medium', 'white-soft'],
+      'split-complementary': ['red-burgundy', 'green-moss', 'yellow-mustard', 'purple-plum']
+    },
+    white: {
+      monochromatic: ['white-ivory', 'white-cream', 'white-soft', 'white-oat', 'white-pure'],
+      analogous: ['grey-ice', 'beige-light', 'grey-light', 'beige-pale'],
+      complementary: ['black-jet', 'black-soft', 'grey-charcoal'],
+      triadic: ['grey-medium', 'black-jet', 'grey-silver', 'black-soft'],
+      'split-complementary': ['blue-navy', 'orange-terracotta', 'red-burgundy', 'green-moss']
+    },
+    grey: {
+      monochromatic: ['grey-light', 'grey-charcoal', 'grey-medium', 'grey-silver', 'grey-dark'],
+      analogous: ['grey-blue', 'grey-greige', 'grey-warm', 'blue-slate'],
+      complementary: ['black-jet', 'white-pure', 'black-soft', 'white-soft'],
+      triadic: ['white-pure', 'black-jet', 'white-soft', 'black-soft'],
+      'split-complementary': ['blue-navy', 'orange-terracotta', 'red-burgundy', 'green-moss']
+    }
+  };
+
+  function hexToRybInfo(hex) {
+    const { r: r255, g: g255, b: b255 } = hexToRgb(hex);
+    const r = r255 / 255, g = g255 / 255, b = b255 / 255;
+    const max = Math.max(r, g, b), min = Math.min(r, g, b);
+    const l = (max + min) / 2;
+    const d = max - min;
+    const s = d === 0 ? 0 : d / (1 - Math.abs(2 * l - 1));
+    if (d === 0) return { ryb: 0, s: 0, l };
+
+    let h = 0;
+    if (max === r) h = ((g - b) / d + (g < b ? 6 : 0)) * 60;
+    else if (max === g) h = ((b - r) / d + 2) * 60;
+    else h = ((r - g) / d + 4) * 60;
+
+    // Calibrated Itten/Gossett-Chen 12-hue RYB wheel mapping:
+    // HSL: Red=0, Orange=30, Yellow=60, Yellow-Green=75, Green=120, Teal=180, Blue=215, Purple=285, Magenta=330
+    // RYB: Red=0, Orange=60, Yellow=120, Yellow-Green=150, Green=180, Teal=210, Blue=240, Purple=300, Red-Violet=330
+    const stops = [
+      [0, 0], [30, 60], [60, 120], [75, 150], [120, 180],
+      [180, 210], [215, 240], [285, 300], [330, 330], [360, 360]
+    ];
+    let ryb = 0;
+    for (let i = 0; i < stops.length - 1; i++) {
+      const [h1, r1] = stops[i];
+      const [h2, r2] = stops[i + 1];
+      if (h >= h1 && h <= h2) {
+        ryb = r1 + ((h - h1) / (h2 - h1)) * (r2 - r1);
+        break;
+      }
+    }
+
+    return { ryb: ((ryb % 360) + 360) % 360, s, l };
+  }
+
+  // Canonical 12-Sector RYB Fashion Wheel (0°..330° in exact 30° steps).
+  // Every sector has curated Rich/Dark and Light/Soft real Vietnamese clothing fabrics
+  // so every harmony hits the EXACT mathematical sector (+-1, +6, +-4, +-5) with matching fabric tone.
+  const RYB_12_SECTORS = [
+    { deg: 0,   rich: ['red-burgundy', 'red-classic', 'red-wine'],         soft: ['red-pinkish', 'pink-rose', 'pink-dusty'] },        // 0: Red
+    { deg: 30,  rich: ['red-brick', 'orange-terracotta', 'red-rust'],      soft: ['orange-coral', 'orange-peach', 'orange-terracotta'] }, // 1: Red-Orange
+    { deg: 60,  rich: ['orange-burnt', 'beige-camel', 'brown-caramel'],    soft: ['orange-apricot', 'brown-milk', 'beige-camel'] },   // 2: Orange
+    { deg: 90,  rich: ['yellow-mustard', 'yellow-golden', 'beige-khaki'],  soft: ['beige-sand', 'yellow-butter', 'beige-khaki'] },    // 3: Yellow-Orange
+    { deg: 120, rich: ['yellow-mustard', 'yellow-golden', 'yellow-lemon'], soft: ['yellow-butter', 'yellow-pale', 'yellow-lemon'] },  // 4: Yellow
+    { deg: 150, rich: ['green-olive', 'green-moss', 'green-olive-light'],  soft: ['green-pistachio', 'green-sage', 'green-olive-light'] }, // 5: Yellow-Green
+    { deg: 180, rich: ['green-forest', 'green-emerald', 'green-moss'],     soft: ['green-sage', 'green-pastel', 'green-eucalyptus'] }, // 6: Green
+    { deg: 210, rich: ['green-teal', 'green-emerald', 'green-forest'],     soft: ['green-mint', 'green-eucalyptus', 'green-mint-pale'] }, // 7: Blue-Green
+    { deg: 240, rich: ['blue-navy', 'blue-denim', 'blue-slate'],           soft: ['blue-denim-light', 'blue-sky', 'blue-powder'] },   // 8: Blue
+    { deg: 270, rich: ['blue-midnight', 'blue-navy', 'purple-dusty'],      soft: ['purple-lavender', 'blue-powder', 'purple-dusty'] }, // 9: Blue-Violet
+    { deg: 300, rich: ['purple-plum', 'purple-dusty', 'purple-mauve'],     soft: ['purple-lavender', 'purple-lilac', 'purple-mauve'] }, // 10: Purple
+    { deg: 330, rich: ['purple-plum', 'red-wine', 'pink-earth'],           soft: ['pink-dusty', 'pink-blush', 'pink-mauve'] }         // 11: Red-Violet
+  ];
+
+  function getColorRybSector(c) {
+    // Anchor's exact 12-sector index derived from HEX + family disambiguation
+    const { ryb } = hexToRybInfo(c.hex);
+    if (c.familyId === 'yellow') return 4;
+    if (c.familyId === 'blue' && c.id === 'blue-midnight') return 9;
+    if (c.familyId === 'blue') return 8;
+    if (c.id === 'green-teal') return 7;
+    if (c.id === 'green-emerald' || c.id === 'green-forest') return 6;
+    if (c.id === 'green-olive' || c.id === 'green-olive-light' || c.id === 'green-moss' || c.id === 'green-pistachio') return 5;
+    if (c.id === 'purple-plum') return 10;
+    if (c.familyId === 'pink') return 11;
+    if (c.familyId === 'red' && (c.id === 'red-brick' || c.id === 'red-rust')) return 1;
+    if (c.familyId === 'red') return 0;
+    if (c.familyId === 'orange' && (c.id === 'orange-coral' || c.id === 'orange-terracotta')) return 1;
+    if (c.familyId === 'orange') return 2;
+    return Math.round(ryb / 30) % 12;
+  }
+
+  function pickFromSector(sectorIdx, isSoftAnchor, usedIds) {
+    const sec = RYB_12_SECTORS[((sectorIdx % 12) + 12) % 12];
+    const pool = isSoftAnchor ? [...sec.soft, ...sec.rich] : [...sec.rich, ...sec.soft];
+    for (const id of pool) {
+      if (!usedIds.has(id) && colorMap[id] && colorMap[id].isActive !== false) {
+        return colorMap[id];
+      }
+    }
+    return null;
+  }
+
+  function pickMonochromaticPair(anchor) {
+    const aInfo = hexToRybInfo(anchor.hex);
+    const sameFam = activeColors
+      .filter(c => c.familyId === anchor.familyId && c.id !== anchor.id)
+      .map(c => ({ c, info: hexToRybInfo(c.hex) }));
+
+    const lighter = sameFam
+      .filter(x => x.info.l > aInfo.l + 0.04)
+      .sort((a, b) => Math.abs((a.info.l - aInfo.l) - 0.22) - Math.abs((b.info.l - aInfo.l) - 0.22));
+    const darker = sameFam
+      .filter(x => x.info.l < aInfo.l - 0.04)
+      .sort((a, b) => Math.abs((aInfo.l - a.info.l) - 0.22) - Math.abs((aInfo.l - b.info.l) - 0.22));
+
+    const picked = [];
+    if (lighter.length > 0) picked.push(lighter[0].c);
+    if (darker.length > 0) picked.push(darker[0].c);
+
+    // Fill remaining from same family with widest lightness spread
+    const byDist = sameFam
+      .filter(x => !picked.some(p => p.id === x.c.id))
+      .sort((a, b) => Math.abs(b.info.l - aInfo.l) - Math.abs(a.info.l - aInfo.l));
+    for (const x of byDist) {
+      if (picked.length >= 2) break;
+      picked.push(x.c);
+    }
+    return picked;
+  }
+
+  const WHEEL_META = [
+    {
+      id: 'monochromatic',
+      name: 'Đơn sắc',
+      nameEn: 'Monochromatic',
+      fallbackGroups: ['monochromatic', 'neutral', 'tonal'],
+      advice: (anchor) => `Phối các sắc độ sáng – tối cùng họ ${anchor.name.toLowerCase()} tạo tổng thể tinh gọn, dễ mặc nhất.`
+    },
+    {
+      id: 'analogous',
+      name: 'Liền kề',
+      nameEn: 'Analogous',
+      fallbackGroups: ['analogous', 'earth-tone', 'pastel'],
+      advice: (anchor) => `Kết hợp 2 màu nằm liền kề hai bên ${anchor.name.toLowerCase()} (±35°) trên bánh xe màu — chuyển tông mượt và dịu mắt.`
+    },
+    {
+      id: 'complementary',
+      name: 'Tương phản',
+      nameEn: 'Complementary',
+      fallbackGroups: ['complementary', 'accent'],
+      advice: (anchor) => `Cặp màu đối diện trực tiếp 180° với ${anchor.name.toLowerCase()} trên bánh xe màu — tạo điểm nhấn rõ nét, bắt mắt.`
+    },
+    {
+      id: 'triadic',
+      name: 'Bộ ba',
+      nameEn: 'Triadic',
+      fallbackGroups: ['triadic', 'color-blocking'],
+      advice: (anchor) => `Ba màu tạo tam giác đều (120°) quanh ${anchor.name.toLowerCase()} — cân bằng, nổi bật và có gu.`
+    },
+    {
+      id: 'split-complementary',
+      name: 'Đối tách lập',
+      nameEn: 'Split-Complementary',
+      fallbackGroups: ['split-complementary'],
+      advice: (anchor) => `Giữ ${anchor.name.toLowerCase()} làm màu chính kết hợp 2 màu hai bên màu đối diện (±150°) — nổi bật nhưng mềm mại hơn.`
+    }
+  ];
+
+  function getWheelRecommendations(anchorColorId) {
+    const anchor = colorMap[anchorColorId];
+    if (!anchor || anchor.isActive === false) return [];
+
+    const anchorPals = validPalettes.filter(p => p.anchorColorId === anchorColorId);
+    const isAchromatic = ACHROMATIC_FAMILIES.has(anchor.familyId);
+    const aInfo = hexToRybInfo(anchor.hex);
+
+    return WHEEL_META.map(meta => {
+      let matchedPal = null;
+      for (const gid of meta.fallbackGroups) {
+        const found = anchorPals.find(p => p.groupId === gid);
+        if (found) {
+          matchedPal = found;
+          break;
+        }
+      }
+
+      let wheelColors = [];
+      if (isAchromatic) {
+        let targetIds = (ACHROMATIC_WHEEL_RULES[anchor.familyId] || ACHROMATIC_WHEEL_RULES.grey)[meta.id] || [];
+        if (anchor.familyId === 'grey' && anchor.tone === 'dark' && meta.id === 'complementary') {
+          targetIds = ['white-pure', 'white-soft', 'grey-ice'];
+        }
+        const needed = meta.id === 'complementary' ? 1 : 2;
+        const seen = new Set([anchor.id]);
+        for (const id of targetIds) {
+          if (wheelColors.length >= needed) break;
+          if (!seen.has(id) && colorMap[id] && colorMap[id].isActive !== false) {
+            wheelColors.push(colorMap[id]);
+            seen.add(id);
+          }
+        }
+      } else {
+        // Exact 12-Sector RYB Color Wheel Math (+-1, +6, +-4, +-5) with Tone-Matched Fabrics
+        const used = new Set([anchor.id]);
+        const s = getColorRybSector(anchor);
+        const isSoft = aInfo.l > 0.66;
+
+        if (meta.id === 'monochromatic') {
+          wheelColors = pickMonochromaticPair(anchor);
+        } else if (meta.id === 'analogous') {
+          const left = pickFromSector(s - 1, isSoft, used);
+          if (left) { wheelColors.push(left); used.add(left.id); }
+          const right = pickFromSector(s + 1, isSoft, used);
+          if (right) { wheelColors.push(right); used.add(right.id); }
+        } else if (meta.id === 'complementary') {
+          const opp = pickFromSector(s + 6, isSoft, used);
+          if (opp) { wheelColors.push(opp); used.add(opp.id); }
+        } else if (meta.id === 'triadic') {
+          const t1 = pickFromSector(s + 4, isSoft, used);
+          if (t1) { wheelColors.push(t1); used.add(t1.id); }
+          const t2 = pickFromSector(s + 8, isSoft, used);
+          if (t2) { wheelColors.push(t2); used.add(t2.id); }
+        } else {
+          // split-complementary (s+5 & s+7)
+          const s1 = pickFromSector(s + 5, isSoft, used);
+          if (s1) { wheelColors.push(s1); used.add(s1.id); }
+          const s2 = pickFromSector(s + 7, isSoft, used);
+          if (s2) { wheelColors.push(s2); used.add(s2.id); }
+        }
+      }
+
+      const colorItems = [
+        { color: anchor, role: 'anchor', theoryRole: 'anchor', order: 1 },
+        ...wheelColors.map((c, idx) => ({
+          color: c,
+          role: idx === wheelColors.length - 1 ? 'accent' : 'supporting',
+          theoryRole: idx === wheelColors.length - 1 ? 'accent' : 'formula',
+          order: idx + 2
+        }))
+      ];
+
+      return {
+        harmonyId: meta.id,
+        name: meta.name,
+        nameEn: meta.nameEn,
+        advice: meta.advice(anchor),
+        paletteId: matchedPal ? matchedPal.id : `wheel:${anchor.id}:${meta.id}`,
+        isSavedBacked: Boolean(matchedPal),
+        anchorColor: anchor,
+        recommendedColors: wheelColors,
+        colorItems,
+        occasions: matchedPal ? (matchedPal.occasions || ['daily', 'office']) : ['daily', 'office'],
+        styleTags: matchedPal ? (matchedPal.styleTags || []) : [],
+        difficulty: (meta.id === 'monochromatic' || meta.id === 'analogous') ? 'easy' : 'medium'
+      };
+    });
+  }
+
   return {
     ERROR_CODES,
     FASHION_MATCHING_RULES,
@@ -530,6 +799,7 @@ const ColorFitService = (function () {
     isLightColor,
     rgbToHex,
     matchColorsByRgb,
+    getWheelRecommendations,
     normalizeVi,
     searchColors,
     queryPalettesByAnchor,

@@ -493,15 +493,15 @@
         </section>
 
         <!-- ==================== SEARCH RESULTS STATE ==================== -->
-        <section id="results-state" class="hidden w-full mt-6 space-y-6 animate-view-in">
-          <!-- 1. Active Color Hero Summary Card -->
+        <section id="results-state" class="hidden w-full mt-3 sm:mt-5 space-y-3 sm:space-y-4 animate-view-in">
+          <!-- 1. Compact Active Color Summary Card -->
           <div id="anchor-summary-card"></div>
 
-          <!-- 2. Classification Segmented Filter Pills -->
-          <div id="classification-bar" class="flex items-center gap-2.5 overflow-x-auto py-1"></div>
+          <!-- 2. Optional Section Header (compact) -->
+          <div id="color-wheel-panel" class="w-full hidden"></div>
 
-          <!-- 3. Balanced Responsive Grid of Palette Group Sections -->
-          <div id="palette-groups-list" class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 items-start"></div>
+          <!-- 3. Compact 5-Wheel Grid (1-col tight horizontal cards on mobile, 2-col on desktop) -->
+          <div id="palette-groups-list" class="grid grid-cols-1 md:grid-cols-2 gap-2.5 sm:gap-4 items-stretch"></div>
 
           <!-- 4. Empty State -->
           <div id="results-empty-state" class="hidden"></div>
@@ -685,12 +685,304 @@
       tooltipTimer: null
     };
 
+    const SIMPLE_GROUP_MAP = {
+      monochromatic: 'monochromatic',
+      neutral: 'monochromatic',
+      tonal: 'monochromatic',
+      analogous: 'analogous',
+      pastel: 'analogous',
+      'earth-tone': 'analogous',
+      complementary: 'complementary',
+      accent: 'complementary',
+      triadic: 'triadic',
+      'color-blocking': 'triadic',
+      'split-complementary': 'split-complementary'
+    };
+
+    const WHEEL_HARMONIES = [
+      {
+        id: 'monochromatic',
+        name: 'Đơn sắc',
+        nameEn: 'Monochromatic',
+        desc: 'Phối nhiều sắc độ sáng – tối trên cùng một nhánh màu và nhóm trung tính dễ mặc.'
+      },
+      {
+        id: 'analogous',
+        name: 'Liền kề',
+        nameEn: 'Analogous',
+        desc: 'Kết hợp các màu nằm sát nhau (±30°) trên bánh xe màu — dịu mắt, chuyển tông mượt.'
+      },
+      {
+        id: 'complementary',
+        name: 'Tương phản',
+        nameEn: 'Complementary',
+        desc: 'Cặp màu đối diện 180° trên bánh xe màu — tạo điểm nhấn rõ nét và thu hút.'
+      },
+      {
+        id: 'triadic',
+        name: 'Bộ ba',
+        nameEn: 'Triadic',
+        desc: 'Ba màu tạo thành tam giác đều (120°) trên bánh xe màu — cân bằng, trẻ trung, cá tính.'
+      },
+      {
+        id: 'split-complementary',
+        name: 'Đối tách lập',
+        nameEn: 'Split-Complementary',
+        desc: 'Một màu chính kết hợp hai màu nằm hai bên màu đối diện (±150°) — nổi bật nhưng mềm mại hơn.'
+      }
+    ];
+
     const CLASSIFICATION_LABELS = {
       'all': 'Tất cả',
-      'color-theory': 'Phối kinh điển',
-      'fashion-application': 'Mặc đẹp hằng ngày',
-      'color-character': 'Pastel & Tông đất'
+      'monochromatic': 'Đơn sắc',
+      'analogous': 'Liền kề',
+      'complementary': 'Tương phản',
+      'triadic': 'Bộ ba',
+      'split-complementary': 'Đối tách lập'
     };
+
+    function getSimpleGroupId(groupId) {
+      return SIMPLE_GROUP_MAP[groupId] || 'monochromatic';
+    }
+
+    function getSimpleGroupName(groupId) {
+      return CLASSIFICATION_LABELS[getSimpleGroupId(groupId)] || 'Đơn sắc';
+    }
+
+    // 12-segment RYB Fashion Color Wheel (0° = Red at top, clockwise every 30°)
+    const RYB_WHEEL_SEGMENTS = [
+      { deg: 0,   hex: '#DC2626', label: 'Đỏ',         colorId: 'red-classic' },
+      { deg: 30,  hex: '#EA580C', label: 'Đỏ cam',     colorId: 'orange-burnt' },
+      { deg: 60,  hex: '#F97316', label: 'Cam',        colorId: 'orange-terracotta' },
+      { deg: 90,  hex: '#F59E0B', label: 'Vàng cam',   colorId: 'yellow-mustard' },
+      { deg: 120, hex: '#EAB308', label: 'Vàng',       colorId: 'yellow-lemon' },
+      { deg: 150, hex: '#84CC16', label: 'Vàng xanh',  colorId: 'green-pistachio' },
+      { deg: 180, hex: '#16A34A', label: 'Xanh lá',    colorId: 'green-emerald' },
+      { deg: 210, hex: '#0D9488', label: 'Xanh cổ vịt',colorId: 'green-teal' },
+      { deg: 240, hex: '#2563EB', label: 'Xanh dương', colorId: 'blue-navy' },
+      { deg: 270, hex: '#4F46E5', label: 'Xanh chàm',  colorId: 'blue-midnight' },
+      { deg: 300, hex: '#9333EA', label: 'Tím',        colorId: 'purple-plum' },
+      { deg: 330, hex: '#DB2777', label: 'Tím hồng',   colorId: 'pink-hot' }
+    ];
+
+    function hexToRybWheelAngle(hex) {
+      const clean = (hex || '#243B55').replace('#', '');
+      const num = parseInt(clean.length === 6 ? clean : '243B55', 16);
+      const r = ((num >> 16) & 255) / 255;
+      const g = ((num >> 8) & 255) / 255;
+      const b = (num & 255) / 255;
+      const max = Math.max(r, g, b), min = Math.min(r, g, b);
+      const d = max - min;
+      const s = max === 0 ? 0 : d / max;
+      if (d === 0 || s < 0.08) return { angle: 240, isNeutral: true };
+
+      let h = 0;
+      if (max === r) h = ((g - b) / d + (g < b ? 6 : 0)) * 60;
+      else if (max === g) h = ((b - r) / d + 2) * 60;
+      else h = ((r - g) / d + 4) * 60;
+
+      // Map HSL hue -> RYB fashion wheel angle (Red 0, Orange 60, Yellow 120, Green 180, Blue 240, Purple 300)
+      let ryb = 0;
+      if (h < 60) ryb = h * 2;
+      else if (h < 120) ryb = 120 + (h - 60);
+      else if (h < 240) ryb = 180 + (h - 120) * 0.5;
+      else ryb = 240 + (h - 240);
+      return { angle: ((ryb % 360) + 360) % 360, isNeutral: false };
+    }
+
+    function polarToXY(cx, cy, radius, angleDeg) {
+      const rad = ((angleDeg - 90) * Math.PI) / 180;
+      return { x: cx + radius * Math.cos(rad), y: cy + radius * Math.sin(rad) };
+    }
+
+    function describeWheelWedge(cx, cy, rInner, rOuter, startDeg, endDeg) {
+      const p1 = polarToXY(cx, cy, rOuter, startDeg);
+      const p2 = polarToXY(cx, cy, rOuter, endDeg);
+      const p3 = polarToXY(cx, cy, rInner, endDeg);
+      const p4 = polarToXY(cx, cy, rInner, startDeg);
+      return `M ${p1.x.toFixed(2)} ${p1.y.toFixed(2)} A ${rOuter} ${rOuter} 0 0 1 ${p2.x.toFixed(2)} ${p2.y.toFixed(2)} L ${p3.x.toFixed(2)} ${p3.y.toFixed(2)} A ${rInner} ${rInner} 0 0 0 ${p4.x.toFixed(2)} ${p4.y.toFixed(2)} Z`;
+    }
+
+    function buildHarmonyGeometrySvg(cx, cy, rMid, baseAngle, harmonyId, compact = false) {
+      const sw = compact ? 1.8 : 2.6;
+      const dotR = compact ? 2.8 : 6.2;
+      const anchorDotR = compact ? 3.4 : 7.6;
+      const lineStroke = '#0f172a';
+
+      const pt = (deg, rad = rMid) => polarToXY(cx, cy, rad, deg);
+
+      if (harmonyId === 'monochromatic') {
+        const pIn = pt(baseAngle, compact ? rMid * 0.62 : rMid * 0.62);
+        const pMid = pt(baseAngle, rMid);
+        const pOut = pt(baseAngle, compact ? rMid * 1.28 : rMid * 1.24);
+        return `
+          <line x1="${pIn.x.toFixed(1)}" y1="${pIn.y.toFixed(1)}" x2="${pOut.x.toFixed(1)}" y2="${pOut.y.toFixed(1)}" stroke="#ffffff" stroke-width="${sw + 2}" stroke-linecap="round" opacity="0.85" />
+          <line x1="${pIn.x.toFixed(1)}" y1="${pIn.y.toFixed(1)}" x2="${pOut.x.toFixed(1)}" y2="${pOut.y.toFixed(1)}" stroke="${lineStroke}" stroke-width="${sw}" stroke-linecap="round" />
+          <circle cx="${pIn.x.toFixed(1)}" cy="${pIn.y.toFixed(1)}" r="${dotR * 0.85}" fill="#ffffff" stroke="${lineStroke}" stroke-width="${compact ? 1.4 : 2.2}" />
+          <circle cx="${pMid.x.toFixed(1)}" cy="${pMid.y.toFixed(1)}" r="${anchorDotR}" fill="#ffffff" stroke="${lineStroke}" stroke-width="${compact ? 1.6 : 2.5}" />
+          <circle cx="${pOut.x.toFixed(1)}" cy="${pOut.y.toFixed(1)}" r="${dotR * 0.85}" fill="#0f172a" stroke="#ffffff" stroke-width="${compact ? 1.2 : 2}" />
+        `;
+      }
+
+      if (harmonyId === 'analogous') {
+        const pL = pt(baseAngle - 30);
+        const pC = pt(baseAngle);
+        const pR = pt(baseAngle + 30);
+        return `
+          <path d="M ${pL.x.toFixed(1)} ${pL.y.toFixed(1)} A ${rMid} ${rMid} 0 0 1 ${pR.x.toFixed(1)} ${pR.y.toFixed(1)}" fill="none" stroke="#ffffff" stroke-width="${sw + 2.2}" stroke-linecap="round" opacity="0.85" />
+          <path d="M ${pL.x.toFixed(1)} ${pL.y.toFixed(1)} A ${rMid} ${rMid} 0 0 1 ${pR.x.toFixed(1)} ${pR.y.toFixed(1)}" fill="none" stroke="${lineStroke}" stroke-width="${sw}" stroke-linecap="round" />
+          <circle cx="${pL.x.toFixed(1)}" cy="${pL.y.toFixed(1)}" r="${dotR}" fill="#ffffff" stroke="${lineStroke}" stroke-width="${compact ? 1.4 : 2.2}" />
+          <circle cx="${pR.x.toFixed(1)}" cy="${pR.y.toFixed(1)}" r="${dotR}" fill="#ffffff" stroke="${lineStroke}" stroke-width="${compact ? 1.4 : 2.2}" />
+          <circle cx="${pC.x.toFixed(1)}" cy="${pC.y.toFixed(1)}" r="${anchorDotR}" fill="#0f172a" stroke="#ffffff" stroke-width="${compact ? 1.5 : 2.5}" />
+        `;
+      }
+
+      if (harmonyId === 'complementary') {
+        const pA = pt(baseAngle);
+        const pB = pt(baseAngle + 180);
+        return `
+          <line x1="${pA.x.toFixed(1)}" y1="${pA.y.toFixed(1)}" x2="${pB.x.toFixed(1)}" y2="${pB.y.toFixed(1)}" stroke="#ffffff" stroke-width="${sw + 2}" stroke-linecap="round" opacity="0.85" />
+          <line x1="${pA.x.toFixed(1)}" y1="${pA.y.toFixed(1)}" x2="${pB.x.toFixed(1)}" y2="${pB.y.toFixed(1)}" stroke="${lineStroke}" stroke-width="${sw}" stroke-linecap="round" />
+          <circle cx="${pB.x.toFixed(1)}" cy="${pB.y.toFixed(1)}" r="${dotR}" fill="#ffffff" stroke="${lineStroke}" stroke-width="${compact ? 1.4 : 2.2}" />
+          <circle cx="${pA.x.toFixed(1)}" cy="${pA.y.toFixed(1)}" r="${anchorDotR}" fill="#0f172a" stroke="#ffffff" stroke-width="${compact ? 1.5 : 2.5}" />
+        `;
+      }
+
+      if (harmonyId === 'triadic') {
+        const p1 = pt(baseAngle);
+        const p2 = pt(baseAngle + 120);
+        const p3 = pt(baseAngle + 240);
+        const poly = `${p1.x.toFixed(1)},${p1.y.toFixed(1)} ${p2.x.toFixed(1)},${p2.y.toFixed(1)} ${p3.x.toFixed(1)},${p3.y.toFixed(1)}`;
+        return `
+          <polygon points="${poly}" fill="rgba(255,255,255,0.22)" stroke="#ffffff" stroke-width="${sw + 1.8}" stroke-linejoin="round" opacity="0.9" />
+          <polygon points="${poly}" fill="none" stroke="${lineStroke}" stroke-width="${sw}" stroke-linejoin="round" />
+          <circle cx="${p2.x.toFixed(1)}" cy="${p2.y.toFixed(1)}" r="${dotR}" fill="#ffffff" stroke="${lineStroke}" stroke-width="${compact ? 1.4 : 2.2}" />
+          <circle cx="${p3.x.toFixed(1)}" cy="${p3.y.toFixed(1)}" r="${dotR}" fill="#ffffff" stroke="${lineStroke}" stroke-width="${compact ? 1.4 : 2.2}" />
+          <circle cx="${p1.x.toFixed(1)}" cy="${p1.y.toFixed(1)}" r="${anchorDotR}" fill="#0f172a" stroke="#ffffff" stroke-width="${compact ? 1.5 : 2.5}" />
+        `;
+      }
+
+      // split-complementary (H, H+150°, H+210°)
+      const pA = pt(baseAngle);
+      const pL = pt(baseAngle + 150);
+      const pR = pt(baseAngle + 210);
+      const poly = `${pA.x.toFixed(1)},${pA.y.toFixed(1)} ${pL.x.toFixed(1)},${pL.y.toFixed(1)} ${pR.x.toFixed(1)},${pR.y.toFixed(1)}`;
+      return `
+        <polygon points="${poly}" fill="rgba(255,255,255,0.20)" stroke="#ffffff" stroke-width="${sw + 1.8}" stroke-linejoin="round" opacity="0.9" />
+        <polygon points="${poly}" fill="none" stroke="${lineStroke}" stroke-width="${sw}" stroke-linejoin="round" />
+        <circle cx="${pL.x.toFixed(1)}" cy="${pL.y.toFixed(1)}" r="${dotR}" fill="#ffffff" stroke="${lineStroke}" stroke-width="${compact ? 1.4 : 2.2}" />
+        <circle cx="${pR.x.toFixed(1)}" cy="${pR.y.toFixed(1)}" r="${dotR}" fill="#ffffff" stroke="${lineStroke}" stroke-width="${compact ? 1.4 : 2.2}" />
+        <circle cx="${pA.x.toFixed(1)}" cy="${pA.y.toFixed(1)}" r="${anchorDotR}" fill="#0f172a" stroke="#ffffff" stroke-width="${compact ? 1.5 : 2.5}" />
+      `;
+    }
+
+    function buildRealFabricWheelSvg(anchorColor, recommendedColors, harmonyId, size = 188) {
+      // Large, infographic-style 12-segment Color Wheel where ONLY the active real-fabric colors
+      // (Anchor + 1 for Complementary, Anchor + 2 for Monochromatic / Analogous / Triadic / Split)
+      // pop outward at full vibrancy in their exact clothing HEX, while inactive segments stay softly dimmed.
+      const cx = size / 2, cy = size / 2;
+      const rInner = size * 0.16;
+      const rBaseOuter = size * 0.37;
+      const rPopOuter = size * 0.46;
+      const comps = recommendedColors || [];
+
+      // Softly dimmed 12-wedge background wheel for clear color-wheel orientation
+      const baseWedges = RYB_WHEEL_SEGMENTS.map(seg => {
+        const d = describeWheelWedge(cx, cy, rInner, rBaseOuter, seg.deg - 15, seg.deg + 15);
+        return `<path d="${d}" fill="${seg.hex}" opacity="0.18" stroke="#ffffff" stroke-width="1.4" />`;
+      }).join('');
+
+      let activeSvg = '';
+      let guideSvg = '';
+
+      const filterId = `wheel-pop-shadow-${harmonyId}`;
+      const drawPoppedWedge = (degCenter, color, isAnchor = false) => {
+        if (!color) return '';
+        const d = describeWheelWedge(cx, cy, rInner, rPopOuter, degCenter - 15, degCenter + 15);
+        const light = ColorFitService.isLightColor(color.hex);
+        const badgePt = polarToXY(cx, cy, (rInner + rPopOuter) * 0.56, degCenter);
+        return `
+          <path d="${d}" fill="${color.hex}"
+            stroke="${light ? 'rgba(15,23,42,0.22)' : '#ffffff'}" stroke-width="2.2"
+            filter="url(#${filterId})" />
+          ${isAnchor ? `<circle cx="${badgePt.x.toFixed(1)}" cy="${badgePt.y.toFixed(1)}" r="4.2" fill="${light ? '#0f172a' : '#ffffff'}" opacity="0.92" />` : ''}
+        `;
+      };
+
+      if (harmonyId === 'monochromatic') {
+        // 1 wide popped wedge at top (0°) split into 3 concentric real-fabric shade rings (Anchor + 2 companions)
+        const c1 = comps[0] || anchorColor;
+        const c2 = comps[1] || c1;
+        const r1 = rInner + (rPopOuter - rInner) * 0.34;
+        const r2 = rInner + (rPopOuter - rInner) * 0.68;
+        const bands = [
+          { rIn: r2, rOut: rPopOuter, col: anchorColor, isAnchor: true },
+          { rIn: r1, rOut: r2, col: c1, isAnchor: false },
+          { rIn: rInner, rOut: r1, col: c2, isAnchor: false }
+        ];
+        activeSvg = bands.map(b => {
+          const d = describeWheelWedge(cx, cy, b.rIn, b.rOut, -22, 22);
+          const light = ColorFitService.isLightColor(b.col.hex);
+          return `<path d="${d}" fill="${b.col.hex}" stroke="${light ? 'rgba(15,23,42,0.22)' : '#ffffff'}" stroke-width="2" filter="url(#${filterId})" />`;
+        }).join('');
+        const pTop = polarToXY(cx, cy, (r2 + rPopOuter) / 2, 0);
+        const aLight = ColorFitService.isLightColor(anchorColor.hex);
+        activeSvg += `<circle cx="${pTop.x.toFixed(1)}" cy="${pTop.y.toFixed(1)}" r="4" fill="${aLight ? '#0f172a' : '#ffffff'}" />`;
+      } else if (harmonyId === 'analogous') {
+        // 3 adjacent popped wedges: 330° (Comp 1), 0° (Anchor), 30° (Comp 2)
+        activeSvg =
+          drawPoppedWedge(330, comps[0], false) +
+          drawPoppedWedge(30, comps[1], false) +
+          drawPoppedWedge(0, anchorColor, true);
+      } else if (harmonyId === 'complementary') {
+        // ONLY 2 opposite popped wedges: 0° (Anchor) <-> 180° (1 Companion)
+        activeSvg =
+          drawPoppedWedge(180, comps[0], false) +
+          drawPoppedWedge(0, anchorColor, true);
+        const pA = polarToXY(cx, cy, rInner * 0.85, 0);
+        const pB = polarToXY(cx, cy, rInner * 0.85, 180);
+        guideSvg = `<line x1="${pA.x.toFixed(1)}" y1="${pA.y.toFixed(1)}" x2="${pB.x.toFixed(1)}" y2="${pB.y.toFixed(1)}" stroke="#0f172a" stroke-width="1.8" stroke-dasharray="3 3" opacity="0.45" />`;
+      } else if (harmonyId === 'triadic') {
+        // 3 equidistant popped wedges: 0° (Anchor), 120° (Comp 1), 240° (Comp 2)
+        activeSvg =
+          drawPoppedWedge(120, comps[0], false) +
+          drawPoppedWedge(240, comps[1], false) +
+          drawPoppedWedge(0, anchorColor, true);
+        const p1 = polarToXY(cx, cy, rInner * 0.88, 0);
+        const p2 = polarToXY(cx, cy, rInner * 0.88, 120);
+        const p3 = polarToXY(cx, cy, rInner * 0.88, 240);
+        guideSvg = `<polygon points="${p1.x.toFixed(1)},${p1.y.toFixed(1)} ${p2.x.toFixed(1)},${p2.y.toFixed(1)} ${p3.x.toFixed(1)},${p3.y.toFixed(1)}" fill="none" stroke="#0f172a" stroke-width="1.6" opacity="0.38" />`;
+      } else {
+        // split-complementary: 0° (Anchor), 150° (Comp 1), 210° (Comp 2)
+        activeSvg =
+          drawPoppedWedge(150, comps[0], false) +
+          drawPoppedWedge(210, comps[1], false) +
+          drawPoppedWedge(0, anchorColor, true);
+        const p1 = polarToXY(cx, cy, rInner * 0.88, 0);
+        const p2 = polarToXY(cx, cy, rInner * 0.88, 150);
+        const p3 = polarToXY(cx, cy, rInner * 0.88, 210);
+        guideSvg = `<polygon points="${p1.x.toFixed(1)},${p1.y.toFixed(1)} ${p2.x.toFixed(1)},${p2.y.toFixed(1)} ${p3.x.toFixed(1)},${p3.y.toFixed(1)}" fill="none" stroke="#0f172a" stroke-width="1.6" opacity="0.38" />`;
+      }
+
+      const anchorLight = ColorFitService.isLightColor(anchorColor.hex);
+
+      return `
+        <svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" class="block shrink-0 select-none" role="img"
+          aria-label="Bánh xe màu ${escapeHtml(harmonyId)} quanh ${escapeHtml(anchorColor.name)}">
+          <defs>
+            <filter id="${filterId}" x="-15%" y="-15%" width="130%" height="130%">
+              <feDropShadow dx="0" dy="3" stdDeviation="2.5" flood-color="#0f172a" flood-opacity="0.16" />
+            </filter>
+          </defs>
+          ${baseWedges}
+          ${activeSvg}
+          <circle cx="${cx}" cy="${cy}" r="${rInner}" fill="#ffffff" />
+          ${guideSvg}
+          <circle cx="${cx}" cy="${cy}" r="${rInner * 0.52}" fill="${anchorColor.hex}"
+            stroke="${anchorLight ? 'rgba(15,23,42,0.22)' : 'rgba(15,23,42,0.08)'}" stroke-width="1.3" />
+        </svg>
+      `;
+    }
 
     const ROLE_LABELS = {
       anchor: { label: 'Màu gốc', badge: 'bg-indigo-950 text-white', desc: 'Màu món đồ bạn đang chọn (giữ làm trung tâm ~50–60%).' },
@@ -1217,50 +1509,47 @@
       const anchor = res.anchorColor;
       const family = res.family;
       const siblings = family ? ColorFitService.getFamilyColors(family.id) : [];
-      const totalGroups = res.totalGroups || res.groups.length;
-      const totalPalettes = res.totalPalettes || res.groups.reduce((sum, g) => sum + g.palettes.length, 0);
 
       el.innerHTML = `
-        <section class="w-full glass-card rounded-3xl p-4 sm:p-6 space-y-4">
-          <!-- Top Bar: Counts + Garment Context -->
-          <div class="flex items-center gap-2 flex-wrap">
-            ${state.matchedGarment ? `<span class="text-xs sm:text-sm font-extrabold px-3 py-1 rounded-full brand-gradient text-white">${escapeHtml(state.matchedGarment)}</span>` : ''}
-            <span class="text-sm sm:text-[15px] font-bold text-indigo-700 bg-indigo-50 px-3 py-1 rounded-full">${totalGroups} nhóm phối • ${totalPalettes} bảng màu</span>
-          </div>
-
-          <!-- Symmetrical Main Row: Left Swatch stretches evenly to match Right Color Details -->
-          <div class="flex items-stretch gap-4 sm:gap-5">
+        <section class="w-full glass-card rounded-2xl sm:rounded-3xl p-3 sm:p-4 space-y-2.5">
+          <!-- Compact Single-Row Anchor Header -->
+          <div class="flex items-center gap-3">
             <div
-              onmouseenter="showColorTooltip(this, '${escapeHtml(anchor.name)}', '${escapeHtml(anchor.nameEn)}', '${anchor.hex}', 'Đang chọn')"
+              onmouseenter="showColorTooltip(this, '${escapeHtml(anchor.name)}', '${escapeHtml(anchor.nameEn)}', '${anchor.hex}', 'Màu chính đang chọn')"
               onmouseleave="hideColorTooltip()"
               aria-label="${escapeHtml(anchor.name)}"
-              class="relative w-24 sm:w-28 min-h-[108px] self-stretch rounded-2xl shrink-0 swatch-inset shadow-md overflow-hidden"
+              class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl shrink-0 swatch-inset shadow-xs"
               style="background-color: ${anchor.hex};">
             </div>
 
-            <div class="flex-1 min-w-0 flex flex-col justify-center gap-2">
-              <div>
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight tracking-tight break-words">${escapeHtml(anchor.name)}</h2>
-                <p class="text-sm sm:text-base font-semibold text-slate-500 mt-0.5 break-words">${escapeHtml(anchor.nameEn)}</p>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 flex-wrap">
+                <h2 class="text-lg sm:text-2xl font-extrabold text-slate-900 leading-tight tracking-tight break-words">${escapeHtml(anchor.name)}</h2>
+                ${state.matchedGarment ? `<span class="text-[11px] font-extrabold px-2.5 py-0.5 rounded-full brand-gradient text-white">${escapeHtml(state.matchedGarment)}</span>` : ''}
               </div>
-
-              <div class="flex items-center gap-1.5 sm:gap-2 flex-wrap">
-                ${family ? `<span class="text-xs sm:text-sm font-bold px-3 py-1 rounded-full bg-slate-100/90 text-slate-700">Họ ${escapeHtml(family.name)}</span>` : ''}
-                <span class="text-xs sm:text-sm font-bold px-3 py-1 rounded-full bg-slate-100/90 text-slate-700">${TEMP_LABELS[anchor.temperature] || anchor.temperature}</span>
-                <span class="text-xs sm:text-sm font-bold px-3 py-1 rounded-full bg-slate-100/90 text-slate-700">${TONE_LABELS[anchor.tone] || anchor.tone}</span>
+              <div class="flex items-center gap-1.5 flex-wrap mt-0.5 text-xs font-semibold text-slate-500">
+                <span>${escapeHtml(anchor.nameEn)}</span>
+                ${family ? `<span>·</span><span>Họ ${escapeHtml(family.name)}</span>` : ''}
+                <span>·</span>
+                <span>${TEMP_LABELS[anchor.temperature] || anchor.temperature}</span>
               </div>
             </div>
           </div>
 
           ${siblings.length > 1 ? `
-            <!-- Seamless Same-Family Shade Strip (NO harsh dark border on active!) -->
-            <div class="pt-4 border-t border-slate-200/70 space-y-3">
-              <div class="flex items-center justify-between flex-wrap gap-1">
-                <span class="text-sm sm:text-[15px] font-extrabold text-slate-800">Sắc độ cùng họ ${escapeHtml(family.name)}</span>
-                <span class="text-xs sm:text-sm font-semibold text-slate-500">${siblings.length} sắc độ</span>
+            <!-- Slim Same-Family Shade Strip with Top Downward Arrow Pointer -->
+            <div class="space-y-1">
+              <div class="w-full flex items-end h-3.5 pointer-events-none" aria-hidden="true">
+                ${siblings.map(s => {
+        const isAct = s.id === anchor.id;
+        return `
+                    <div class="flex-1 flex justify-center">
+                      ${isAct ? `<span class="block w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[9px] border-t-indigo-950"></span>` : ''}
+                    </div>
+                  `;
+      }).join('')}
               </div>
-
-              <div class="w-full h-14 rounded-2xl overflow-hidden flex swatch-inset shadow-xs">
+              <div class="w-full h-9 sm:h-10 rounded-xl overflow-hidden flex swatch-inset shadow-2xs">
                 ${siblings.map(s => {
         const isAct = s.id === anchor.id;
         return `
@@ -1268,9 +1557,8 @@
                       onmouseenter="showColorTooltip(this, '${escapeHtml(s.name)}', '${escapeHtml(s.nameEn)}', '${s.hex}', '${isAct ? 'Màu gốc đang chọn' : 'Chạm để đổi sắc độ'}')"
                       onmouseleave="hideColorTooltip()"
                       aria-label="Chọn sắc độ ${escapeHtml(s.name)}"
-                      class="flex-1 h-full transition-all hover:brightness-95 relative flex items-center justify-center"
+                      class="flex-1 h-full transition-all hover:brightness-95 relative"
                       style="background-color: ${s.hex};">
-                      ${isAct ? `<span class="w-3.5 h-3.5 rounded-full bg-white shadow-md ring-2 ring-black/15"></span>` : ''}
                     </button>
                   `;
       }).join('')}
@@ -1282,80 +1570,100 @@
     }
 
     function renderPaletteGroups() {
-      const clsBar = document.getElementById('classification-bar');
+      const wheelPanel = document.getElementById('color-wheel-panel');
       const listEl = document.getElementById('palette-groups-list');
       const emptyEl = document.getElementById('results-empty-state');
       const res = state.queryResult;
-      if (!listEl || !res) return;
+      if (!listEl || !res || !res.anchorColor) return;
 
-      const allGroups = res.groups || [];
+      const anchor = res.anchorColor;
+      const wheelCards = ColorFitService.getWheelRecommendations(anchor.id);
 
-      if (allGroups.length === 0) {
-        if (clsBar) clsBar.classList.add('hidden');
+      if (wheelCards.length === 0) {
+        if (wheelPanel) wheelPanel.classList.add('hidden');
         listEl.innerHTML = '';
-        if (emptyEl) {
-          const similar = ColorFitService.getSimilarColors(res.anchorColor.id, 6);
-          emptyEl.classList.remove('hidden');
-          emptyEl.innerHTML = `
-            <div class="glass-card rounded-3xl p-6 text-center space-y-4">
-              <div class="space-y-1.5">
-                <h3 class="text-lg font-extrabold text-slate-900">Chưa có gợi ý phối màu</h3>
-                <p class="text-base text-slate-600">Hãy thử chọn một sắc độ khác hoặc khám phá màu gần giống.</p>
-              </div>
-              ${similar.length > 0 ? `
-                <div class="flex flex-wrap justify-center gap-2.5 pt-1">
-                  ${similar.map(c => `
-                    <button type="button" onclick="selectAnchorColor('${c.id}', '', true, true)"
-                      class="min-h-[44px] inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-50 hover:bg-indigo-100 text-sm font-bold text-indigo-950 tap-press">
-                      <span class="w-4 h-4 rounded-full swatch-inset" style="background-color: ${c.hex};"></span>
-                      <span>${escapeHtml(c.name)}</span>
-                    </button>
-                  `).join('')}
-                </div>
-              ` : ''}
-            </div>
-          `;
-        }
+        if (emptyEl) emptyEl.classList.remove('hidden');
         return;
       }
 
       if (emptyEl) emptyEl.classList.add('hidden');
 
-      // Classification Filter Pills (Large, clear, modern gradient active state)
-      if (clsBar) {
-        clsBar.classList.remove('hidden');
-        const summarize = (cls) => {
-          const subset = cls === 'all' ? allGroups : allGroups.filter(g => g.classification === cls);
-          return {
-            groups: subset.length,
-            palettes: subset.reduce((s, g) => s + g.palettes.length, 0)
-          };
-        };
-        const tabs = ['all', 'color-theory', 'fashion-application', 'color-character']
-          .map(cls => ({ cls, ...summarize(cls) }))
-          .filter(t => t.cls === 'all' || t.groups > 0);
-
-        clsBar.innerHTML = tabs.map(t => {
-          const isAct = state.activeClassification === t.cls;
-          return `
-            <button type="button" onclick="setClassificationFilter('${t.cls}')"
-              class="min-h-[44px] px-4 sm:px-5 py-2 rounded-full text-sm sm:text-[15px] font-extrabold shrink-0 tap-press transition-all ${isAct
-              ? 'brand-gradient text-white shadow-md shadow-indigo-500/25'
-              : 'bg-white/90 hover:bg-white border border-slate-200/90 text-slate-700'
-            }">
-              ${CLASSIFICATION_LABELS[t.cls]} <span class="opacity-80 font-semibold">· ${t.groups} nhóm (${t.palettes} bảng)</span>
-            </button>
-          `;
-        }).join('');
+      // Keep section header hidden to maximize above-the-fold cards on mobile
+      if (wheelPanel) {
+        wheelPanel.classList.add('hidden');
+        wheelPanel.innerHTML = '';
       }
 
-      const visibleGroups = state.activeClassification === 'all'
-        ? allGroups
-        : allGroups.filter(g => g.classification === state.activeClassification);
+      // Render 5 Compact Horizontal Wheel Cards (3–4 cards visible at once on mobile!)
+      listEl.innerHTML = wheelCards.map(card => {
+        const saved = card.isSavedBacked && isPaletteSaved(card.paletteId);
+        const activeColors = [anchor, ...card.recommendedColors];
+        return `
+          <article onclick="openWheelCardDetail('${anchor.id}', '${card.harmonyId}')"
+            role="button" tabindex="0"
+            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openWheelCardDetail('${anchor.id}', '${card.harmonyId}');}"
+            class="w-full glass-card hover:border-indigo-300 rounded-2xl sm:rounded-3xl p-3 sm:p-4 transition-all cursor-pointer flex items-center gap-3.5 sm:gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
 
-      // Render palette cards directly in a clean responsive grid (no redundant group headers)
-      const visiblePalettes = visibleGroups.flatMap(g => g.palettes);
-      listEl.innerHTML = visiblePalettes.map(pal => renderPaletteCard(pal, false)).join('');
+            <!-- Left: Prominent Popped-Wedge Color Wheel -->
+            <div class="shrink-0">
+              ${buildRealFabricWheelSvg(anchor, card.recommendedColors, card.harmonyId, 112)}
+            </div>
+
+            <!-- Right: Title + Compact Active Color Pills (max 2–3 colors) -->
+            <div class="min-w-0 flex-1 flex flex-col justify-between gap-2.5">
+              <div class="flex items-start justify-between gap-1.5">
+                <div class="min-w-0">
+                  <div class="flex items-center gap-1.5 flex-wrap">
+                    <h4 class="text-base sm:text-lg font-extrabold text-slate-900 leading-tight">${escapeHtml(card.name)}</h4>
+                    <span class="text-[10px] sm:text-[11px] font-bold px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700">${escapeHtml(card.nameEn)}</span>
+                  </div>
+                </div>
+                <div class="flex items-center gap-1 shrink-0">
+                  ${card.isSavedBacked ? `
+                    <button type="button" onclick="toggleSavePalette(event, '${card.paletteId}')"
+                      aria-label="${saved ? 'Bỏ lưu bảng màu' : 'Lưu bảng màu'}"
+                      class="w-8 h-8 rounded-full bg-slate-100/90 hover:bg-indigo-50 flex items-center justify-center text-slate-700 tap-press shrink-0">
+                      <span class="material-symbols-outlined text-[18px] ${saved ? 'filled text-indigo-600' : ''}">bookmark</span>
+                    </button>
+                  ` : ''}
+                  <span class="w-7 h-7 rounded-full bg-indigo-50/80 text-indigo-600 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[17px]">chevron_right</span>
+                  </span>
+                </div>
+              </div>
+
+              <!-- Active Color Pills (100% real fabric dots, clean white pills) -->
+              <div class="flex items-center gap-1.5 flex-wrap">
+                ${activeColors.map((c, idx) => {
+                  const isMain = idx === 0;
+                  return isMain
+                    ? `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white border border-slate-300 text-slate-900 text-[11px] sm:text-xs font-extrabold shadow-2xs">
+                        <span class="w-3 h-3 rounded-full swatch-inset shrink-0" style="background-color: ${c.hex};"></span>
+                        <span>${escapeHtml(c.name)}</span>
+                      </span>`
+                    : `<button type="button"
+                        onclick="event.stopPropagation(); selectAnchorColor('${c.id}', '', true, true)"
+                        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white border border-slate-200 hover:border-indigo-400 text-[11px] sm:text-xs font-bold text-slate-700 shadow-2xs tap-press transition-colors">
+                        <span class="w-3 h-3 rounded-full swatch-inset shrink-0" style="background-color: ${c.hex};"></span>
+                        <span>${escapeHtml(c.name)}</span>
+                      </button>`;
+                }).join('')}
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function openWheelCardDetail(anchorId, harmonyId) {
+      const wheelCards = ColorFitService.getWheelRecommendations(anchorId);
+      const card = wheelCards.find(c => c.harmonyId === harmonyId);
+      if (!card) return;
+      if (card.isSavedBacked) {
+        openPaletteSheet(card.paletteId, true, card);
+      } else {
+        openPaletteSheet(card.paletteId, false, card);
+      }
     }
 
     // ==================== INTERACTIVE SWATCH SELECTION & TOOLTIP ====================
@@ -1482,13 +1790,43 @@
     }
 
     // ==================== PALETTE DETAIL SHEET ====================
-    function openPaletteSheet(paletteId, pushUrl = true) {
+    function openPaletteSheet(paletteId, pushUrl = true, wheelCardOverride = null) {
       hideColorTooltip();
-      const res = ColorFitService.getPaletteById(paletteId);
-      if (!res.ok || !res.palette) { showToast('Không tìm thấy bảng màu này.'); return; }
+      let pal = null;
+      let relatedPalettes = [];
 
-      state.openPaletteId = paletteId;
-      const pal = res.palette;
+      if (wheelCardOverride) {
+        const wheelOnlyItems = [
+          { color: wheelCardOverride.anchorColor, role: 'anchor', theoryRole: 'anchor', order: 1 },
+          ...wheelCardOverride.recommendedColors.map((c, idx) => ({
+            color: c,
+            role: idx === wheelCardOverride.recommendedColors.length - 1 ? 'accent' : 'supporting',
+            theoryRole: idx === wheelCardOverride.recommendedColors.length - 1 ? 'accent' : 'formula',
+            order: idx + 2
+          }))
+        ];
+        pal = {
+          paletteId: wheelCardOverride.paletteId,
+          anchorColorId: wheelCardOverride.anchorColor.id,
+          groupId: wheelCardOverride.harmonyId,
+          groupName: wheelCardOverride.name,
+          name: `${wheelCardOverride.anchorColor.name} · ${wheelCardOverride.name}`,
+          description: wheelCardOverride.advice,
+          styleTags: wheelCardOverride.styleTags || [],
+          occasions: wheelCardOverride.occasions || [],
+          difficulty: wheelCardOverride.difficulty || 'easy',
+          colorItems: wheelOnlyItems
+        };
+        const res = wheelCardOverride.isSavedBacked ? ColorFitService.getPaletteById(paletteId) : null;
+        relatedPalettes = (res && res.ok) ? res.relatedPalettes : [];
+      } else {
+        const res = ColorFitService.getPaletteById(paletteId);
+        if (!res.ok || !res.palette) { showToast('Không tìm thấy bảng màu này.'); return; }
+        pal = res.palette;
+        relatedPalettes = res.relatedPalettes || [];
+      }
+      const res = { relatedPalettes };
+      state.openPaletteId = pal.paletteId;
       const diff = DIFFICULTY_LABELS[pal.difficulty] || DIFFICULTY_LABELS.easy;
 
       const metaEl = document.getElementById('sheet-palette-meta');
@@ -1498,7 +1836,7 @@
 
       if (metaEl) {
         metaEl.innerHTML = `
-          <span class="text-[11px] sm:text-xs font-extrabold px-2.5 py-0.5 rounded-full brand-gradient text-white">${escapeHtml(pal.groupName)}</span>
+          <span class="text-[11px] sm:text-xs font-extrabold px-2.5 py-0.5 rounded-full brand-gradient text-white">${escapeHtml(getSimpleGroupName(pal.groupId))}</span>
           <span class="text-[11px] sm:text-xs font-bold px-2.5 py-0.5 rounded-full border ${diff.cls}">${diff.label}</span>
         `;
       }
@@ -1508,84 +1846,103 @@
       if (bodyEl) {
         const anchorItem = pal.colorItems.find(it => it.role === 'anchor');
         const companions = pal.colorItems.filter(it => it.role !== 'anchor');
-        const default30 = companions[0] || null;
-        const default10 = companions.find(it => it.role === 'accent' && it !== default30) || companions[companions.length - 1] || null;
+        const allColors = pal.colorItems.map(it => it.color);
+        const anchorColor = anchorItem ? anchorItem.color : allColors[0];
+        const nonAnchor = companions.map(it => it.color);
+
+        // Assign strictly the exact searched + recommended colors to Jacket, Mid, Bottom
+        const defaultJacket = anchorColor;
+        const defaultBottom = nonAnchor[0] || anchorColor;
+        const defaultMid = nonAnchor[1] || nonAnchor[0] || anchorColor;
+
+        const prevGender = (state.sheetPreview && ['men', 'women'].includes(state.sheetPreview.outfitStyle))
+          ? state.sheetPreview.outfitStyle
+          : 'men';
 
         state.sheetPreview = {
           paletteId: pal.paletteId,
-          anchor: anchorItem ? anchorItem.color : null,
-          c30: default30 ? default30.color : null,
-          c10: (default10 && default10 !== default30) ? default10.color : null,
-          outfitStyle: (state.sheetPreview && state.sheetPreview.outfitStyle) || 'office',
-          swapTopBottom: false
+          anchor: anchorColor,
+          layers: {
+            jacket: defaultJacket,
+            mid: defaultMid,
+            bottom: defaultBottom
+          },
+          activeLayer: 'jacket',
+          outfitStyle: prevGender
         };
 
         bodyEl.innerHTML = `
-          <!-- TIER 1 (TOP): Full-Bleed Warm Studio Outfit Stage -->
+          <!-- TIER 1 (TOP): Full-Bleed Editorial Lookbook Board (Nam / Nữ — Fixed Accessory Colors) -->
           <section class="bg-[#F6F5F1] border-b border-slate-200/80 px-4 sm:px-6 pt-3 pb-3.5 space-y-2.5">
-            <!-- Single-row Studio Controls -->
+            <!-- Single-row Studio Controls: Nam / Nữ + Đảo màu -->
             <div class="flex items-center justify-between gap-2">
-              <div id="sheet-outfit-style-tabs" class="inline-flex items-center gap-0.5 p-1 rounded-full bg-white/85 border border-slate-200/80 shadow-2xs">
-                <button type="button" data-outfit-style="office" onclick="setSheetOutfitStyle('office')"
-                  class="px-2.5 sm:px-3 py-1 rounded-full text-xs font-extrabold transition-all tap-press whitespace-nowrap">Công sở</button>
-                <button type="button" data-outfit-style="casual" onclick="setSheetOutfitStyle('casual')"
-                  class="px-2.5 sm:px-3 py-1 rounded-full text-xs font-extrabold transition-all tap-press whitespace-nowrap">Dạo phố</button>
-                <button type="button" data-outfit-style="feminine" onclick="setSheetOutfitStyle('feminine')"
-                  class="px-2.5 sm:px-3 py-1 rounded-full text-xs font-extrabold transition-all tap-press whitespace-nowrap">Thanh lịch</button>
+              <div id="sheet-outfit-style-tabs" class="inline-flex items-center gap-0.5 p-1 rounded-full bg-white/90 border border-slate-200/80 shadow-2xs">
+                <button type="button" data-outfit-style="men" onclick="setSheetOutfitStyle('men')"
+                  class="px-4 py-1 rounded-full text-xs font-extrabold transition-all tap-press whitespace-nowrap">Nam</button>
+                <button type="button" data-outfit-style="women" onclick="setSheetOutfitStyle('women')"
+                  class="px-4 py-1 rounded-full text-xs font-extrabold transition-all tap-press whitespace-nowrap">Nữ</button>
               </div>
-              <button type="button" onclick="toggleSheetOutfitSwap()" aria-label="Đảo màu áo và quần"
+              <button type="button" onclick="rotateSheetLayers()" aria-label="Đảo màu giữa áo khoác, áo trong và quần"
                 class="min-h-[34px] px-3 py-1 rounded-full bg-white border border-slate-200/90 hover:border-indigo-300 text-slate-800 text-xs font-extrabold inline-flex items-center gap-1 tap-press shadow-2xs shrink-0 whitespace-nowrap">
                 <span class="material-symbols-outlined text-[16px] text-indigo-600">swap_horiz</span>
                 <span>Đảo màu</span>
               </button>
             </div>
 
-            <!-- Edge-to-edge Flat-lay SVG (no inner box clutter; Pure White pops naturally on #F6F5F1) -->
-            <div id="sheet-outfit-svg" class="w-full py-1"></div>
+            <!-- White Editorial Lookbook Canvas -->
+            <div id="sheet-outfit-svg" class="w-full rounded-2xl bg-white border border-slate-200/75 shadow-2xs overflow-hidden p-2"></div>
 
-            <!-- Live Proportion Ruler integrated at studio floor -->
-            <div id="sheet-proportion-bar" class="w-full h-7 rounded-full overflow-hidden flex swatch-inset shadow-2xs"></div>
+            <!-- 3 Garment Selector Pills (Áo khoác · Áo trong · Quần/Chân váy) -->
+            <div id="sheet-layer-tabs" class="grid grid-cols-3 gap-1.5">
+              <button type="button" data-layer-key="jacket" onclick="selectSheetLayer('jacket')"
+                class="min-h-[36px] px-2.5 py-1 rounded-xl text-xs font-extrabold flex items-center justify-center gap-1.5 tap-press transition-all">
+                <span data-layer-dot class="w-3.5 h-3.5 rounded-full swatch-inset shrink-0"></span>
+                <span>Áo khoác</span>
+              </button>
+              <button type="button" data-layer-key="mid" onclick="selectSheetLayer('mid')"
+                class="min-h-[36px] px-2.5 py-1 rounded-xl text-xs font-extrabold flex items-center justify-center gap-1.5 tap-press transition-all">
+                <span data-layer-dot class="w-3.5 h-3.5 rounded-full swatch-inset shrink-0"></span>
+                <span>Áo trong</span>
+              </button>
+              <button type="button" data-layer-key="bottom" onclick="selectSheetLayer('bottom')"
+                class="min-h-[36px] px-2.5 py-1 rounded-xl text-xs font-extrabold flex items-center justify-center gap-1.5 tap-press transition-all">
+                <span data-layer-dot class="w-3.5 h-3.5 rounded-full swatch-inset shrink-0"></span>
+                <span id="sheet-bottom-layer-label">Quần</span>
+              </button>
+            </div>
           </section>
 
-          <!-- TIER 1B (THUMB ZONE): Tactile Swatch Dock -->
+          <!-- TIER 1B (THUMB ZONE): Exact Matched Color Swatches -->
           <section class="px-4 sm:px-6 pt-3.5 pb-4 border-b border-slate-100 bg-white space-y-2.5">
             <div class="flex items-center justify-between gap-2">
-              <span class="text-xs font-extrabold text-slate-800">Chạm màu để thử phối</span>
-              <span class="text-[11px] font-semibold text-slate-400">Chính 55% · Phối 32% · Nhấn 13%</span>
+              <span id="sheet-active-layer-prompt" class="text-xs font-extrabold text-slate-800">Đang chọn màu cho: Áo khoác</span>
+              <span class="text-[11px] font-semibold text-slate-400">Chạm món đồ rồi chọn màu</span>
             </div>
-            <div id="sheet-preview-chips" class="grid grid-cols-3 xs:grid-cols-4 sm:grid-cols-6 gap-2">
-              ${anchorItem ? `
-                <div class="flex flex-col items-center gap-1.5 p-2 rounded-2xl bg-indigo-50/70 border border-indigo-200">
-                  <div class="relative">
-                    <span class="block w-10 h-10 rounded-xl swatch-inset shadow-xs ring-2 ring-indigo-950 ring-offset-2" style="background-color: ${anchorItem.color.hex};"></span>
-                    <span class="absolute -bottom-1.5 left-1/2 -translate-x-1/2 px-1.5 py-0.2 rounded-full bg-indigo-950 text-white text-[9px] font-extrabold leading-tight whitespace-nowrap">Chính</span>
-                  </div>
-                  <span class="text-[11px] font-extrabold text-slate-900 text-center leading-tight pt-1 break-words">${escapeHtml(anchorItem.color.name)}</span>
-                </div>
-              ` : ''}
-              ${companions.map(it => {
+            <div id="sheet-preview-chips" class="grid grid-cols-3 gap-2">
+              ${pal.colorItems.map(it => {
           const c = it.color;
+          const isAnchor = it.role === 'anchor';
           return `
-                  <button type="button" data-preview-id="${c.id}" onclick="toggleSheetPreviewColor('${c.id}')"
-                    class="flex flex-col items-center gap-1.5 p-2 rounded-2xl bg-white border border-slate-200/80 hover:border-indigo-300 tap-press transition-all">
+                  <button type="button" data-preview-id="${c.id}" onclick="applyColorToActiveLayer('${c.id}')"
+                    class="flex flex-col items-center gap-1.5 p-2.5 rounded-2xl bg-white border border-slate-200/80 hover:border-indigo-300 tap-press transition-all">
                     <div class="relative">
-                      <span data-swatch-ring class="block w-10 h-10 rounded-xl swatch-inset shadow-xs transition-all" style="background-color: ${c.hex};"></span>
+                      <span data-swatch-ring class="block w-11 h-11 rounded-xl swatch-inset shadow-xs transition-all" style="background-color: ${c.hex};"></span>
+                      ${isAnchor ? `<span class="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-indigo-950 text-white text-[9px] font-extrabold flex items-center justify-center shadow-xs" title="Màu gốc">★</span>` : ''}
                       <span data-role-pill class="hidden absolute -bottom-1.5 left-1/2 -translate-x-1/2 px-1.5 py-0.2 rounded-full text-[9px] font-extrabold leading-tight whitespace-nowrap"></span>
                     </div>
-                    <span class="text-[11px] font-bold text-slate-700 text-center leading-tight pt-1 break-words">${escapeHtml(c.name)}</span>
+                    <span class="text-xs font-bold text-slate-800 text-center leading-tight pt-1 break-words">${escapeHtml(c.name)}</span>
                   </button>
                 `;
         }).join('')}
             </div>
           </section>
 
-          <!-- TIER 2 & 3 (SECONDARY INFO — Progressive Disclosure below the fold) -->
+          <!-- TIER 2: Concise Styling Insight -->
           <div class="px-4 sm:px-6 pt-4 space-y-4">
-            <!-- Consolidated Insight + Occasions + Quick Tip -->
             <section class="rounded-2xl bg-slate-50/90 border border-slate-200/75 p-4 space-y-2.5">
               <div class="flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-wider text-indigo-700">
                 <span class="material-symbols-outlined text-[16px]">auto_awesome</span>
-                <span>Gợi ý phối đồ</span>
+                <span>Gợi ý phối bộ đồ</span>
               </div>
               <p class="text-sm text-slate-800 font-medium leading-relaxed">${escapeHtml(pal.description)}</p>
               ${(pal.occasions.length > 0 || pal.styleTags.length > 0) ? `
@@ -1594,31 +1951,7 @@
                   ${pal.styleTags.map(t => `<span class="text-xs font-bold px-2.5 py-1 rounded-full bg-indigo-50 text-indigo-700">#${escapeHtml(t)}</span>`).join('')}
                 </div>
               ` : ''}
-              <p class="text-xs font-medium text-slate-500 pt-2 border-t border-slate-200/70">
-                Mẹo nhỏ: Chỉ cần chọn 2–3 màu bạn ưng nhất trong bảng trên, không bắt buộc mặc cùng lúc cả ${pal.colorItems.length} màu.
-              </p>
             </section>
-
-            <!-- Related Palettes -->
-            ${res.relatedPalettes.length > 0 ? `
-              <section class="space-y-2.5">
-                <div class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Bảng phối khác cùng màu gốc</div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                  ${res.relatedPalettes.map(rp => `
-                    <button type="button" onclick="openPaletteSheet('${rp.paletteId}')"
-                      class="p-3 rounded-2xl bg-white border border-slate-200/90 hover:border-indigo-400 text-left space-y-2 tap-press">
-                      <div class="flex items-start justify-between gap-2">
-                        <span class="text-sm font-extrabold text-slate-900 break-words leading-snug">${escapeHtml(rp.name)}</span>
-                        <span class="text-[11px] font-bold text-indigo-600 shrink-0">${escapeHtml(rp.groupName)}</span>
-                      </div>
-                      <div class="flex h-4 rounded-lg overflow-hidden swatch-inset">
-                        ${rp.colorItems.map(it => `<span class="flex-1 h-full" style="background-color: ${it.color.hex};"></span>`).join('')}
-                      </div>
-                    </button>
-                  `).join('')}
-                </div>
-              </section>
-            ` : ''}
           </div>
         `;
       }
@@ -1648,62 +1981,101 @@
       syncSheetSaveButton();
     }
 
-    function renderSheetProportionBar() {
-      const bar = document.getElementById('sheet-proportion-bar');
+    const SHEET_LAYER_NAMES = {
+      jacket: 'Áo khoác',
+      mid: 'Áo trong',
+      bottom: 'Quần'
+    };
+
+    function selectSheetLayer(layerKey) {
+      if (!state.sheetPreview || !SHEET_LAYER_NAMES[layerKey]) return;
+      state.sheetPreview.activeLayer = layerKey;
+      renderSheetProportionBar();
+    }
+
+    function applyColorToActiveLayer(colorId) {
       const sp = state.sheetPreview;
-      if (!bar || !sp || !sp.anchor) return;
+      if (!sp || !sp.layers) return;
+      const color = ColorFitService.getColorById(colorId);
+      if (!color) return;
+      sp.layers[sp.activeLayer || 'jacket'] = color;
+      renderSheetProportionBar();
+    }
 
-      const c60 = sp.anchor;
-      const c30 = sp.c30;
-      const c10 = sp.c10;
+    function rotateSheetLayers() {
+      const sp = state.sheetPreview;
+      if (!sp || !sp.layers) return;
+      const { jacket, mid, bottom } = sp.layers;
+      sp.layers = {
+        jacket: bottom,
+        mid: jacket,
+        bottom: mid
+      };
+      renderSheetProportionBar();
+    }
 
-      bar.innerHTML = `
-        <div style="width: ${c10 ? '55%' : (c30 ? '65%' : '100%')}; background-color: ${c60.hex}; color: ${ColorFitService.isLightColor(c60.hex) ? '#0f172a' : '#ffffff'};"
-          class="flex items-center justify-center px-2 text-center text-[11px] font-extrabold leading-none whitespace-nowrap transition-all">
-          ${c10 ? '55%' : (c30 ? '65%' : '100%')}
-        </div>
-        ${c30 ? `
-          <div style="width: ${c10 ? '32%' : '35%'}; background-color: ${c30.hex}; color: ${ColorFitService.isLightColor(c30.hex) ? '#0f172a' : '#ffffff'};"
-            class="flex items-center justify-center px-1.5 text-center text-[11px] font-extrabold leading-none whitespace-nowrap transition-all">
-            ${c10 ? '32%' : '35%'}
-          </div>` : ''}
-        ${c10 ? `
-          <div style="width: 13%; background-color: ${c10.hex}; color: ${ColorFitService.isLightColor(c10.hex) ? '#0f172a' : '#ffffff'};"
-            class="flex items-center justify-center px-1 text-center text-[10px] font-extrabold leading-none whitespace-nowrap transition-all">
-            13%
-          </div>` : ''}
-      `;
+    function renderSheetProportionBar() {
+      const sp = state.sheetPreview;
+      if (!sp || !sp.layers) return;
 
+      const activeKey = sp.activeLayer || 'jacket';
+      const bottomName = sp.outfitStyle === 'women' ? 'Chân váy' : 'Quần';
+
+      const bottomLabelEl = document.getElementById('sheet-bottom-layer-label');
+      if (bottomLabelEl) bottomLabelEl.textContent = bottomName;
+
+      const promptEl = document.getElementById('sheet-active-layer-prompt');
+      if (promptEl) {
+        const displayLayerName = activeKey === 'bottom' ? bottomName : SHEET_LAYER_NAMES[activeKey];
+        promptEl.textContent = `Đang chọn màu cho: ${displayLayerName}`;
+      }
+
+      // Update 3 garment selector pills
+      const layerTabs = document.getElementById('sheet-layer-tabs');
+      if (layerTabs) {
+        layerTabs.querySelectorAll('button[data-layer-key]').forEach(btn => {
+          const k = btn.dataset.layerKey;
+          const isAct = k === activeKey;
+          const col = sp.layers[k];
+          btn.classList.toggle('bg-indigo-950', isAct);
+          btn.classList.toggle('text-white', isAct);
+          btn.classList.toggle('shadow-xs', isAct);
+          btn.classList.toggle('bg-white', !isAct);
+          btn.classList.toggle('text-slate-700', !isAct);
+          btn.classList.toggle('border', !isAct);
+          btn.classList.toggle('border-slate-200/80', !isAct);
+          const dot = btn.querySelector('[data-layer-dot]');
+          if (dot && col) dot.style.backgroundColor = col.hex;
+        });
+      }
+
+      const shortLabels = { jacket: 'Khoác', mid: 'Áo', bottom: bottomName };
       const chipsBox = document.getElementById('sheet-preview-chips');
+      const activeColorId = sp.layers[activeKey] ? sp.layers[activeKey].id : null;
       if (chipsBox) {
         chipsBox.querySelectorAll('button[data-preview-id]').forEach(btn => {
           const cid = btn.dataset.previewId;
-          const is30 = Boolean(c30 && c30.id === cid);
-          const is10 = Boolean(c10 && c10.id === cid);
+          const isCurrent = cid === activeColorId;
+          const usedLayers = Object.entries(sp.layers)
+            .filter(([, c]) => c && c.id === cid)
+            .map(([k]) => shortLabels[k] || k);
+
           const ringEl = btn.querySelector('[data-swatch-ring]');
           const pillEl = btn.querySelector('[data-role-pill]');
 
-          btn.classList.toggle('bg-indigo-50/55', is30);
-          btn.classList.toggle('border-indigo-300', is30);
-          btn.classList.toggle('bg-amber-50/55', is10);
-          btn.classList.toggle('border-amber-300', is10);
-          btn.classList.toggle('bg-white', !is30 && !is10);
-          btn.classList.toggle('border-slate-200/80', !is30 && !is10);
+          btn.classList.toggle('border-slate-400', isCurrent);
+          btn.classList.toggle('border-slate-200/80', !isCurrent);
 
           if (ringEl) {
-            ringEl.classList.toggle('ring-2', is30 || is10);
-            ringEl.classList.toggle('ring-offset-2', is30 || is10);
-            ringEl.classList.toggle('ring-indigo-600', is30);
-            ringEl.classList.toggle('ring-amber-500', is10);
+            ringEl.classList.toggle('ring-2', isCurrent);
+            ringEl.classList.toggle('ring-offset-2', isCurrent);
+            ringEl.classList.toggle('ring-indigo-600', isCurrent);
           }
 
           if (pillEl) {
-            if (is30) {
-              pillEl.textContent = 'Phối';
-              pillEl.className = 'absolute -bottom-1.5 left-1/2 -translate-x-1/2 px-1.5 py-0.2 rounded-full bg-indigo-600 text-white text-[9px] font-extrabold leading-tight whitespace-nowrap';
-            } else if (is10) {
-              pillEl.textContent = 'Nhấn';
-              pillEl.className = 'absolute -bottom-1.5 left-1/2 -translate-x-1/2 px-1.5 py-0.2 rounded-full bg-amber-500 text-white text-[9px] font-extrabold leading-tight whitespace-nowrap';
+            if (usedLayers.length > 0) {
+              pillEl.textContent = usedLayers[0];
+              pillEl.className = `absolute -bottom-1.5 left-1/2 -translate-x-1/2 px-1.5 py-0.2 rounded-full text-[9px] font-extrabold leading-tight whitespace-nowrap ${isCurrent ? 'bg-indigo-600 text-white' : 'bg-slate-700 text-white'}`;
             } else {
               pillEl.className = 'hidden';
             }
@@ -1717,13 +2089,7 @@
     function setSheetOutfitStyle(styleKey) {
       if (!state.sheetPreview) return;
       state.sheetPreview.outfitStyle = styleKey;
-      renderSheetOutfitFlatlay();
-    }
-
-    function toggleSheetOutfitSwap() {
-      if (!state.sheetPreview) return;
-      state.sheetPreview.swapTopBottom = !state.sheetPreview.swapTopBottom;
-      renderSheetOutfitFlatlay();
+      renderSheetProportionBar();
     }
 
     function getGarmentDetailTokens(hex) {
@@ -1732,7 +2098,7 @@
         stroke: light ? 'rgba(15, 23, 42, 0.24)' : 'rgba(255, 255, 255, 0.22)',
         seam: light ? 'rgba(15, 23, 42, 0.16)' : 'rgba(255, 255, 255, 0.18)',
         inner: light ? 'rgba(15, 23, 42, 0.08)' : 'rgba(0, 0, 0, 0.28)',
-        button: light ? 'rgba(15, 23, 42, 0.36)' : 'rgba(255, 255, 255, 0.55)',
+        button: light ? 'rgba(15, 23, 42, 0.36)' : 'rgba(255, 255, 255, 0.56)',
         crease: light ? 'rgba(15, 23, 42, 0.10)' : 'rgba(255, 255, 255, 0.13)'
       };
     }
@@ -1740,9 +2106,8 @@
     function renderSheetOutfitFlatlay() {
       const svgBox = document.getElementById('sheet-outfit-svg');
       const sp = state.sheetPreview;
-      if (!svgBox || !sp || !sp.anchor) return;
+      if (!svgBox || !sp || !sp.layers) return;
 
-      // Update style switcher active state
       const tabs = document.getElementById('sheet-outfit-style-tabs');
       if (tabs) {
         tabs.querySelectorAll('button[data-outfit-style]').forEach(btn => {
@@ -1754,237 +2119,228 @@
         });
       }
 
-      const mainColor = sp.anchor;
-      const supportColor = sp.c30 || sp.anchor;
-      const accentColor = sp.c10 || sp.c30 || sp.anchor;
+      const { jacket, mid, bottom } = sp.layers;
+      const activeKey = sp.activeLayer || 'jacket';
+      const isWomen = sp.outfitStyle === 'women';
 
-      const topColor = sp.swapTopBottom ? supportColor : mainColor;
-      const bottomColor = sp.swapTopBottom ? mainColor : supportColor;
-      const accColor = accentColor;
+      const jT = getGarmentDetailTokens(jacket.hex);
+      const mT = getGarmentDetailTokens(mid.hex);
+      const bT = getGarmentDetailTokens(bottom.hex);
 
-      const topT = getGarmentDetailTokens(topColor.hex);
-      const botT = getGarmentDetailTokens(bottomColor.hex);
-      const accT = getGarmentDetailTokens(accColor.hex);
-      const style = sp.outfitStyle || 'office';
+      const itemFilter = (k) => activeKey === k ? 'url(#fl-shadow-active)' : 'url(#fl-shadow)';
+      const itemScale = (k, cx, cy) => activeKey === k
+        ? `translate(${cx}, ${cy}) scale(1.075) translate(${-cx}, ${-cy})`
+        : '';
 
       const sharedDefs = `
         <defs>
-          <filter id="fl-shadow" x="-14%" y="-10%" width="128%" height="128%">
-            <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.10" />
+          <filter id="fl-shadow" x="-16%" y="-14%" width="132%" height="132%">
+            <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.08" />
+          </filter>
+          <filter id="fl-shadow-active" x="-24%" y="-20%" width="148%" height="148%">
+            <feDropShadow dx="0" dy="14" stdDeviation="11" flood-color="#0f172a" flood-opacity="0.22" />
           </filter>
         </defs>
       `;
 
-      let garmentsSvg = '';
-      let bottomLabel = 'Quần';
-      let topLabel = 'Áo';
-      let accLabel = 'Phụ kiện';
+      let jacketSvg = '';
+      let midSvg = '';
+      let bottomSvg = '';
+      let accessoriesSvg = '';
 
-      if (style === 'office') {
-        topLabel = 'Áo sơ mi';
-        bottomLabel = 'Quần tây';
-        accLabel = 'Thắt lưng & Giày';
-        garmentsSvg = `
-          <!-- 1. TAILORED DRESS SHIRT -->
-          <g filter="url(#fl-shadow)" transform="translate(18, 18)">
-            <!-- Inner Collar Back -->
-            <path d="M68 18 Q96 10 124 18 L116 32 Q96 28 76 32 Z" fill="${topColor.hex}" stroke="${topT.stroke}" stroke-width="1.2" />
-            <path d="M68 18 Q96 10 124 18 L116 32 Q96 28 76 32 Z" fill="${topT.inner}" />
-            <!-- Left & Right Long Sleeves -->
-            <path d="M52 28 L12 118 Q10 124 16 127 L34 134 Q39 136 42 130 L64 78 Z" fill="${topColor.hex}" stroke="${topT.stroke}" stroke-width="1.3" stroke-linejoin="round" />
-            <path d="M140 28 L180 118 Q182 124 176 127 L158 134 Q153 136 150 130 L128 78 Z" fill="${topColor.hex}" stroke="${topT.stroke}" stroke-width="1.3" stroke-linejoin="round" />
-            <!-- Shirt Body -->
-            <path d="M52 28 L70 18 Q96 34 122 18 L140 28 L138 186 Q96 198 54 186 Z" fill="${topColor.hex}" stroke="${topT.stroke}" stroke-width="1.4" stroke-linejoin="round" />
-            <!-- Sleeve Cuffs -->
-            <line x1="18" y1="112" x2="39" y2="120" stroke="${topT.seam}" stroke-width="1.3" />
-            <line x1="174" y1="112" x2="153" y2="120" stroke="${topT.seam}" stroke-width="1.3" />
-            <!-- Front Placket -->
-            <rect x="92" y="32" width="8" height="158" fill="${topT.inner}" opacity="0.55" />
-            <line x1="92" y1="32" x2="92" y2="190" stroke="${topT.seam}" stroke-width="1" />
-            <line x1="100" y1="32" x2="100" y2="190" stroke="${topT.seam}" stroke-width="1" />
-            <!-- Spread Collar Flaps -->
-            <path d="M70 18 L96 36 L81 52 L60 32 Z" fill="${topColor.hex}" stroke="${topT.stroke}" stroke-width="1.3" stroke-linejoin="round" />
-            <path d="M122 18 L96 36 L111 52 L132 32 Z" fill="${topColor.hex}" stroke="${topT.stroke}" stroke-width="1.3" stroke-linejoin="round" />
-            <!-- Chest Pocket -->
-            <path d="M108 70 H130 V90 L119 95 L108 90 Z" fill="none" stroke="${topT.seam}" stroke-width="1.2" />
-            <line x1="108" y1="74" x2="130" y2="74" stroke="${topT.seam}" stroke-width="0.9" />
-            <!-- Buttons -->
-            <circle cx="96" cy="48" r="2.2" fill="${topT.button}" />
-            <circle cx="96" cy="74" r="2.2" fill="${topT.button}" />
-            <circle cx="96" cy="100" r="2.2" fill="${topT.button}" />
-            <circle cx="96" cy="126" r="2.2" fill="${topT.button}" />
-            <circle cx="96" cy="152" r="2.2" fill="${topT.button}" />
-            <circle cx="96" cy="176" r="2.2" fill="${topT.button}" />
+      if (!isWomen) {
+        // ==================== NAM (MEN'S LOOKBOOK) ====================
+        // 1. Men's Smart Bomber Jacket (Top-Left)
+        jacketSvg = `
+          <g onclick="selectSheetLayer('jacket')" class="cursor-pointer" filter="${itemFilter('jacket')}" transform="${itemScale('jacket', 130, 108)} translate(22, 16)">
+            <path d="M56 26 L16 144 Q14 152 22 155 L42 160 Q48 161 50 154 L70 84 Z"
+              fill="${jacket.hex}" stroke="${jT.stroke}" stroke-width="1.35" stroke-linejoin="round" />
+            <path d="M160 26 L200 144 Q202 152 194 155 L174 160 Q168 161 166 154 L146 84 Z"
+              fill="${jacket.hex}" stroke="${jT.stroke}" stroke-width="1.35" stroke-linejoin="round" />
+            <path d="M56 26 L82 14 H134 L160 26 L156 176 H60 Z"
+              fill="${jacket.hex}" stroke="${jT.stroke}" stroke-width="1.35" stroke-linejoin="round" />
+            <path d="M82 14 L108 32 L92 42 L74 26 Z" fill="${jacket.hex}" stroke="${jT.stroke}" stroke-width="1.2" stroke-linejoin="round" />
+            <path d="M134 14 L108 32 L124 42 L142 26 Z" fill="${jacket.hex}" stroke="${jT.stroke}" stroke-width="1.2" stroke-linejoin="round" />
+            <line x1="108" y1="32" x2="108" y2="176" stroke="${jT.seam}" stroke-width="1.5" />
+            <line x1="60" y1="162" x2="156" y2="162" stroke="${jT.seam}" stroke-width="1.3" />
+            <line x1="20" y1="142" x2="45" y2="148" stroke="${jT.seam}" stroke-width="1.3" />
+            <line x1="196" y1="142" x2="171" y2="148" stroke="${jT.seam}" stroke-width="1.3" />
+            <line x1="72" y1="126" x2="84" y2="148" stroke="${jT.seam}" stroke-width="1.6" stroke-linecap="round" />
+            <line x1="144" y1="126" x2="132" y2="148" stroke="${jT.seam}" stroke-width="1.6" stroke-linecap="round" />
           </g>
+        `;
 
-          <!-- 2. TAILORED TROUSERS + ACCENT BELT -->
-          <g filter="url(#fl-shadow)" transform="translate(228, 16)">
-            <path d="M22 14 H122 L128 228 H89 L72 96 L55 228 H16 Z" fill="${bottomColor.hex}" stroke="${botT.stroke}" stroke-width="1.4" stroke-linejoin="round" />
-            <!-- Waistband & Fly -->
-            <line x1="21" y1="30" x2="123" y2="30" stroke="${botT.seam}" stroke-width="1.3" />
-            <path d="M72 30 V74 Q72 80 66 80" fill="none" stroke="${botT.seam}" stroke-width="1.2" />
-            <!-- Side Pockets -->
-            <path d="M22 36 Q33 50 31 74" fill="none" stroke="${botT.seam}" stroke-width="1.2" />
-            <path d="M122 36 Q111 50 113 74" fill="none" stroke="${botT.seam}" stroke-width="1.2" />
-            <!-- Crisp Center Creases -->
-            <line x1="44" y1="54" x2="36" y2="222" stroke="${botT.crease}" stroke-width="1.6" />
-            <line x1="100" y1="54" x2="108" y2="222" stroke="${botT.crease}" stroke-width="1.6" />
-            <!-- Accent Leather Belt -->
-            <rect x="20" y="17" width="104" height="10" rx="2.5" fill="${accColor.hex}" stroke="${accT.stroke}" stroke-width="1.1" />
-            <!-- Metallic Buckle -->
-            <rect x="65" y="15.5" width="14" height="13" rx="2.5" fill="none" stroke="#94a3b8" stroke-width="2.2" />
-            <line x1="72" y1="16" x2="72" y2="28" stroke="#94a3b8" stroke-width="1.6" />
+        // 2. Men's Button-Down Shirt (Top-Right)
+        midSvg = `
+          <g onclick="selectSheetLayer('mid')" class="cursor-pointer" filter="${itemFilter('mid')}" transform="${itemScale('mid', 380, 96)} translate(274, 10)">
+            <path d="M56 24 L18 134 L40 142 L66 74 Z" fill="${mid.hex}" stroke="${mT.stroke}" stroke-width="1.35" stroke-linejoin="round" />
+            <path d="M156 24 L194 134 L172 142 L146 74 Z" fill="${mid.hex}" stroke="${mT.stroke}" stroke-width="1.35" stroke-linejoin="round" />
+            <path d="M56 24 L82 14 Q106 28 130 14 L156 24 L152 166 Q106 174 60 166 Z"
+              fill="${mid.hex}" stroke="${mT.stroke}" stroke-width="1.35" stroke-linejoin="round" />
+            <path d="M82 14 L106 32 L92 42 L74 24 Z" fill="${mid.hex}" stroke="${mT.stroke}" stroke-width="1.2" stroke-linejoin="round" />
+            <path d="M130 14 L106 32 L120 42 L138 24 Z" fill="${mid.hex}" stroke="${mT.stroke}" stroke-width="1.2" stroke-linejoin="round" />
+            <line x1="106" y1="32" x2="106" y2="168" stroke="${mT.seam}" stroke-width="1.2" />
+            <circle cx="106" cy="54" r="2" fill="${mT.button}" />
+            <circle cx="106" cy="82" r="2" fill="${mT.button}" />
+            <circle cx="106" cy="110" r="2" fill="${mT.button}" />
+            <circle cx="106" cy="138" r="2" fill="${mT.button}" />
+            <path d="M118 66 H138 V84 L128 89 L118 84 Z" fill="none" stroke="${mT.seam}" stroke-width="1.1" />
           </g>
+        `;
 
-          <!-- 3. ACCENT LOAFERS & MINIMALIST WATCH -->
-          <g filter="url(#fl-shadow)" transform="translate(384, 34)">
-            <!-- Structured Cardholder / Clutch -->
-            <rect x="14" y="6" width="84" height="54" rx="10" fill="${accColor.hex}" stroke="${accT.stroke}" stroke-width="1.3" />
-            <path d="M14 22 L56 38 L98 22" fill="none" stroke="${accT.seam}" stroke-width="1.3" />
-            <rect x="50" y="34" width="12" height="7" rx="2" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1" />
-            <!-- Pair of Dress Loafers -->
-            <g transform="translate(4, 88)">
-              <!-- Left Loafer -->
-              <path d="M10 42 C10 18 22 6 32 6 C42 6 48 18 48 42 L45 86 C45 96 38 102 29 102 C20 102 13 96 13 86 Z" fill="${accColor.hex}" stroke="${accT.stroke}" stroke-width="1.3" />
-              <path d="M18 46 Q29 40 40 46" fill="none" stroke="${accT.seam}" stroke-width="2.2" stroke-linecap="round" />
-              <ellipse cx="29" cy="74" rx="11" ry="18" fill="${accT.inner}" />
-              <!-- Right Loafer -->
-              <g transform="translate(52, 12)">
-                <path d="M10 42 C10 18 22 6 32 6 C42 6 48 18 48 42 L45 86 C45 96 38 102 29 102 C20 102 13 96 13 86 Z" fill="${accColor.hex}" stroke="${accT.stroke}" stroke-width="1.3" />
-                <path d="M18 46 Q29 40 40 46" fill="none" stroke="${accT.seam}" stroke-width="2.2" stroke-linecap="round" />
-                <ellipse cx="29" cy="74" rx="11" ry="18" fill="${accT.inner}" />
+        // 3. Men's Tailored Trousers (Bottom-Right)
+        bottomSvg = `
+          <g onclick="selectSheetLayer('bottom')" class="cursor-pointer" filter="${itemFilter('bottom')}" transform="${itemScale('bottom', 380, 272)} translate(314, 172)">
+            <path d="M18 6 H114 L122 192 H84 L66 78 L48 192 H10 Z"
+              fill="${bottom.hex}" stroke="${bT.stroke}" stroke-width="1.35" stroke-linejoin="round" />
+            <line x1="17" y1="20" x2="115" y2="20" stroke="${bT.seam}" stroke-width="1.3" />
+            <circle cx="66" cy="13" r="2.4" fill="${bT.button}" />
+            <path d="M66 20 V60 Q66 65 60 65" fill="none" stroke="${bT.seam}" stroke-width="1.2" />
+            <path d="M18 28 Q32 36 30 56" fill="none" stroke="${bT.seam}" stroke-width="1.2" />
+            <path d="M114 28 Q100 36 102 56" fill="none" stroke="${bT.seam}" stroke-width="1.2" />
+            <line x1="38" y1="44" x2="30" y2="186" stroke="${bT.crease}" stroke-width="1.5" />
+            <line x1="94" y1="44" x2="102" y2="186" stroke="${bT.crease}" stroke-width="1.5" />
+          </g>
+        `;
+
+        // 4. Men's FIXED-COLOR Accessories (White Sneakers + Black Crossbody Clutch + Brown Leather Watch)
+        accessoriesSvg = `
+          <g filter="url(#fl-shadow)" transform="translate(22, 212)">
+            <!-- White Clean Sneakers -->
+            <g>
+              <path d="M10 38 C10 22 18 10 30 10 L44 20 C54 20 74 24 88 32 C94 36 96 42 94 46 H10 Z"
+                fill="#F5F4F0" stroke="#CBD5E1" stroke-width="1.3" stroke-linejoin="round" />
+              <rect x="8" y="44" width="88" height="10" rx="4.5" fill="#E8E4DC" stroke="#CBD5E1" stroke-width="1.1" />
+              <line x1="46" y1="22" x2="52" y2="28" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" />
+              <line x1="55" y1="24" x2="61" y2="30" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" />
+              <g transform="translate(18, 22)">
+                <path d="M10 38 C10 22 18 10 30 10 L44 20 C54 20 74 24 88 32 C94 36 96 42 94 46 H10 Z"
+                  fill="#F5F4F0" stroke="#CBD5E1" stroke-width="1.3" stroke-linejoin="round" />
+                <rect x="8" y="44" width="88" height="10" rx="4.5" fill="#E8E4DC" stroke="#CBD5E1" stroke-width="1.1" />
+                <line x1="46" y1="22" x2="52" y2="28" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" />
+                <line x1="55" y1="24" x2="61" y2="30" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" />
               </g>
             </g>
-          </g>
-        `;
-      } else if (style === 'casual') {
-        topLabel = 'Áo thun';
-        bottomLabel = 'Quần suông';
-        accLabel = 'Túi & Sneaker';
-        garmentsSvg = `
-          <!-- 1. RELAXED CREWNECK TEE -->
-          <g filter="url(#fl-shadow)" transform="translate(16, 24)">
-            <path d="M58 18 Q96 38 134 18 L184 48 L166 94 L142 82 L144 196 H48 L50 82 L26 94 L8 48 Z" fill="${topColor.hex}" stroke="${topT.stroke}" stroke-width="1.4" stroke-linejoin="round" />
-            <!-- Ribbed Collar -->
-            <path d="M58 18 Q96 42 134 18" fill="none" stroke="${topT.stroke}" stroke-width="5" stroke-linecap="round" />
-            <path d="M62 18 Q96 36 130 18" fill="none" stroke="${topT.inner}" stroke-width="2.5" />
-            <!-- Dropped Shoulder & Hem Stitching -->
-            <line x1="48" y1="32" x2="50" y2="82" stroke="${topT.seam}" stroke-width="1.1" stroke-dasharray="3 2" />
-            <line x1="144" y1="32" x2="142" y2="82" stroke="${topT.seam}" stroke-width="1.1" stroke-dasharray="3 2" />
-            <line x1="49" y1="186" x2="143" y2="186" stroke="${topT.seam}" stroke-width="1.1" />
-            <!-- Subtle Soft Drape -->
-            <path d="M74 96 Q70 140 74 182" fill="none" stroke="${topT.crease}" stroke-width="2" stroke-linecap="round" />
-            <path d="M120 104 Q124 142 120 182" fill="none" stroke="${topT.crease}" stroke-width="2" stroke-linecap="round" />
-          </g>
-
-          <!-- 2. RELAXED STRAIGHT PANTS -->
-          <g filter="url(#fl-shadow)" transform="translate(226, 16)">
-            <path d="M22 14 H122 L130 228 H88 L72 94 L56 228 H14 Z" fill="${bottomColor.hex}" stroke="${botT.stroke}" stroke-width="1.4" stroke-linejoin="round" />
-            <!-- Waistband + Button + Fly -->
-            <line x1="21" y1="30" x2="123" y2="30" stroke="${botT.seam}" stroke-width="1.3" />
-            <circle cx="72" cy="22" r="3" fill="${botT.button}" />
-            <path d="M72 30 V74 Q72 80 65 80" fill="none" stroke="${botT.seam}" stroke-width="1.3" />
-            <!-- Curved Casual Pockets -->
-            <path d="M22 44 Q42 46 44 68" fill="none" stroke="${botT.seam}" stroke-width="1.3" />
-            <path d="M122 44 Q102 46 100 68" fill="none" stroke="${botT.seam}" stroke-width="1.3" />
-            <!-- Cuffed Hem -->
-            <line x1="15" y1="214" x2="57" y2="214" stroke="${botT.seam}" stroke-width="1.3" />
-            <line x1="87" y1="214" x2="129" y2="214" stroke="${botT.seam}" stroke-width="1.3" />
-          </g>
-
-          <!-- 3. TOTE BAG + LOW-TOP SNEAKER -->
-          <g filter="url(#fl-shadow)" transform="translate(384, 24)">
-            <!-- Minimalist Tote Bag -->
-            <path d="M32 34 V14 C32 4 74 4 74 14 V34" fill="none" stroke="${accColor.hex}" stroke-width="5.5" stroke-linecap="round" />
-            <path d="M32 34 V14 C32 4 74 4 74 14 V34" fill="none" stroke="${accT.stroke}" stroke-width="1" />
-            <rect x="14" y="34" width="78" height="82" rx="8" fill="${accColor.hex}" stroke="${accT.stroke}" stroke-width="1.4" />
-            <rect x="36" y="54" width="34" height="20" rx="4" fill="none" stroke="${accT.seam}" stroke-width="1.1" />
-            <!-- Clean Low-Top Sneaker -->
-            <g transform="translate(4, 140)">
-              <path d="M10 56 C10 38 18 22 30 22 L46 34 C56 34 78 38 92 48 C98 52 100 58 98 64 H10 Z" fill="${accColor.hex}" stroke="${accT.stroke}" stroke-width="1.3" stroke-linejoin="round" />
-              <!-- Crisp White Midsole -->
-              <rect x="8" y="61" width="92" height="12" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2" />
-              <!-- Laces -->
-              <line x1="48" y1="36" x2="54" y2="42" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" />
-              <line x1="57" y1="38" x2="63" y2="44" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" />
-              <line x1="66" y1="41" x2="72" y2="47" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" />
+            <!-- Black Structured Men's Crossbody / Clutch -->
+            <g transform="translate(132, 6)">
+              <rect x="4" y="16" width="66" height="54" rx="8" fill="#222225" stroke="#3F3F46" stroke-width="1.2" />
+              <path d="M4 30 H70" stroke="#52525B" stroke-width="1.2" />
+              <rect x="31" y="27" width="12" height="6" rx="2" fill="#CBD5E1" />
+              <path d="M16 16 C16 4 58 4 58 16" fill="none" stroke="#222225" stroke-width="3.5" stroke-linecap="round" />
+            </g>
+            <!-- Classic Brown Leather Men's Watch -->
+            <g transform="translate(216, 4)">
+              <rect x="11" y="2" width="14" height="24" rx="4" fill="#5C4033" stroke="#3E2723" stroke-width="1.1" />
+              <rect x="11" y="58" width="14" height="26" rx="4" fill="#5C4033" stroke="#3E2723" stroke-width="1.1" />
+              <circle cx="18" cy="42" r="16" fill="#F8FAFC" stroke="#94A3B8" stroke-width="2.2" />
+              <circle cx="18" cy="42" r="12.5" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" />
+              <line x1="18" y1="42" x2="18" y2="34" stroke="#1E293B" stroke-width="1.8" stroke-linecap="round" />
+              <line x1="18" y1="42" x2="24" y2="45" stroke="#475569" stroke-width="1.4" stroke-linecap="round" />
+              <circle cx="18" cy="42" r="1.8" fill="#1E293B" />
             </g>
           </g>
         `;
       } else {
-        topLabel = 'Áo kiểu';
-        bottomLabel = 'Chân váy';
-        accLabel = 'Túi & Giày';
-        garmentsSvg = `
-          <!-- 1. SOFT V-NECK BLOUSE / KNIT -->
-          <g filter="url(#fl-shadow)" transform="translate(18, 22)">
-            <path d="M64 16 L96 54 L128 16 L154 28 L178 104 L154 114 L138 66 L134 186 Q96 196 58 186 L54 66 L38 114 L14 104 L38 28 Z" fill="${topColor.hex}" stroke="${topT.stroke}" stroke-width="1.4" stroke-linejoin="round" />
-            <!-- V-Neck Trim -->
-            <path d="M64 16 L96 54 L128 16" fill="none" stroke="${topT.stroke}" stroke-width="2.4" stroke-linejoin="round" />
-            <!-- Subtle Waist & Drape Lines -->
-            <path d="M76 86 Q72 132 75 182" fill="none" stroke="${topT.crease}" stroke-width="1.8" stroke-linecap="round" />
-            <path d="M116 86 Q120 132 117 182" fill="none" stroke="${topT.crease}" stroke-width="1.8" stroke-linecap="round" />
-            <line x1="58" y1="176" x2="134" y2="176" stroke="${topT.seam}" stroke-width="1.1" />
+        // ==================== NỮ (WOMEN'S LOOKBOOK) ====================
+        // 1. Women's Tailored Blazer / Cardigan (Top-Left)
+        jacketSvg = `
+          <g onclick="selectSheetLayer('jacket')" class="cursor-pointer" filter="${itemFilter('jacket')}" transform="${itemScale('jacket', 130, 108)} translate(22, 16)">
+            <path d="M58 24 L22 142 Q20 150 28 152 L46 156 L68 82 Z"
+              fill="${jacket.hex}" stroke="${jT.stroke}" stroke-width="1.35" stroke-linejoin="round" />
+            <path d="M158 24 L194 142 Q196 150 188 152 L170 156 L148 82 Z"
+              fill="${jacket.hex}" stroke="${jT.stroke}" stroke-width="1.35" stroke-linejoin="round" />
+            <path d="M58 24 L84 14 L108 66 L132 14 L158 24 L150 178 Q108 184 66 178 Z"
+              fill="${jacket.hex}" stroke="${jT.stroke}" stroke-width="1.35" stroke-linejoin="round" />
+            <!-- Soft Notched Blazer Lapels -->
+            <path d="M84 14 L74 44 L86 52 L80 62 L108 98" fill="none" stroke="${jT.seam}" stroke-width="1.4" stroke-linejoin="round" />
+            <path d="M132 14 L142 44 L130 52 L136 62 L108 98" fill="none" stroke="${jT.seam}" stroke-width="1.4" stroke-linejoin="round" />
+            <circle cx="108" cy="112" r="2.6" fill="${jT.button}" />
+            <circle cx="108" cy="136" r="2.6" fill="${jT.button}" />
+            <line x1="74" y1="146" x2="94" y2="146" stroke="${jT.seam}" stroke-width="1.5" stroke-linecap="round" />
+            <line x1="122" y1="146" x2="142" y2="146" stroke="${jT.seam}" stroke-width="1.5" stroke-linecap="round" />
           </g>
+        `;
 
-          <!-- 2. A-LINE MIDI SKIRT -->
-          <g filter="url(#fl-shadow)" transform="translate(222, 24)">
-            <path d="M40 12 H116 L146 212 Q78 224 10 212 Z" fill="${bottomColor.hex}" stroke="${botT.stroke}" stroke-width="1.4" stroke-linejoin="round" />
-            <!-- Fitted Waistband -->
-            <path d="M38 28 H118" stroke="${botT.seam}" stroke-width="1.5" />
-            <!-- Soft Vertical Pleat Lines -->
-            <line x1="56" y1="30" x2="40" y2="210" stroke="${botT.crease}" stroke-width="1.8" />
-            <line x1="78" y1="30" x2="78" y2="214" stroke="${botT.crease}" stroke-width="1.8" />
-            <line x1="100" y1="30" x2="116" y2="210" stroke="${botT.crease}" stroke-width="1.8" />
+        // 2. Women's Soft V-Neck Blouse (Top-Right)
+        midSvg = `
+          <g onclick="selectSheetLayer('mid')" class="cursor-pointer" filter="${itemFilter('mid')}" transform="${itemScale('mid', 380, 96)} translate(274, 12)">
+            <path d="M74 14 L106 50 L138 14 L162 26 L186 104 L164 112 L148 66 L144 162 Q106 170 68 162 L64 66 L48 112 L26 104 L50 26 Z"
+              fill="${mid.hex}" stroke="${mT.stroke}" stroke-width="1.35" stroke-linejoin="round" />
+            <path d="M74 14 L106 50 L138 14" fill="none" stroke="${mT.stroke}" stroke-width="2" stroke-linejoin="round" />
+            <path d="M86 80 Q82 120 84 158" fill="none" stroke="${mT.crease}" stroke-width="1.6" stroke-linecap="round" />
+            <path d="M126 80 Q130 120 128 158" fill="none" stroke="${mT.crease}" stroke-width="1.6" stroke-linecap="round" />
           </g>
+        `;
 
-          <!-- 3. STRUCTURED MINI HANDBAG & FLATS -->
-          <g filter="url(#fl-shadow)" transform="translate(384, 28)">
-            <!-- Top-Handle Handbag -->
-            <path d="M34 38 C34 12 72 12 72 38" fill="none" stroke="${accColor.hex}" stroke-width="5" stroke-linecap="round" />
-            <path d="M34 38 C34 12 72 12 72 38" fill="none" stroke="${accT.stroke}" stroke-width="1" />
-            <path d="M14 38 H92 L98 106 Q98 114 90 114 H16 Q8 114 8 106 Z" fill="${accColor.hex}" stroke="${accT.stroke}" stroke-width="1.4" stroke-linejoin="round" />
-            <!-- Flap & Gold Clasp -->
-            <path d="M13 46 L53 74 L93 46" fill="none" stroke="${accT.seam}" stroke-width="1.5" />
-            <rect x="46" y="68" width="14" height="10" rx="3" fill="#f5d08a" stroke="#b45309" stroke-width="1" />
-            <!-- Pointed Flat Shoe -->
-            <g transform="translate(6, 140)">
-              <path d="M12 42 C12 24 22 18 32 22 L46 44 C58 46 78 44 96 52 C100 54 98 60 90 62 H16 C12 62 10 54 12 42 Z" fill="${accColor.hex}" stroke="${accT.stroke}" stroke-width="1.3" stroke-linejoin="round" />
-              <path d="M16 62 H92" stroke="#94a3b8" stroke-width="2.4" stroke-linecap="round" />
+        // 3. Women's A-Line Midi Skirt (Bottom-Right)
+        bottomSvg = `
+          <g onclick="selectSheetLayer('bottom')" class="cursor-pointer" filter="${itemFilter('bottom')}" transform="${itemScale('bottom', 380, 272)} translate(306, 178)">
+            <path d="M36 6 H112 L144 182 Q74 192 4 182 Z"
+              fill="${bottom.hex}" stroke="${bT.stroke}" stroke-width="1.35" stroke-linejoin="round" />
+            <line x1="34" y1="20" x2="114" y2="20" stroke="${bT.seam}" stroke-width="1.4" />
+            <line x1="54" y1="22" x2="36" y2="180" stroke="${bT.crease}" stroke-width="1.6" />
+            <line x1="74" y1="22" x2="74" y2="184" stroke="${bT.crease}" stroke-width="1.6" />
+            <line x1="94" y1="22" x2="112" y2="180" stroke="${bT.crease}" stroke-width="1.6" />
+          </g>
+        `;
+
+        // 4. Women's FIXED-COLOR Accessories (Cream Pointed Flats + Black Gold-Clasp Handbag + Gold Watch)
+        accessoriesSvg = `
+          <g filter="url(#fl-shadow)" transform="translate(22, 212)">
+            <!-- Cream Nude Pointed Flats -->
+            <g>
+              <path d="M10 38 C10 22 20 16 30 20 L44 38 C56 40 76 38 94 46 C98 48 96 54 88 56 H14 C10 56 8 48 10 38 Z"
+                fill="#E8DAC8" stroke="#C7B6A0" stroke-width="1.2" stroke-linejoin="round" />
+              <line x1="14" y1="56" x2="90" y2="56" stroke="#A69580" stroke-width="2" stroke-linecap="round" />
+              <g transform="translate(16, 22)">
+                <path d="M10 38 C10 22 20 16 30 20 L44 38 C56 40 76 38 94 46 C98 48 96 54 88 56 H14 C10 56 8 48 10 38 Z"
+                  fill="#E8DAC8" stroke="#C7B6A0" stroke-width="1.2" stroke-linejoin="round" />
+                <line x1="14" y1="56" x2="90" y2="56" stroke="#A69580" stroke-width="2" stroke-linecap="round" />
+              </g>
+            </g>
+            <!-- Black Mini Top-Handle Handbag with Gold Clasp -->
+            <g transform="translate(130, -4)">
+              <path d="M24 28 C24 8 56 8 56 28" fill="none" stroke="#222225" stroke-width="4.5" stroke-linecap="round" />
+              <path d="M10 28 H70 L74 84 Q74 90 68 90 H12 Q6 90 6 84 Z" fill="#222225" stroke="#3F3F46" stroke-width="1.2" stroke-linejoin="round" />
+              <path d="M10 36 L40 56 L70 36" fill="none" stroke="#52525B" stroke-width="1.3" />
+              <rect x="35" y="51" width="10" height="7" rx="2" fill="#EAB308" stroke="#A16207" stroke-width="0.8" />
+            </g>
+            <!-- Slim Gold Women's Watch -->
+            <g transform="translate(218, 6)">
+              <rect x="13" y="4" width="10" height="24" rx="3" fill="#D4AF37" stroke="#A16207" stroke-width="0.9" />
+              <rect x="13" y="54" width="10" height="26" rx="3" fill="#D4AF37" stroke="#A16207" stroke-width="0.9" />
+              <circle cx="18" cy="41" r="13.5" fill="#FEF9C3" stroke="#D4AF37" stroke-width="2" />
+              <circle cx="18" cy="41" r="10.5" fill="#FFFFFF" />
+              <line x1="18" y1="41" x2="18" y2="34" stroke="#1E293B" stroke-width="1.5" stroke-linecap="round" />
+              <line x1="18" y1="41" x2="23" y2="43" stroke="#475569" stroke-width="1.2" stroke-linecap="round" />
+              <circle cx="18" cy="41" r="1.4" fill="#1E293B" />
             </g>
           </g>
         `;
       }
+
+      // Clean 3-color Atino mini palette bar at bottom-left
+      const miniBarColors = [jacket, mid, bottom];
+      const miniBarSvg = `
+        <g transform="translate(28, 338)">
+          ${miniBarColors.map((c, idx) => `
+            <rect x="${idx * 42}" y="0" width="36" height="6" rx="3" fill="${c.hex}"
+              stroke="${ColorFitService.isLightColor(c.hex) ? 'rgba(15,23,42,0.18)' : 'none'}" stroke-width="0.8" />
+          `).join('')}
+        </g>
+      `;
 
       svgBox.innerHTML = `
-        <svg viewBox="0 0 512 260" class="w-full h-auto block select-none" role="img"
-          aria-label="Mô phỏng phối đồ: ${escapeHtml(topLabel)} màu ${escapeHtml(topColor.name)}, ${escapeHtml(bottomLabel)} màu ${escapeHtml(bottomColor.name)}, ${escapeHtml(accLabel)} màu ${escapeHtml(accColor.name)}">
+        <svg viewBox="0 0 500 374" class="w-full h-auto block select-none" role="img"
+          aria-label="Phối đồ ${isWomen ? 'Nữ' : 'Nam'}: Áo khoác ${escapeHtml(jacket.name)}, Áo trong ${escapeHtml(mid.name)}, ${isWomen ? 'Chân váy' : 'Quần'} ${escapeHtml(bottom.name)}">
           ${sharedDefs}
-          ${garmentsSvg}
+          ${jacketSvg}
+          ${midSvg}
+          ${bottomSvg}
+          ${accessoriesSvg}
+          ${miniBarSvg}
         </svg>
       `;
-    }
-
-    function toggleSheetPreviewColor(colorId) {
-      const sp = state.sheetPreview;
-      if (!sp) return;
-      const color = ColorFitService.getColorById(colorId);
-      if (!color || (sp.anchor && color.id === sp.anchor.id)) return;
-
-      if (sp.c30 && sp.c30.id === colorId) {
-        // Swap c10 into c30 if available
-        if (sp.c10) { sp.c30 = sp.c10; sp.c10 = null; }
-      } else if (sp.c10 && sp.c10.id === colorId) {
-        // Promote c10 to c30 (swap)
-        const prev30 = sp.c30;
-        sp.c30 = sp.c10;
-        sp.c10 = prev30;
-      } else {
-        // Put newly tapped color into 32% slot, shift previous 32% to 13% accent
-        sp.c10 = sp.c30;
-        sp.c30 = color;
-      }
-      renderSheetProportionBar();
     }
 
     function closePaletteSheet(pushUrl = true) {
