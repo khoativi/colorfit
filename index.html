@@ -526,20 +526,26 @@
         class="w-full sm:max-w-2xl h-[100dvh] max-h-[100dvh] sm:h-[94dvh] sm:max-h-[94dvh] bg-white rounded-none sm:rounded-2xl shadow-2xl border-0 sm:border sm:border-indigo-50 flex flex-col overflow-hidden animate-sheet-up pt-[var(--sat)] sm:pt-0"
         onclick="event.stopPropagation()">
 
-        <!-- Sheet Header -->
-        <div class="px-5 sm:px-6 pt-4 sm:pt-5 pb-3.5 border-b border-slate-100 flex items-start justify-between gap-3 shrink-0">
-          <div class="min-w-0 space-y-1.5">
-            <div id="sheet-palette-meta" class="flex items-center gap-2 flex-wrap"></div>
-            <h2 id="sheet-palette-title" class="text-xl sm:text-2xl font-extrabold text-slate-900 leading-snug"></h2>
+        <!-- Sheet Header (Compact Mobile App Bar + Quick Bookmark) -->
+        <div class="px-4 sm:px-6 pt-3 sm:pt-4 pb-3 border-b border-slate-100 flex items-center justify-between gap-2.5 shrink-0 bg-white">
+          <div class="min-w-0 flex-1">
+            <h2 id="sheet-palette-title" class="text-lg sm:text-xl font-extrabold text-slate-900 leading-tight break-words"></h2>
+            <div id="sheet-palette-meta" class="flex items-center gap-1.5 flex-wrap mt-1"></div>
           </div>
-          <button type="button" onclick="closePaletteSheet()" aria-label="Đóng chi tiết bảng màu"
-            class="w-11 h-11 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center shrink-0 tap-press">
-            <span class="material-symbols-outlined text-[22px]">close</span>
-          </button>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <button id="sheet-save-btn" type="button" onclick="toggleSaveOpenPalette()" aria-label="Lưu bảng màu"
+              class="w-10 h-10 rounded-full bg-slate-100 hover:bg-indigo-50 text-slate-700 flex items-center justify-center tap-press transition-colors">
+              <span id="sheet-save-icon" class="material-symbols-outlined text-[21px]">bookmark</span>
+            </button>
+            <button type="button" onclick="closePaletteSheet()" aria-label="Đóng chi tiết bảng màu"
+              class="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center tap-press">
+              <span class="material-symbols-outlined text-[22px]">close</span>
+            </button>
+          </div>
         </div>
 
-        <!-- Sheet Body -->
-        <div id="sheet-palette-body" class="native-scroll-view overflow-y-auto px-5 sm:px-6 py-5 pb-[calc(1.5rem+var(--sab))] space-y-5">
+        <!-- Sheet Body (Full-bleed Studio Stage + Thumb-First Color Dock) -->
+        <div id="sheet-palette-body" class="native-scroll-view overflow-y-auto pb-[calc(1.75rem+var(--sab))]">
         </div>
       </div>
     </div>
@@ -1492,11 +1498,12 @@
 
       if (metaEl) {
         metaEl.innerHTML = `
-          <span class="text-xs sm:text-sm font-bold px-3 py-0.5 rounded-full brand-gradient text-white">${escapeHtml(pal.groupName)}</span>
-          <span class="text-xs sm:text-sm font-bold px-3 py-0.5 rounded-full border ${diff.cls}">${diff.label}</span>
+          <span class="text-[11px] sm:text-xs font-extrabold px-2.5 py-0.5 rounded-full brand-gradient text-white">${escapeHtml(pal.groupName)}</span>
+          <span class="text-[11px] sm:text-xs font-bold px-2.5 py-0.5 rounded-full border ${diff.cls}">${diff.label}</span>
         `;
       }
       if (titleEl) titleEl.textContent = pal.name;
+      syncSheetSaveButton();
 
       if (bodyEl) {
         const anchorItem = pal.colorItems.find(it => it.role === 'anchor');
@@ -1508,107 +1515,111 @@
           paletteId: pal.paletteId,
           anchor: anchorItem ? anchorItem.color : null,
           c30: default30 ? default30.color : null,
-          c10: (default10 && default10 !== default30) ? default10.color : null
+          c10: (default10 && default10 !== default30) ? default10.color : null,
+          outfitStyle: (state.sheetPreview && state.sheetPreview.outfitStyle) || 'office',
+          swapTopBottom: false
         };
 
         bodyEl.innerHTML = `
-          <!-- 1. Why these colors work -->
-          <div class="bg-indigo-50/60 border border-indigo-100 rounded-2xl p-4 space-y-1.5">
-            <div class="text-xs font-extrabold uppercase tracking-wider text-indigo-700">Vì sao các màu này hợp nhau</div>
-            <p class="text-sm sm:text-base text-slate-800 font-medium leading-relaxed">${escapeHtml(pal.description)}</p>
-          </div>
-
-          <!-- 2. Interactive Suggested Proportions (ALL colors in palette can be paired!) -->
-          <div class="space-y-2.5">
-            <div class="flex items-center justify-between flex-wrap gap-1">
-              <span class="text-xs font-extrabold uppercase tracking-wider text-slate-600">Tỷ lệ phối tham khảo</span>
-              <span class="text-xs sm:text-sm font-semibold text-slate-500">55% chính • 32% phối • 13% nhấn</span>
+          <!-- TIER 1 (TOP): Full-Bleed Warm Studio Outfit Stage -->
+          <section class="bg-[#F6F5F1] border-b border-slate-200/80 px-4 sm:px-6 pt-3 pb-3.5 space-y-2.5">
+            <!-- Single-row Studio Controls -->
+            <div class="flex items-center justify-between gap-2">
+              <div id="sheet-outfit-style-tabs" class="inline-flex items-center gap-0.5 p-1 rounded-full bg-white/85 border border-slate-200/80 shadow-2xs">
+                <button type="button" data-outfit-style="office" onclick="setSheetOutfitStyle('office')"
+                  class="px-2.5 sm:px-3 py-1 rounded-full text-xs font-extrabold transition-all tap-press whitespace-nowrap">Công sở</button>
+                <button type="button" data-outfit-style="casual" onclick="setSheetOutfitStyle('casual')"
+                  class="px-2.5 sm:px-3 py-1 rounded-full text-xs font-extrabold transition-all tap-press whitespace-nowrap">Dạo phố</button>
+                <button type="button" data-outfit-style="feminine" onclick="setSheetOutfitStyle('feminine')"
+                  class="px-2.5 sm:px-3 py-1 rounded-full text-xs font-extrabold transition-all tap-press whitespace-nowrap">Thanh lịch</button>
+              </div>
+              <button type="button" onclick="toggleSheetOutfitSwap()" aria-label="Đảo màu áo và quần"
+                class="min-h-[34px] px-3 py-1 rounded-full bg-white border border-slate-200/90 hover:border-indigo-300 text-slate-800 text-xs font-extrabold inline-flex items-center gap-1 tap-press shadow-2xs shrink-0 whitespace-nowrap">
+                <span class="material-symbols-outlined text-[16px] text-indigo-600">swap_horiz</span>
+                <span>Đảo màu</span>
+              </button>
             </div>
-            <div id="sheet-proportion-bar" class="w-full min-h-[48px] rounded-xl overflow-hidden flex swatch-inset"></div>
-            <div class="space-y-1.5">
-              <span class="text-xs font-semibold text-slate-500 block">Mọi màu trong dãy đều phối được cùng ${escapeHtml(anchorItem ? anchorItem.color.name : 'màu gốc')} — chạm để thử tỷ lệ:</span>
-              <div id="sheet-preview-chips" class="flex flex-wrap gap-1.5">
-                ${companions.map(it => {
+
+            <!-- Edge-to-edge Flat-lay SVG (no inner box clutter; Pure White pops naturally on #F6F5F1) -->
+            <div id="sheet-outfit-svg" class="w-full py-1"></div>
+
+            <!-- Live Proportion Ruler integrated at studio floor -->
+            <div id="sheet-proportion-bar" class="w-full h-7 rounded-full overflow-hidden flex swatch-inset shadow-2xs"></div>
+          </section>
+
+          <!-- TIER 1B (THUMB ZONE): Tactile Swatch Dock -->
+          <section class="px-4 sm:px-6 pt-3.5 pb-4 border-b border-slate-100 bg-white space-y-2.5">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-xs font-extrabold text-slate-800">Chạm màu để thử phối</span>
+              <span class="text-[11px] font-semibold text-slate-400">Chính 55% · Phối 32% · Nhấn 13%</span>
+            </div>
+            <div id="sheet-preview-chips" class="grid grid-cols-3 xs:grid-cols-4 sm:grid-cols-6 gap-2">
+              ${anchorItem ? `
+                <div class="flex flex-col items-center gap-1.5 p-2 rounded-2xl bg-indigo-50/70 border border-indigo-200">
+                  <div class="relative">
+                    <span class="block w-10 h-10 rounded-xl swatch-inset shadow-xs ring-2 ring-indigo-950 ring-offset-2" style="background-color: ${anchorItem.color.hex};"></span>
+                    <span class="absolute -bottom-1.5 left-1/2 -translate-x-1/2 px-1.5 py-0.2 rounded-full bg-indigo-950 text-white text-[9px] font-extrabold leading-tight whitespace-nowrap">Chính</span>
+                  </div>
+                  <span class="text-[11px] font-extrabold text-slate-900 text-center leading-tight pt-1 break-words">${escapeHtml(anchorItem.color.name)}</span>
+                </div>
+              ` : ''}
+              ${companions.map(it => {
           const c = it.color;
           return `
-                    <button type="button" data-preview-id="${c.id}" onclick="toggleSheetPreviewColor('${c.id}')"
-                      class="min-h-[36px] inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-slate-200 hover:border-indigo-400 text-xs sm:text-sm font-bold text-slate-800 tap-press transition-all">
-                      <span class="w-3.5 h-3.5 rounded-full swatch-inset shrink-0" style="background-color: ${c.hex};"></span>
-                      <span>${escapeHtml(c.name)}</span>
-                    </button>
-                  `;
-        }).join('')}
-              </div>
-            </div>
-          </div>
-
-          <!-- 3. All Swatches with Exact Roles (NO re-anchor buttons on detail) -->
-          <div class="space-y-2.5">
-            <div class="flex items-center justify-between flex-wrap gap-1">
-              <span class="text-xs font-extrabold uppercase tracking-wider text-slate-600">Chi tiết ${pal.colorItems.length} sắc màu &amp; vai trò</span>
-            </div>
-            <div class="space-y-2">
-              ${pal.colorItems.map(item => {
-          const c = item.color;
-          const roleInfo = getDisplayRole(item, pal.groupId);
-          const isAnchor = item.role === 'anchor';
-          return `
-                  <div ${!isAnchor ? `onclick="toggleSheetPreviewColor('${c.id}')"` : ''}
-                    class="flex items-center gap-3.5 p-3 rounded-2xl border ${isAnchor ? 'bg-indigo-50/50 border-indigo-200' : 'bg-white border-slate-200/80 hover:border-indigo-300 cursor-pointer tap-press'}">
-                    <span class="w-12 h-12 rounded-xl swatch-inset shrink-0 shadow-xs"
-                      style="background-color: ${c.hex};"></span>
-                    <div class="min-w-0 flex-1">
-                      <div class="flex items-center gap-2 flex-wrap">
-                        <span class="text-base font-extrabold text-slate-900 break-words">${escapeHtml(c.name)}</span>
-                        <span class="text-xs font-bold px-2.5 py-0.5 rounded-full ${roleInfo.badge}">${roleInfo.label}</span>
-                      </div>
-                      <div class="text-sm font-medium text-slate-500">${escapeHtml(c.nameEn)}</div>
+                  <button type="button" data-preview-id="${c.id}" onclick="toggleSheetPreviewColor('${c.id}')"
+                    class="flex flex-col items-center gap-1.5 p-2 rounded-2xl bg-white border border-slate-200/80 hover:border-indigo-300 tap-press transition-all">
+                    <div class="relative">
+                      <span data-swatch-ring class="block w-10 h-10 rounded-xl swatch-inset shadow-xs transition-all" style="background-color: ${c.hex};"></span>
+                      <span data-role-pill class="hidden absolute -bottom-1.5 left-1/2 -translate-x-1/2 px-1.5 py-0.2 rounded-full text-[9px] font-extrabold leading-tight whitespace-nowrap"></span>
                     </div>
-                  </div>
+                    <span class="text-[11px] font-bold text-slate-700 text-center leading-tight pt-1 break-words">${escapeHtml(c.name)}</span>
+                  </button>
                 `;
         }).join('')}
             </div>
-          </div>
+          </section>
 
-          <!-- 4. Outfit Application & Tags -->
-          <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-2.5">
-            <div class="text-xs font-extrabold uppercase tracking-wider text-slate-600">Ứng dụng vào trang phục</div>
-            <ul class="text-sm sm:text-[15px] text-slate-700 space-y-1.5 list-disc pl-5">
-              <li><strong class="text-slate-900">Màu gốc:</strong> ${ROLE_LABELS.anchor.desc}</li>
-              <li><strong class="text-slate-900">Màu hỗ trợ:</strong> ${ROLE_LABELS.supporting.desc}</li>
-              <li><strong class="text-slate-900">Màu nhấn:</strong> ${ROLE_LABELS.accent.desc}</li>
-            </ul>
-            <p class="text-sm font-semibold text-slate-500 pt-2 border-t border-slate-200/80">
-              Lưu ý: Không bắt buộc tất cả ${pal.colorItems.length} màu trong palette phải cùng xuất hiện trên một bộ trang phục — hãy chọn 2 đến 3 màu bạn thích nhất.
-            </p>
-            ${(pal.occasions.length > 0 || pal.styleTags.length > 0) ? `
-              <div class="flex flex-wrap gap-2 pt-1">
-                ${pal.occasions.map(o => `<span class="text-xs sm:text-sm font-bold px-3 py-1 rounded-full bg-white border border-slate-200 text-slate-700">${escapeHtml(OCCASION_LABELS[o] || o)}</span>`).join('')}
-                ${pal.styleTags.map(t => `<span class="text-xs sm:text-sm font-bold px-3 py-1 rounded-full bg-indigo-50 text-indigo-700">#${escapeHtml(t)}</span>`).join('')}
+          <!-- TIER 2 & 3 (SECONDARY INFO — Progressive Disclosure below the fold) -->
+          <div class="px-4 sm:px-6 pt-4 space-y-4">
+            <!-- Consolidated Insight + Occasions + Quick Tip -->
+            <section class="rounded-2xl bg-slate-50/90 border border-slate-200/75 p-4 space-y-2.5">
+              <div class="flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-wider text-indigo-700">
+                <span class="material-symbols-outlined text-[16px]">auto_awesome</span>
+                <span>Gợi ý phối đồ</span>
               </div>
+              <p class="text-sm text-slate-800 font-medium leading-relaxed">${escapeHtml(pal.description)}</p>
+              ${(pal.occasions.length > 0 || pal.styleTags.length > 0) ? `
+                <div class="flex flex-wrap gap-1.5 pt-0.5">
+                  ${pal.occasions.map(o => `<span class="text-xs font-bold px-2.5 py-1 rounded-full bg-white border border-slate-200 text-slate-700">${escapeHtml(OCCASION_LABELS[o] || o)}</span>`).join('')}
+                  ${pal.styleTags.map(t => `<span class="text-xs font-bold px-2.5 py-1 rounded-full bg-indigo-50 text-indigo-700">#${escapeHtml(t)}</span>`).join('')}
+                </div>
+              ` : ''}
+              <p class="text-xs font-medium text-slate-500 pt-2 border-t border-slate-200/70">
+                Mẹo nhỏ: Chỉ cần chọn 2–3 màu bạn ưng nhất trong bảng trên, không bắt buộc mặc cùng lúc cả ${pal.colorItems.length} màu.
+              </p>
+            </section>
+
+            <!-- Related Palettes -->
+            ${res.relatedPalettes.length > 0 ? `
+              <section class="space-y-2.5">
+                <div class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Bảng phối khác cùng màu gốc</div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  ${res.relatedPalettes.map(rp => `
+                    <button type="button" onclick="openPaletteSheet('${rp.paletteId}')"
+                      class="p-3 rounded-2xl bg-white border border-slate-200/90 hover:border-indigo-400 text-left space-y-2 tap-press">
+                      <div class="flex items-start justify-between gap-2">
+                        <span class="text-sm font-extrabold text-slate-900 break-words leading-snug">${escapeHtml(rp.name)}</span>
+                        <span class="text-[11px] font-bold text-indigo-600 shrink-0">${escapeHtml(rp.groupName)}</span>
+                      </div>
+                      <div class="flex h-4 rounded-lg overflow-hidden swatch-inset">
+                        ${rp.colorItems.map(it => `<span class="flex-1 h-full" style="background-color: ${it.color.hex};"></span>`).join('')}
+                      </div>
+                    </button>
+                  `).join('')}
+                </div>
+              </section>
             ` : ''}
           </div>
-
-          <!-- 5. Related Palettes -->
-          ${res.relatedPalettes.length > 0 ? `
-            <div class="space-y-2.5">
-              <div class="text-xs font-extrabold uppercase tracking-wider text-slate-600">Bảng màu khác cùng màu gốc</div>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                ${res.relatedPalettes.map(rp => `
-                  <button type="button" onclick="openPaletteSheet('${rp.paletteId}')"
-                    class="p-3 rounded-2xl bg-white border border-slate-200 hover:border-indigo-400 text-left space-y-2 tap-press">
-                    <div class="flex items-start justify-between gap-2">
-                      <span class="text-sm font-extrabold text-slate-900 break-words leading-snug">${escapeHtml(rp.name)}</span>
-                      <span class="text-xs font-bold text-indigo-600 shrink-0">${escapeHtml(rp.groupName)}</span>
-                    </div>
-                    <div class="flex h-5 rounded-lg overflow-hidden swatch-inset">
-                      ${rp.colorItems.map(it => `<span class="flex-1 h-full" style="background-color: ${it.color.hex};"></span>`).join('')}
-                    </div>
-                  </button>
-                `).join('')}
-              </div>
-            </div>
-          ` : ''}
         `;
       }
 
@@ -1616,6 +1627,25 @@
       renderSheetProportionBar();
       syncBodyScrollLock();
       syncUrl(pushUrl);
+    }
+
+    function syncSheetSaveButton() {
+      const btn = document.getElementById('sheet-save-btn');
+      const icon = document.getElementById('sheet-save-icon');
+      if (!btn || !icon || !state.openPaletteId) return;
+      const saved = isPaletteSaved(state.openPaletteId);
+      btn.setAttribute('aria-label', saved ? 'Bỏ lưu bảng màu' : 'Lưu bảng màu');
+      btn.classList.toggle('bg-indigo-50', saved);
+      btn.classList.toggle('text-indigo-600', saved);
+      btn.classList.toggle('bg-slate-100', !saved);
+      btn.classList.toggle('text-slate-700', !saved);
+      icon.classList.toggle('filled', saved);
+    }
+
+    function toggleSaveOpenPalette() {
+      if (!state.openPaletteId) return;
+      toggleSavePalette(null, state.openPaletteId);
+      syncSheetSaveButton();
     }
 
     function renderSheetProportionBar() {
@@ -1629,17 +1659,17 @@
 
       bar.innerHTML = `
         <div style="width: ${c10 ? '55%' : (c30 ? '65%' : '100%')}; background-color: ${c60.hex}; color: ${ColorFitService.isLightColor(c60.hex) ? '#0f172a' : '#ffffff'};"
-          class="flex items-center justify-center px-2 py-2 text-center text-xs sm:text-sm font-extrabold leading-tight break-words transition-all">
-          ${c10 ? '55%' : (c30 ? '65%' : '100%')} ${escapeHtml(c60.name)}
+          class="flex items-center justify-center px-2 text-center text-[11px] font-extrabold leading-none whitespace-nowrap transition-all">
+          ${c10 ? '55%' : (c30 ? '65%' : '100%')}
         </div>
         ${c30 ? `
           <div style="width: ${c10 ? '32%' : '35%'}; background-color: ${c30.hex}; color: ${ColorFitService.isLightColor(c30.hex) ? '#0f172a' : '#ffffff'};"
-            class="flex items-center justify-center px-1.5 py-2 text-center text-xs sm:text-sm font-bold leading-tight break-words transition-all">
-            ${c10 ? '32%' : '35%'} ${escapeHtml(c30.name)}
+            class="flex items-center justify-center px-1.5 text-center text-[11px] font-extrabold leading-none whitespace-nowrap transition-all">
+            ${c10 ? '32%' : '35%'}
           </div>` : ''}
         ${c10 ? `
           <div style="width: 13%; background-color: ${c10.hex}; color: ${ColorFitService.isLightColor(c10.hex) ? '#0f172a' : '#ffffff'};"
-            class="flex items-center justify-center px-1 py-2 text-center text-xs font-bold leading-tight break-words transition-all">
+            class="flex items-center justify-center px-1 text-center text-[10px] font-extrabold leading-none whitespace-nowrap transition-all">
             13%
           </div>` : ''}
       `;
@@ -1648,15 +1678,291 @@
       if (chipsBox) {
         chipsBox.querySelectorAll('button[data-preview-id]').forEach(btn => {
           const cid = btn.dataset.previewId;
-          const isSel = (c30 && c30.id === cid) || (c10 && c10.id === cid);
-          btn.classList.toggle('bg-indigo-600', isSel);
-          btn.classList.toggle('text-white', isSel);
-          btn.classList.toggle('border-indigo-600', isSel);
-          btn.classList.toggle('bg-white', !isSel);
-          btn.classList.toggle('text-slate-800', !isSel);
-          btn.classList.toggle('border-slate-200', !isSel);
+          const is30 = Boolean(c30 && c30.id === cid);
+          const is10 = Boolean(c10 && c10.id === cid);
+          const ringEl = btn.querySelector('[data-swatch-ring]');
+          const pillEl = btn.querySelector('[data-role-pill]');
+
+          btn.classList.toggle('bg-indigo-50/55', is30);
+          btn.classList.toggle('border-indigo-300', is30);
+          btn.classList.toggle('bg-amber-50/55', is10);
+          btn.classList.toggle('border-amber-300', is10);
+          btn.classList.toggle('bg-white', !is30 && !is10);
+          btn.classList.toggle('border-slate-200/80', !is30 && !is10);
+
+          if (ringEl) {
+            ringEl.classList.toggle('ring-2', is30 || is10);
+            ringEl.classList.toggle('ring-offset-2', is30 || is10);
+            ringEl.classList.toggle('ring-indigo-600', is30);
+            ringEl.classList.toggle('ring-amber-500', is10);
+          }
+
+          if (pillEl) {
+            if (is30) {
+              pillEl.textContent = 'Phối';
+              pillEl.className = 'absolute -bottom-1.5 left-1/2 -translate-x-1/2 px-1.5 py-0.2 rounded-full bg-indigo-600 text-white text-[9px] font-extrabold leading-tight whitespace-nowrap';
+            } else if (is10) {
+              pillEl.textContent = 'Nhấn';
+              pillEl.className = 'absolute -bottom-1.5 left-1/2 -translate-x-1/2 px-1.5 py-0.2 rounded-full bg-amber-500 text-white text-[9px] font-extrabold leading-tight whitespace-nowrap';
+            } else {
+              pillEl.className = 'hidden';
+            }
+          }
         });
       }
+
+      renderSheetOutfitFlatlay();
+    }
+
+    function setSheetOutfitStyle(styleKey) {
+      if (!state.sheetPreview) return;
+      state.sheetPreview.outfitStyle = styleKey;
+      renderSheetOutfitFlatlay();
+    }
+
+    function toggleSheetOutfitSwap() {
+      if (!state.sheetPreview) return;
+      state.sheetPreview.swapTopBottom = !state.sheetPreview.swapTopBottom;
+      renderSheetOutfitFlatlay();
+    }
+
+    function getGarmentDetailTokens(hex) {
+      const light = ColorFitService.isLightColor(hex);
+      return {
+        stroke: light ? 'rgba(15, 23, 42, 0.24)' : 'rgba(255, 255, 255, 0.22)',
+        seam: light ? 'rgba(15, 23, 42, 0.16)' : 'rgba(255, 255, 255, 0.18)',
+        inner: light ? 'rgba(15, 23, 42, 0.08)' : 'rgba(0, 0, 0, 0.28)',
+        button: light ? 'rgba(15, 23, 42, 0.36)' : 'rgba(255, 255, 255, 0.55)',
+        crease: light ? 'rgba(15, 23, 42, 0.10)' : 'rgba(255, 255, 255, 0.13)'
+      };
+    }
+
+    function renderSheetOutfitFlatlay() {
+      const svgBox = document.getElementById('sheet-outfit-svg');
+      const sp = state.sheetPreview;
+      if (!svgBox || !sp || !sp.anchor) return;
+
+      // Update style switcher active state
+      const tabs = document.getElementById('sheet-outfit-style-tabs');
+      if (tabs) {
+        tabs.querySelectorAll('button[data-outfit-style]').forEach(btn => {
+          const active = btn.dataset.outfitStyle === sp.outfitStyle;
+          btn.classList.toggle('bg-white', active);
+          btn.classList.toggle('text-indigo-700', active);
+          btn.classList.toggle('shadow-xs', active);
+          btn.classList.toggle('text-slate-600', !active);
+        });
+      }
+
+      const mainColor = sp.anchor;
+      const supportColor = sp.c30 || sp.anchor;
+      const accentColor = sp.c10 || sp.c30 || sp.anchor;
+
+      const topColor = sp.swapTopBottom ? supportColor : mainColor;
+      const bottomColor = sp.swapTopBottom ? mainColor : supportColor;
+      const accColor = accentColor;
+
+      const topT = getGarmentDetailTokens(topColor.hex);
+      const botT = getGarmentDetailTokens(bottomColor.hex);
+      const accT = getGarmentDetailTokens(accColor.hex);
+      const style = sp.outfitStyle || 'office';
+
+      const sharedDefs = `
+        <defs>
+          <filter id="fl-shadow" x="-14%" y="-10%" width="128%" height="128%">
+            <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.10" />
+          </filter>
+        </defs>
+      `;
+
+      let garmentsSvg = '';
+      let bottomLabel = 'Quần';
+      let topLabel = 'Áo';
+      let accLabel = 'Phụ kiện';
+
+      if (style === 'office') {
+        topLabel = 'Áo sơ mi';
+        bottomLabel = 'Quần tây';
+        accLabel = 'Thắt lưng & Giày';
+        garmentsSvg = `
+          <!-- 1. TAILORED DRESS SHIRT -->
+          <g filter="url(#fl-shadow)" transform="translate(18, 18)">
+            <!-- Inner Collar Back -->
+            <path d="M68 18 Q96 10 124 18 L116 32 Q96 28 76 32 Z" fill="${topColor.hex}" stroke="${topT.stroke}" stroke-width="1.2" />
+            <path d="M68 18 Q96 10 124 18 L116 32 Q96 28 76 32 Z" fill="${topT.inner}" />
+            <!-- Left & Right Long Sleeves -->
+            <path d="M52 28 L12 118 Q10 124 16 127 L34 134 Q39 136 42 130 L64 78 Z" fill="${topColor.hex}" stroke="${topT.stroke}" stroke-width="1.3" stroke-linejoin="round" />
+            <path d="M140 28 L180 118 Q182 124 176 127 L158 134 Q153 136 150 130 L128 78 Z" fill="${topColor.hex}" stroke="${topT.stroke}" stroke-width="1.3" stroke-linejoin="round" />
+            <!-- Shirt Body -->
+            <path d="M52 28 L70 18 Q96 34 122 18 L140 28 L138 186 Q96 198 54 186 Z" fill="${topColor.hex}" stroke="${topT.stroke}" stroke-width="1.4" stroke-linejoin="round" />
+            <!-- Sleeve Cuffs -->
+            <line x1="18" y1="112" x2="39" y2="120" stroke="${topT.seam}" stroke-width="1.3" />
+            <line x1="174" y1="112" x2="153" y2="120" stroke="${topT.seam}" stroke-width="1.3" />
+            <!-- Front Placket -->
+            <rect x="92" y="32" width="8" height="158" fill="${topT.inner}" opacity="0.55" />
+            <line x1="92" y1="32" x2="92" y2="190" stroke="${topT.seam}" stroke-width="1" />
+            <line x1="100" y1="32" x2="100" y2="190" stroke="${topT.seam}" stroke-width="1" />
+            <!-- Spread Collar Flaps -->
+            <path d="M70 18 L96 36 L81 52 L60 32 Z" fill="${topColor.hex}" stroke="${topT.stroke}" stroke-width="1.3" stroke-linejoin="round" />
+            <path d="M122 18 L96 36 L111 52 L132 32 Z" fill="${topColor.hex}" stroke="${topT.stroke}" stroke-width="1.3" stroke-linejoin="round" />
+            <!-- Chest Pocket -->
+            <path d="M108 70 H130 V90 L119 95 L108 90 Z" fill="none" stroke="${topT.seam}" stroke-width="1.2" />
+            <line x1="108" y1="74" x2="130" y2="74" stroke="${topT.seam}" stroke-width="0.9" />
+            <!-- Buttons -->
+            <circle cx="96" cy="48" r="2.2" fill="${topT.button}" />
+            <circle cx="96" cy="74" r="2.2" fill="${topT.button}" />
+            <circle cx="96" cy="100" r="2.2" fill="${topT.button}" />
+            <circle cx="96" cy="126" r="2.2" fill="${topT.button}" />
+            <circle cx="96" cy="152" r="2.2" fill="${topT.button}" />
+            <circle cx="96" cy="176" r="2.2" fill="${topT.button}" />
+          </g>
+
+          <!-- 2. TAILORED TROUSERS + ACCENT BELT -->
+          <g filter="url(#fl-shadow)" transform="translate(228, 16)">
+            <path d="M22 14 H122 L128 228 H89 L72 96 L55 228 H16 Z" fill="${bottomColor.hex}" stroke="${botT.stroke}" stroke-width="1.4" stroke-linejoin="round" />
+            <!-- Waistband & Fly -->
+            <line x1="21" y1="30" x2="123" y2="30" stroke="${botT.seam}" stroke-width="1.3" />
+            <path d="M72 30 V74 Q72 80 66 80" fill="none" stroke="${botT.seam}" stroke-width="1.2" />
+            <!-- Side Pockets -->
+            <path d="M22 36 Q33 50 31 74" fill="none" stroke="${botT.seam}" stroke-width="1.2" />
+            <path d="M122 36 Q111 50 113 74" fill="none" stroke="${botT.seam}" stroke-width="1.2" />
+            <!-- Crisp Center Creases -->
+            <line x1="44" y1="54" x2="36" y2="222" stroke="${botT.crease}" stroke-width="1.6" />
+            <line x1="100" y1="54" x2="108" y2="222" stroke="${botT.crease}" stroke-width="1.6" />
+            <!-- Accent Leather Belt -->
+            <rect x="20" y="17" width="104" height="10" rx="2.5" fill="${accColor.hex}" stroke="${accT.stroke}" stroke-width="1.1" />
+            <!-- Metallic Buckle -->
+            <rect x="65" y="15.5" width="14" height="13" rx="2.5" fill="none" stroke="#94a3b8" stroke-width="2.2" />
+            <line x1="72" y1="16" x2="72" y2="28" stroke="#94a3b8" stroke-width="1.6" />
+          </g>
+
+          <!-- 3. ACCENT LOAFERS & MINIMALIST WATCH -->
+          <g filter="url(#fl-shadow)" transform="translate(384, 34)">
+            <!-- Structured Cardholder / Clutch -->
+            <rect x="14" y="6" width="84" height="54" rx="10" fill="${accColor.hex}" stroke="${accT.stroke}" stroke-width="1.3" />
+            <path d="M14 22 L56 38 L98 22" fill="none" stroke="${accT.seam}" stroke-width="1.3" />
+            <rect x="50" y="34" width="12" height="7" rx="2" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1" />
+            <!-- Pair of Dress Loafers -->
+            <g transform="translate(4, 88)">
+              <!-- Left Loafer -->
+              <path d="M10 42 C10 18 22 6 32 6 C42 6 48 18 48 42 L45 86 C45 96 38 102 29 102 C20 102 13 96 13 86 Z" fill="${accColor.hex}" stroke="${accT.stroke}" stroke-width="1.3" />
+              <path d="M18 46 Q29 40 40 46" fill="none" stroke="${accT.seam}" stroke-width="2.2" stroke-linecap="round" />
+              <ellipse cx="29" cy="74" rx="11" ry="18" fill="${accT.inner}" />
+              <!-- Right Loafer -->
+              <g transform="translate(52, 12)">
+                <path d="M10 42 C10 18 22 6 32 6 C42 6 48 18 48 42 L45 86 C45 96 38 102 29 102 C20 102 13 96 13 86 Z" fill="${accColor.hex}" stroke="${accT.stroke}" stroke-width="1.3" />
+                <path d="M18 46 Q29 40 40 46" fill="none" stroke="${accT.seam}" stroke-width="2.2" stroke-linecap="round" />
+                <ellipse cx="29" cy="74" rx="11" ry="18" fill="${accT.inner}" />
+              </g>
+            </g>
+          </g>
+        `;
+      } else if (style === 'casual') {
+        topLabel = 'Áo thun';
+        bottomLabel = 'Quần suông';
+        accLabel = 'Túi & Sneaker';
+        garmentsSvg = `
+          <!-- 1. RELAXED CREWNECK TEE -->
+          <g filter="url(#fl-shadow)" transform="translate(16, 24)">
+            <path d="M58 18 Q96 38 134 18 L184 48 L166 94 L142 82 L144 196 H48 L50 82 L26 94 L8 48 Z" fill="${topColor.hex}" stroke="${topT.stroke}" stroke-width="1.4" stroke-linejoin="round" />
+            <!-- Ribbed Collar -->
+            <path d="M58 18 Q96 42 134 18" fill="none" stroke="${topT.stroke}" stroke-width="5" stroke-linecap="round" />
+            <path d="M62 18 Q96 36 130 18" fill="none" stroke="${topT.inner}" stroke-width="2.5" />
+            <!-- Dropped Shoulder & Hem Stitching -->
+            <line x1="48" y1="32" x2="50" y2="82" stroke="${topT.seam}" stroke-width="1.1" stroke-dasharray="3 2" />
+            <line x1="144" y1="32" x2="142" y2="82" stroke="${topT.seam}" stroke-width="1.1" stroke-dasharray="3 2" />
+            <line x1="49" y1="186" x2="143" y2="186" stroke="${topT.seam}" stroke-width="1.1" />
+            <!-- Subtle Soft Drape -->
+            <path d="M74 96 Q70 140 74 182" fill="none" stroke="${topT.crease}" stroke-width="2" stroke-linecap="round" />
+            <path d="M120 104 Q124 142 120 182" fill="none" stroke="${topT.crease}" stroke-width="2" stroke-linecap="round" />
+          </g>
+
+          <!-- 2. RELAXED STRAIGHT PANTS -->
+          <g filter="url(#fl-shadow)" transform="translate(226, 16)">
+            <path d="M22 14 H122 L130 228 H88 L72 94 L56 228 H14 Z" fill="${bottomColor.hex}" stroke="${botT.stroke}" stroke-width="1.4" stroke-linejoin="round" />
+            <!-- Waistband + Button + Fly -->
+            <line x1="21" y1="30" x2="123" y2="30" stroke="${botT.seam}" stroke-width="1.3" />
+            <circle cx="72" cy="22" r="3" fill="${botT.button}" />
+            <path d="M72 30 V74 Q72 80 65 80" fill="none" stroke="${botT.seam}" stroke-width="1.3" />
+            <!-- Curved Casual Pockets -->
+            <path d="M22 44 Q42 46 44 68" fill="none" stroke="${botT.seam}" stroke-width="1.3" />
+            <path d="M122 44 Q102 46 100 68" fill="none" stroke="${botT.seam}" stroke-width="1.3" />
+            <!-- Cuffed Hem -->
+            <line x1="15" y1="214" x2="57" y2="214" stroke="${botT.seam}" stroke-width="1.3" />
+            <line x1="87" y1="214" x2="129" y2="214" stroke="${botT.seam}" stroke-width="1.3" />
+          </g>
+
+          <!-- 3. TOTE BAG + LOW-TOP SNEAKER -->
+          <g filter="url(#fl-shadow)" transform="translate(384, 24)">
+            <!-- Minimalist Tote Bag -->
+            <path d="M32 34 V14 C32 4 74 4 74 14 V34" fill="none" stroke="${accColor.hex}" stroke-width="5.5" stroke-linecap="round" />
+            <path d="M32 34 V14 C32 4 74 4 74 14 V34" fill="none" stroke="${accT.stroke}" stroke-width="1" />
+            <rect x="14" y="34" width="78" height="82" rx="8" fill="${accColor.hex}" stroke="${accT.stroke}" stroke-width="1.4" />
+            <rect x="36" y="54" width="34" height="20" rx="4" fill="none" stroke="${accT.seam}" stroke-width="1.1" />
+            <!-- Clean Low-Top Sneaker -->
+            <g transform="translate(4, 140)">
+              <path d="M10 56 C10 38 18 22 30 22 L46 34 C56 34 78 38 92 48 C98 52 100 58 98 64 H10 Z" fill="${accColor.hex}" stroke="${accT.stroke}" stroke-width="1.3" stroke-linejoin="round" />
+              <!-- Crisp White Midsole -->
+              <rect x="8" y="61" width="92" height="12" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2" />
+              <!-- Laces -->
+              <line x1="48" y1="36" x2="54" y2="42" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" />
+              <line x1="57" y1="38" x2="63" y2="44" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" />
+              <line x1="66" y1="41" x2="72" y2="47" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" />
+            </g>
+          </g>
+        `;
+      } else {
+        topLabel = 'Áo kiểu';
+        bottomLabel = 'Chân váy';
+        accLabel = 'Túi & Giày';
+        garmentsSvg = `
+          <!-- 1. SOFT V-NECK BLOUSE / KNIT -->
+          <g filter="url(#fl-shadow)" transform="translate(18, 22)">
+            <path d="M64 16 L96 54 L128 16 L154 28 L178 104 L154 114 L138 66 L134 186 Q96 196 58 186 L54 66 L38 114 L14 104 L38 28 Z" fill="${topColor.hex}" stroke="${topT.stroke}" stroke-width="1.4" stroke-linejoin="round" />
+            <!-- V-Neck Trim -->
+            <path d="M64 16 L96 54 L128 16" fill="none" stroke="${topT.stroke}" stroke-width="2.4" stroke-linejoin="round" />
+            <!-- Subtle Waist & Drape Lines -->
+            <path d="M76 86 Q72 132 75 182" fill="none" stroke="${topT.crease}" stroke-width="1.8" stroke-linecap="round" />
+            <path d="M116 86 Q120 132 117 182" fill="none" stroke="${topT.crease}" stroke-width="1.8" stroke-linecap="round" />
+            <line x1="58" y1="176" x2="134" y2="176" stroke="${topT.seam}" stroke-width="1.1" />
+          </g>
+
+          <!-- 2. A-LINE MIDI SKIRT -->
+          <g filter="url(#fl-shadow)" transform="translate(222, 24)">
+            <path d="M40 12 H116 L146 212 Q78 224 10 212 Z" fill="${bottomColor.hex}" stroke="${botT.stroke}" stroke-width="1.4" stroke-linejoin="round" />
+            <!-- Fitted Waistband -->
+            <path d="M38 28 H118" stroke="${botT.seam}" stroke-width="1.5" />
+            <!-- Soft Vertical Pleat Lines -->
+            <line x1="56" y1="30" x2="40" y2="210" stroke="${botT.crease}" stroke-width="1.8" />
+            <line x1="78" y1="30" x2="78" y2="214" stroke="${botT.crease}" stroke-width="1.8" />
+            <line x1="100" y1="30" x2="116" y2="210" stroke="${botT.crease}" stroke-width="1.8" />
+          </g>
+
+          <!-- 3. STRUCTURED MINI HANDBAG & FLATS -->
+          <g filter="url(#fl-shadow)" transform="translate(384, 28)">
+            <!-- Top-Handle Handbag -->
+            <path d="M34 38 C34 12 72 12 72 38" fill="none" stroke="${accColor.hex}" stroke-width="5" stroke-linecap="round" />
+            <path d="M34 38 C34 12 72 12 72 38" fill="none" stroke="${accT.stroke}" stroke-width="1" />
+            <path d="M14 38 H92 L98 106 Q98 114 90 114 H16 Q8 114 8 106 Z" fill="${accColor.hex}" stroke="${accT.stroke}" stroke-width="1.4" stroke-linejoin="round" />
+            <!-- Flap & Gold Clasp -->
+            <path d="M13 46 L53 74 L93 46" fill="none" stroke="${accT.seam}" stroke-width="1.5" />
+            <rect x="46" y="68" width="14" height="10" rx="3" fill="#f5d08a" stroke="#b45309" stroke-width="1" />
+            <!-- Pointed Flat Shoe -->
+            <g transform="translate(6, 140)">
+              <path d="M12 42 C12 24 22 18 32 22 L46 44 C58 46 78 44 96 52 C100 54 98 60 90 62 H16 C12 62 10 54 12 42 Z" fill="${accColor.hex}" stroke="${accT.stroke}" stroke-width="1.3" stroke-linejoin="round" />
+              <path d="M16 62 H92" stroke="#94a3b8" stroke-width="2.4" stroke-linecap="round" />
+            </g>
+          </g>
+        `;
+      }
+
+      svgBox.innerHTML = `
+        <svg viewBox="0 0 512 260" class="w-full h-auto block select-none" role="img"
+          aria-label="Mô phỏng phối đồ: ${escapeHtml(topLabel)} màu ${escapeHtml(topColor.name)}, ${escapeHtml(bottomLabel)} màu ${escapeHtml(bottomColor.name)}, ${escapeHtml(accLabel)} màu ${escapeHtml(accColor.name)}">
+          ${sharedDefs}
+          ${garmentsSvg}
+        </svg>
+      `;
     }
 
     function toggleSheetPreviewColor(colorId) {
